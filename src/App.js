@@ -1,7 +1,18 @@
-import React from 'react'
+import React from 'react';
+import ThemeProvider from './components/styles/ThemeProvider';
+import GlobalStyle from './components/styles/Global'
 
-    export default function App() {
+function App() {
   return (
-    <div>ass</div>
-  )
+    <ThemeProvider>
+	    <>
+	    <GlobalStyle />
+		    <div>
+		        <h1>Themed React App</h1>
+		    </div>
+		</>
+    </ThemeProvider>
+  );
 }
+
+export default App;
