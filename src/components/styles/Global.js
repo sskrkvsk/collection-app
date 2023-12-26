@@ -7,9 +7,6 @@ const GlobalStyle = createGlobalStyle`
 	box-sizing: border-box;
 }
 body {
-	background: ${({theme}) => theme.colors.body};
 }
-p {}
-img {}
 `;
 export default GlobalStyle;
