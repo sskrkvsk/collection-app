@@ -15,10 +15,10 @@ const theme = {
   spacing: {
     medium: '16px'
   },
-  borders: {
-    radius: '4px'
+  border: {
+    radius: '10px'
   },
-  breakpoints: {
+  breakpoint: {
     medium: '768px'
   },
   mediaQueries: {

@@ -4,7 +4,7 @@ import { LogoStyle } from './styles/Header.styled';
 const Logo = () => {
   return (
         <LogoStyle >   
-            <img src="/images/round-logo.png" alt="logo" />
+            <img src="/images/no-bg-logo.png" alt="logo" />
             <p>KOLEKTSIYA</p>
         </LogoStyle>
   )

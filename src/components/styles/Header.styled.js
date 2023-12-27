@@ -5,12 +5,14 @@ export const HeaderStyle = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    background-color: gray;
 
 `
 
 // LOGO
 export const LogoStyle = styled.div`
     width: 100%;
+    margin-left: 5px;
     height: 50px;
     display: flex;
     align-items: center;
@@ -18,13 +20,13 @@ export const LogoStyle = styled.div`
 
 
     img {
-        width: 50px;
-        padding: 0;
+        width: 43px;
+        padding: 0 2px;
         margin: 0;
     }
 
     p {
-        font-size: ${(props) => props.theme.typography.fontSizeM};
+        font-size: ${({theme}) => theme.typography.fontSizeM};
     }
 `
 // SEARCH
@@ -37,5 +39,30 @@ export const SearchStyle = styled.div`
     align-items: end;
     
 
+    img {
+        width: 30px;
+    }
 
+    div {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+    }
+
+    input, button {
+        padding: 11px;
+        border: none;
+        border-radius: ${({theme}) => theme.border.radius};
+    }
+
+    input {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
 `
