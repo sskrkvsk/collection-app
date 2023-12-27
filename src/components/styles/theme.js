@@ -12,8 +12,8 @@ const theme = {
     fontSizeH: '24px',
     fontSizeM: '20px'
   },
-  spacing: {
-    medium: '16px'
+  height: {
+    headerHight: '50px'
   },
   border: {
     radius: '10px'

@@ -3,6 +3,7 @@ import styled from "styled-components";
 // HEADER
 export const HeaderStyle = styled.div`
     width: 100%;
+    height: ${({theme}) => theme.height.headerHight};
     display: flex;
     justify-content: space-between;
     background-color: gray;
@@ -13,7 +14,6 @@ export const HeaderStyle = styled.div`
 export const LogoStyle = styled.div`
     width: 100%;
     margin-left: 5px;
-    height: 50px;
     display: flex;
     align-items: center;
     background-color: transparent;
@@ -33,7 +33,6 @@ export const LogoStyle = styled.div`
 export const SearchStyle = styled.div`
     background-color: transparent;
     width: 100%;
-    height: 50px;
     display: flex;
     flex-direction: column;
     align-items: end;
@@ -52,7 +51,6 @@ export const SearchStyle = styled.div`
 
     input, button {
         padding: 11px;
-        border: none;
         border-radius: ${({theme}) => theme.border.radius};
     }
 

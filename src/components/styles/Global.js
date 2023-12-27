@@ -21,8 +21,8 @@ img {
 	user-select: none;
 }
 
-button {
-  color: inherit; /* By default, buttons don't inherit the font colour, this is a useful default to override */
+button, input {
+  border: none;
 }
 
 a, button {
