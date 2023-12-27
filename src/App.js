@@ -21,14 +21,14 @@ import GlobalStyle from './components/styles/Global'
 			<GlobalStyle />
 			<Switch>
 			  <Route path="/" exact component={Home} />
-			  <Route path='/:collection' component={Collection} />
 			  <Route path='/addcollection' component={AddCollection} />
 			  <Route path='/addcustomitem' component={AddCustomItem} />
 			  <Route path='/additem' component={AddItem} />
 			  <Route path='/start' component={Start} />
 			  <Route path="/login" component={Login} />
 			  <Route path="/registration" component={Registration} />
-			  <Route path="/:itempage" component={ItemPage} />
+			  <Route path='/:category' component={Collection} />
+			  <Route path="/:category/:itemTitle" component={ItemPage} />
 			  <Route path="*" component={NotFound} />
 			</Switch>
 			</ThemeProvider>

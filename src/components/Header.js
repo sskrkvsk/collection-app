@@ -1,7 +1,16 @@
 import React from 'react'
+import Logo from './Logo'
+import Search from './Search'
+import { HeaderStyle }  from './styles/Header.styled'
 
-export default function Header() {
+ const Header = () => {
   return (
-    <div>Header</div>
+    
+    <HeaderStyle>
+      <Logo />
+      <Search />
+    </HeaderStyle>
   )
 }
+
+export default Header;
