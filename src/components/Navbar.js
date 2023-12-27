@@ -1,9 +1,18 @@
-import React from 'react'
-import HolidayVillageRoundedIcon from '@mui/icons-material/HolidayVillageRounded';
+import React, { useState } from 'react'
+import { SvgContainer } from './styles/SvgContainer';
+import { NavbarStyle } from './styles/Navbar.styled';
+import Menu from './Menu'
 
 const NavBar = () => {
+
+  const [menuBtn, setMenuBtn] = useState(false);
+
+
+
   return (
-    <HolidayVillageRoundedIcon />
+    <NavbarStyle>
+      {menuBtn ? <SvgContainer><img src='/images/menu_black_24dp.svg' alt='menu'/></SvgContainer> : <Menu />}
+    </NavbarStyle>
   )
 }
 

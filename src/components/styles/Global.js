@@ -29,6 +29,10 @@ a, button {
   touch-action: manipulation; /* Element doesn't want double-tap on mobile to zoom */
 }
 
+ul {
+  list-style: none;
+}
+
 svg {
   /* Make the SVGs fit the parent container by default */
   height: 100%;
