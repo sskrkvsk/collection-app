@@ -1,5 +1,5 @@
 import React from 'react'
-import tableNames from '../services/test'
+import { tableNames } from '../services/test'
 import AddBtn from './AddBtn'
 import { MainStyle } from './styles/Main.styled'
 

@@ -14,7 +14,6 @@ function Search() {
     <SearchStyle>
 
         {searchClicked ? <SvgContainer><img onClick={handleClick} src='/images/search_black_24dp.svg' alt='search button'/> </SvgContainer> :
-
         <div>
             <input
                 type="text" 

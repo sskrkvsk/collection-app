@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const NavbarStyle = styled.div`
     position: fixed;
     top: calc(${({theme}) => theme.height.headerHight});
+    background-color: yellow;
 
     span {
         margin-top: 10px;

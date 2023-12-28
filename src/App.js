@@ -35,5 +35,5 @@ import GlobalStyle from './components/styles/Global'
 			</Router>
 		);
 	  }
-
+ 
 export default App;

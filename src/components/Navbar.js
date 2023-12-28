@@ -5,13 +5,16 @@ import Menu from './Menu'
 
 const NavBar = () => {
 
-  const [menuBtn, setMenuBtn] = useState(false);
+  const [menuBtn, setMenuBtn] = useState(true);
 
-
+  function handleClick() {
+    menuBtn ? setMenuBtn(false) : setMenuBtn(true);
+  }
 
   return (
     <NavbarStyle>
-      {menuBtn ? <SvgContainer><img src='/images/menu_black_24dp.svg' alt='menu'/></SvgContainer> : <Menu />}
+    <SvgContainer><img src='/images/menu_black_24dp.svg' onClick={handleClick} alt='menu'/></SvgContainer>
+      {menuBtn && <Menu />}
     </NavbarStyle>
   )
 }
