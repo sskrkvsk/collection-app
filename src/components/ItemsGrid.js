@@ -1,18 +1,24 @@
 import React from 'react'
 import { books } from '../services/test'
-
+import { ItemsGridStyle } from './styles/ItemsGrid.styled'
+import { ItemsCardStyle } from './styles/ItemCard.styled'
+ 
 const ItemsGrid = () => {
   return (
-    <div>
+    <ItemsGridStyle>
         {books.map((item) => {
-            return <div>
+            return <ItemsCardStyle>
                         <img src={item.image} alt='' />
-                        <p>{item.title}</p>
-                        <p>{item.author}</p>
-                    </div>
+                        <div>
+                            <h3>{item.title}</h3>
+                            <p>{item.author}</p>
+                            <span><img src='/images/star_black_24dp.svg' alt='rating star'></img>{item.rating}</span>
+                        </div>
+                        
+                    </ItemsCardStyle>
             
         })}
-    </div>
+    </ItemsGridStyle>
   )
 }
 
