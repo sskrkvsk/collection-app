@@ -18,8 +18,9 @@ const theme = {
   border: {
     radius: '10px'
   },
-  breakpoint: {
-    medium: '768px'
+  size: {
+    main: '60%',
+    grid: '80%'
   },
   mediaQueries: {
     medium: '@media (min-width: 768px)'

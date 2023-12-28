@@ -6,6 +6,7 @@ export const ItemsCardStyle = styled.div`
     border-radius: ${({theme}) => theme.border.radius};
     background-color: white;
     padding: 5px;
+    width: 100%;
 
     img {
         height: 300px;
@@ -38,5 +39,19 @@ export const ItemsCardStyle = styled.div`
         padding-top: 3px;
         width: 16px;
         height: 16px;
+    }
+
+    article {
+        display: ${(props) => props.articleVissbility || 'block'};;
+        background-color: gray;
+        padding: 10px;
+        margin-top: 10px;
+        margin-left: 40px;
+        width: 700px;
+        max-height: 400px;
+        border-radius: ${({theme}) => theme.border.radius};
+        word-break: initial;////////////////////////////////////////////////////////////////////
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     `

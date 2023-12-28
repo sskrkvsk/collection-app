@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 // Main
 export const MainStyle = styled.div`
-    width: 60%;
+    width: ${({theme}) => theme.size.main};
     height: calc(100vh - ${({theme}) => theme.height.headerHight});
     margin: 0 auto;
     padding-top: 100px;

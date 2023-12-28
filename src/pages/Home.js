@@ -2,15 +2,15 @@ import React from 'react'
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Navbar from '../components/Navbar'
-import { HomeStyle } from '../components/styles/Home.styled';
+import { PageStyle } from '../components/styles/Page.styled';
 
 const Home = () => {
   return (
-    <HomeStyle>
+    <PageStyle>
       <Header />
       <Main />
       <Navbar />
-    </HomeStyle>
+    </PageStyle>
   )
 }
  
