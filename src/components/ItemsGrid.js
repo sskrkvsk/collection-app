@@ -4,8 +4,7 @@ import { ItemsGridStyle } from './styles/ItemsGrid.styled'
 import { ItemsCardStyle } from './styles/ItemCard.styled'
  
 const ItemsGrid = ({ gridColumns, articleVissbility }) => {
-  
-  
+//  Make FEWER text on server side to not overflow 
     return (
     <ItemsGridStyle gridColumns={gridColumns}>
         {books.map((item) => {
@@ -16,9 +15,8 @@ const ItemsGrid = ({ gridColumns, articleVissbility }) => {
                             <h3>{item.title}</h3>
                             <p>{item.author}</p>
                             <span><img src='/images/star_black_24dp.svg' alt='rating star'></img>{item.rating}</span>
-                            <article>{item.note}</article>
                         </div>
-                        
+                        <article>{item.note}</article>
                     </ItemsCardStyle>
             
         })}

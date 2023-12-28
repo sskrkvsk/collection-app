@@ -7,7 +7,6 @@ export const ItemsCardStyle = styled.div`
     background-color: white;
     padding: 5px;
     width: 100%;
-
     img {
         height: 300px;
         width: 200px;
@@ -17,13 +16,14 @@ export const ItemsCardStyle = styled.div`
 
     div {
         margin-top: 10px;
-        width: 300px;
+        width: 200px;
         margin-left: 10px;
     }
 
     h3 {
         margin: 0;  
         margin-bottom : 3px;
+        
     }
 
     p {
@@ -31,7 +31,7 @@ export const ItemsCardStyle = styled.div`
         margin-bottom : 10px;
     }
 
-    span{
+    div>span{
         color: #6F7378;
     }
 
@@ -44,14 +44,14 @@ export const ItemsCardStyle = styled.div`
     article {
         display: ${(props) => props.articleVissbility || 'block'};;
         background-color: gray;
-        padding: 10px;
-        margin-top: 10px;
+        padding: 20px 10px; 
         margin-left: 40px;
-        width: 700px;
-        max-height: 400px;
+        width: 500px;
+        height: 300px;
         border-radius: ${({theme}) => theme.border.radius};
-        word-break: initial;////////////////////////////////////////////////////////////////////
+        flex: 1;
         overflow: hidden;
+        word-wrap: normal;
         text-overflow: ellipsis;
     }
     `
