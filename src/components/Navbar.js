@@ -5,7 +5,7 @@ import Menu from './Menu'
 
 const NavBar = () => {
 
-  const [menuBtn, setMenuBtn] = useState(true);
+  const [menuBtn, setMenuBtn] = useState(false);
 
   function handleClick() {
     menuBtn ? setMenuBtn(false) : setMenuBtn(true);

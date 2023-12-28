@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Collection from './pages/Collection';
+// import Collection from './pages/Collection';
 import AddCollection from './pages/AddCollection';
 import AddCustomItem from './pages/AddCustomItem';
 import AddItem from './pages/AddItem';
@@ -27,7 +27,7 @@ import GlobalStyle from './components/styles/Global'
 			  <Route path='/start' component={Start} />
 			  <Route path="/login" component={Login} />
 			  <Route path="/registration" component={Registration} />
-			  <Route path='/:category' component={Collection} />
+			  {/* <Route path='/:category' component={Collection} /> */}
 			  <Route path="/:category/:itemTitle" component={ItemPage} />
 			  <Route path="*" component={NotFound} />
 			</Switch>

@@ -14,6 +14,7 @@ const ItemsGrid = ({ gridColumns, articleVissbility }) => {
                         <div>
                             <h3>{item.title}</h3>
                             <p>{item.author}</p>
+                            <p>{item.data}</p>
                             <span><img src='/images/star_black_24dp.svg' alt='rating star'></img>{item.rating}</span>
                         </div>
                         <article>{item.note}</article>

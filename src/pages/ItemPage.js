@@ -1,8 +1,16 @@
 import React from 'react'
+import Header from '../components/Header'
+import Navbar from '../components/Navbar'
+import SingleItem from '../components/SingleItem'
+// import { PageStyle } from '../components/styles/Page.styled'
 
 const ItemPage = () => {
   return (
-    <div>ItemPage</div>
+    <div>
+      <Header />
+      <Navbar />
+      <SingleItem />
+    </div>
   )
 }
 
