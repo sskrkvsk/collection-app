@@ -6,7 +6,8 @@ import { AddBtnStyle } from '../components/styles/AddBtn.styled'
 import { InputStyle } from '../components/styles/Input.styled'
 
 const AddCustomItem = () => {
-  return (<div>
+  return (
+  <div>
     <Header />
     <NavBar />
     <AddCustomItemStyle>
