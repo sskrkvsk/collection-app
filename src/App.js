@@ -7,7 +7,7 @@ import AddCustomItem from './pages/AddCustomItem';
 import AddItem from './pages/AddItem';
 import Start from './pages/Start';
 import Login from './pages/Login';
-import Registration from './pages/Registration';
+// import Registration from './pages/Registration';
 import ItemPage from './pages/ItemPage';
 import NotFound from './pages/NotFound';
 import ThemeProvider from './components/styles/ThemeProvider';
@@ -26,7 +26,7 @@ import GlobalStyle from './components/styles/Global'
 			  <Route path='/additem' component={AddItem} />
 			  <Route path='/start' component={Start} />
 			  <Route path="/login" component={Login} />
-			  <Route path="/registration" component={Registration} />
+			  {/* <Route path="/registration" component={Registration} /> */}
 			  {/* <Route path='/:category' component={Collection} /> */}
 			  <Route path="/:category/:itemTitle" component={ItemPage} />
 			  <Route path="*" component={NotFound} />

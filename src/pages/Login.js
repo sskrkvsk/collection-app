@@ -1,8 +1,16 @@
 import React from 'react'
+import Logo from '../components/Logo'
+import { LoginStyle } from '../components/styles/Login.styled'
 
 const Login = () => {
   return (
-    <div>Login</div>
+    <LoginStyle>
+      <div>
+        <img src="/images/no-bg-logo.png" alt="logo" />
+        <p>KOLEKTSIYA</p>
+      </div>
+      <img src='/images/web_light_rd_ctn.svg' alt='google'></img>
+    </LoginStyle>
   )
 } 
 
