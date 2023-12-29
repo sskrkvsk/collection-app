@@ -1,58 +1,29 @@
-import React from 'react'
-import { tableNames } from '../services/test'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+// import { tableNames } from '../services/test'
 import AddBtn from './AddBtn'
 import { MainStyle } from './styles/Main.styled'
 
 const Main = () => {
+
+  const [tableNames, setTableNames] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:3001/getTableNames')
+    .then(response => {
+      console.log(response.data.tableNames);
+      setTableNames(response.data.tableNames);
+    })
+    .catch(error => {
+      console.error('Error fetching table names:', error);
+    });
+  }, []);
+
   return (
     <MainStyle>
-        {tableNames.map(table => <div><input type="hidden" name='tableName' value={{table}}></input><button>{table}</button></div>)}
+        {tableNames.map((table, index) => <div key={index}><input type="hidden" name='tableName' value={{table}}></input><button>{table}</button></div>)}
         <AddBtn value="Add Custom" />
     </MainStyle>
   )
 }
 
 export default Main
-
-
-
-// import React from 'react';
-// import tableNames from '../services/test';
-// import { MainStyle } from './styles/Main.styled';
-
-// const Main = () => {
-//   const handleButtonClick = async (tableName) => {
-//     try {
-//       const response = await fetch('/submitTableName', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ tableName }),
-//       });
-
-//       if (response.ok) {
-//         // Handle successful response, if needed
-//         console.log('Table name sent successfully:', tableName);
-//       } else {
-//         // Handle error response
-//         console.error('Failed to send table name:', response.status, response.statusText);
-//       }
-//     } catch (error) {
-//       console.error('Error sending table name:', error.message);
-//     }
-//   };
-
-//   return (
-//     <MainStyle>
-//       {tableNames.map((table) => (
-//         <div key={table}>
-//           <input type="hidden" name="tableName" value={table} />
-//           <button onClick={() => handleButtonClick(table)}>{table}</button>
-//         </div>
-//       ))}
-//     </MainStyle>
-//   );
-// };
-
-// export default Main;
