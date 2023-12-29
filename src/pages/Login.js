@@ -1,5 +1,4 @@
 import React from 'react'
-import Logo from '../components/Logo'
 import { LoginStyle } from '../components/styles/Login.styled'
 
 const Login = () => {
