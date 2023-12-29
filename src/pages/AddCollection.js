@@ -6,14 +6,15 @@ import { AddBtnStyle } from '../components/styles/AddBtn.styled'
 import { InputStyle } from '../components/styles/Input.styled'
 
 const AddCollection = () => {
-  return (<div>
-    <Header />
-    <NavBar />
-    <AddCollectionStyle>
-      <InputStyle type='text' placeholder='Collection Name'></InputStyle>
-      <AddBtnStyle>Add</AddBtnStyle>
-    </AddCollectionStyle>
-  </div>
+  return (
+    <div>
+      <Header />
+      <NavBar />
+      <AddCollectionStyle>
+        <InputStyle type='text' placeholder='Collection Name'></InputStyle>
+        <AddBtnStyle>Add</AddBtnStyle>
+      </AddCollectionStyle>
+    </div>
     
   )
 }
