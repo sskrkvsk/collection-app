@@ -6,5 +6,5 @@ export const AddBtnStyle = styled.button`
     width: 30%;
     padding: 20px 0;
     border-radius: ${({theme}) => theme.border.radius};
-    font-size: ${({theme}) => theme.typography.fontSizeM};
+    font-size: ${({theme}) => theme.typography.fontSizeMb};
 `

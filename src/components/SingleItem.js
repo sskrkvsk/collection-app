@@ -12,29 +12,30 @@ const SingleItem = () => {
 
   return (
     <SingleItemStyled>
-        <div>
+        <header>
             <img src={books[0].image} alt='' />
-            <h1>{books[0].title} by {books[0].author}</h1>
-            <p>{books[0].data}</p>
-            
-            <p><img src='/images/star_black_24dp.svg' alt='rating star'></img>{books[0].rating}</p>
-            
-        </div>
-        <section>
-            <article>
-                {editInputs ? <div>
-                    <input type='text'></input>
-                    <input type='text'></input>
-                </div>
-                : <div>
-                    <h2>Heading</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim. Aliquam id diam maecenas ultricies mi eget mauris pharetra. Nec ultrices dui sapien eget mi proin sed.</p>
-                </div>}
-            </article>
             <div>
-                <button onClick={handleClick}>Edit</button>
-                <button>Delete</button>
-            </div>
+                <p>{books[0].date}</p>
+                <span>
+                    <p>{books[0].rating}</p>
+                    <img src='/images/star_black_24dp.svg' alt='rating star'></img>
+                </span>
+            </div>  
+        </header>
+        <section>
+        <h1>{books[0].title}<br></br> <span>by {books[0].author}</span></h1>
+                {editInputs ? <div>
+                    <input type='text' placeholder='  Heading'></input>
+                    <textarea placeholder="  Notes" rows={20}></textarea>
+                </div>
+                : <article>
+                    <h2>My thoughts</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non enim. Aliquam id diam maecenas ultricies mi eget mauris pharetra. Nec ultrices dui sapien eget mi proin sed.</p>
+                </article>}
+            <footer>
+                <button onClick={handleClick}>Edit Notes</button>
+                <button>Delete Book</button>
+            </footer>
         </section>
     </SingleItemStyled>
   )

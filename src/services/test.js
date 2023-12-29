@@ -6,14 +6,14 @@ export const books = [{
     rating: 9,
     image: "https://edit.org/images/cat/book-covers-big-2019101610.jpg",
     note: "askajfskfjafjafkjafkjafkjaskajfskfjafjafkjafkjafkjaskajfskfjafjafkjafkjafkjaskajfskfjafjafkjafkjafkjaskajfskfjafjafkjafkjafkjaskajfskfjafjafkjafkjafkj",
-    data: "20.09.2023"
+    date: "20.09.2023"
  },
  {
     title: "Book Tittle of hell Book Tittle of hell",
     author: "Jack Londonium",
     rating: 9,
     image: "https://edit.org/images/cat/book-covers-big-2019101610.jpg",
-    data: "20.09.2023"
+    date: "20.09.2023"
  },
  {
     title: "Book Tittle of hell",
@@ -26,7 +26,7 @@ export const books = [{
     author: "Jack Londonium",
     rating: 9,
     image: "https://edit.org/images/cat/book-covers-big-2019101610.jpg",
-    data: "20.09.2023"
+    date: "20.09.2023"
  },{
     title: "Book Tittle of hell",
     author: "Jack Londonium",
