@@ -24,7 +24,7 @@ const db = new pg.Pool({
 // GET
 app.get("/getTableNames", async (req, res) => {
   try {
-      const result = await db.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name != 'user'");
+      const result = await db.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name != 'user' ORDER BY table_name");
       const collections = result.rows;
       const tableNames = collections.map(table => {
         return table.table_name
@@ -33,6 +33,20 @@ app.get("/getTableNames", async (req, res) => {
       res.json({ tableNames });
     } catch (error) {
       console.error("Error retrieving items from the database:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+
+  app.get("/getTableData/:table", async (req, res) => {
+    const { table } = req.params;
+  
+    try {
+      const result = await db.query(`SELECT * FROM ${table} ORDER BY id DESC`);
+      const tableData = result.rows;
+      console.log(tableData);
+      res.json({ tableData });
+    } catch (error) {
+      console.error(`Error retrieving data for table ${table}:`, error);
       res.status(500).send("Internal Server Error");
     }
   });

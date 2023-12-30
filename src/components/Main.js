@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 // import { tableNames } from '../services/test'
 import AddBtn from './AddBtn'
 import { MainStyle } from './styles/Main.styled'
@@ -10,7 +11,6 @@ const Main = () => {
   useEffect(() => {
     axios.get('http://localhost:3001/getTableNames')
     .then(response => {
-      console.log(response.data.tableNames);
       setTableNames(response.data.tableNames);
     })
     .catch(error => {
@@ -20,7 +20,7 @@ const Main = () => {
 
   return (
     <MainStyle>
-        {tableNames.map((table, index) => <div key={index}><input type="hidden" name='tableName' value={{table}}></input><button>{table}</button></div>)}
+        {tableNames.map((table, index) => <div key={index}><input type="hidden" name='tableName' value={{table}}></input> <Link to={`/${table}`}><button>{table}</button></Link></div>)}
         <AddBtn value="Add Custom" />
     </MainStyle>
   )

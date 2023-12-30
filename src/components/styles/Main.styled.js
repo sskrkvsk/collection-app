@@ -16,13 +16,12 @@ export const MainStyle = styled.div`
     div {
         width: 50%;
         padding: 0;
-        
-    }
 
-    div>button {
+        button {
         width: 100%;
         padding: 20px 0;
         border-radius: ${({theme}) => theme.border.radius};
         font-size: ${({theme}) => theme.typography.fontSizeM};
+        }     
     }
 `
