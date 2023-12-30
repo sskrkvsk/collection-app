@@ -18,10 +18,12 @@ const Main = () => {
     });
   }, []);
 
+  
+
   return (
     <MainStyle>
         {tableNames.map((table, index) => <div key={index}><input type="hidden" name='tableName' value={{table}}></input> <Link to={`/${table}`}><button>{table}</button></Link></div>)}
-        <AddBtn value="Add Custom" />
+        <Link to='/addcollection'><AddBtn value="Add Custom" /></Link>
     </MainStyle>
   )
 }

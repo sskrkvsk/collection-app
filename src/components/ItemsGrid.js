@@ -18,7 +18,6 @@ const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
         const formattedDate = format(new Date(item.date), 'dd.MM.yyyy');
         const trimmedTitle = encodeURIComponent(item.title.replace(/\s+/g, '-'));
 
-
         return (
                
           <ItemsCardStyle key={index} articleVissbility={articleVissbility}>      
@@ -32,8 +31,9 @@ const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
                 {item.rating}
               </span>
             </div>
-            <article>{item.note}</article>
             <Link to={`/${category}/${trimmedTitle}`}><button>ass</button></Link> 
+            <article>{item.note}</article>
+            
             
           </ItemsCardStyle>
         );

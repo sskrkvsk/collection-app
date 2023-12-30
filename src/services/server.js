@@ -28,7 +28,7 @@ app.get("/getTableNames", async (req, res) => {
       const collections = result.rows;
       
       const tableNames = collections.map(table => {
-        return table.table_name
+        return table.table_name.charAt(0).toUpperCase() + table.table_name.slice(1);
       })
       
       res.json({ tableNames });

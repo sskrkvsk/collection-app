@@ -57,7 +57,6 @@ const Collection = () => {
   };
   //
   // Grid change toggle
- 
 
 
   return (
