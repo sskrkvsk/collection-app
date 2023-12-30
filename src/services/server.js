@@ -26,6 +26,7 @@ app.get("/getTableNames", async (req, res) => {
   try {
       const result = await db.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name != 'user' ORDER BY table_name");
       const collections = result.rows;
+      
       const tableNames = collections.map(table => {
         return table.table_name
       })

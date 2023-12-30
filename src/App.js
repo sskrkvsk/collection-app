@@ -26,10 +26,12 @@ import GlobalStyle from './components/styles/Global'
 			  <Route path='/additem' component={AddItem} />
 			  {/* <Route path='/start' component={Start} /> */}
 			  <Route path="/login" component={Login} />
+			  <Route path="/NotFound" component={NotFound} />
+
 			  {/* <Route path="/registration" component={Registration} /> */}
-			  <Route path='/:category' component={Collection} />
 			  <Route path="/:category/:itemTitle" component={ItemPage} />
-			  <Route path="*" component={NotFound} />
+			  <Route path='/:category' component={Collection} />
+			  
 			</Switch>
 			</ThemeProvider>
 			</Router>

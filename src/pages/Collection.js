@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import ItemsGrid from '../components/ItemsGrid';
 import TopBar from '../components/TopBar';
@@ -10,25 +10,42 @@ const Collection = () => {
 
   const { category } = useParams();
   const [tableData, setTableData] = useState([]);
+  const [validCategories, setValidCategories] = useState([]);
+  const [isValidCategory, setIsValidCategory] = useState(true);
+  ///////
+  const [sorting, setSorting] = useState(false);
+  const [gridColumns, setGridColumns] = useState('repeat(3, 1fr)');
+  const [articleVissbility, setarticleVissbility] = useState('none');
 
   useEffect(() => {
     // Fetch data based on the selected table name (category)
     axios.get(`http://localhost:3001/getTableData/${category}`)
       .then(response => {
         setTableData(response.data.tableData);
-        console.log(tableData);
       })
       .catch(error => {
         console.error(`Error fetching data for table ${category}:`, error);
+        setIsValidCategory(false);
       });
   }, [category]);
 
-  
+  useEffect(() => {
+    // Fetch valid categories from the database
+    axios.get('http://localhost:3001/getTableNames')
+      .then(response => {
+        setValidCategories(response.data.tableNames);
+        setIsValidCategory(response.data.tableNames.includes(category));
+      })
+      .catch(error => {
+        console.error("Error fetching valid categories:", error);
+      });
+  }, [category]);
+
+////////////////////////////////////////////////////////////////////////////////////  
     // Sort popup toggle
-  const [sorting, setSorting] = useState(false);
+
   // Grid change toggle
-  const [gridColumns, setGridColumns] = useState('repeat(3, 1fr)');
-  const [articleVissbility, setarticleVissbility] = useState('none');
+
 
   const toggleGrid = () => {
     setGridColumns((prevColumns) =>
@@ -46,13 +63,21 @@ const Collection = () => {
   return (
 
     <PageStyle>
-      <Header />
-      <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid}/>
-      {tableData.length > 0 ? <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} /> : <p>ass</p>}
-      
+      {isValidCategory ? (
+        <>
+          <Header />
+          <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid}/>
+          {tableData.length > 0 ? (
+            <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} category={category} />
+          ) : (
+            <p>No items available for the selected category.</p>
+          )}
+        </>
+      ) : (
+        <Redirect to="/NotFound" />
+      )}
     </PageStyle>
-
-  )
-}
+  );
+};
 
 export default Collection;
