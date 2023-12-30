@@ -16,7 +16,7 @@ const Collection = () => {
     axios.get(`http://localhost:3001/getTableData/${category}`)
       .then(response => {
         setTableData(response.data.tableData);
-        // console.log(tableData);
+        console.log(tableData);
       })
       .catch(error => {
         console.error(`Error fetching data for table ${category}:`, error);
@@ -48,7 +48,8 @@ const Collection = () => {
     <PageStyle>
       <Header />
       <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid}/>
-      <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} />
+      {tableData.length > 0 ? <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} /> : <p>ass</p>}
+      
     </PageStyle>
 
   )
