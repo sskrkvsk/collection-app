@@ -29,6 +29,7 @@ import GlobalStyle from './components/styles/Global'
 			  <Route path="/NotFound" component={NotFound} />
 			  {/* <Route path="/registration" component={Registration} /> */}
 			  <Route path="/:category/:itemTitle" component={ItemPage} />
+			  
 			  <Route path='/:category' component={Collection} />
 			</Switch>
 			</ThemeProvider>

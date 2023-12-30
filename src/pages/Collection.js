@@ -7,20 +7,22 @@ import TopBar from '../components/TopBar';
 import { PageStyle } from '../components/styles/Page.styled';
 
 const Collection = () => {
-
+  // Table name state
   const { category } = useParams();
   const [tableData, setTableData] = useState([]);
-  const [validCategories, setValidCategories] = useState([]);
+  // Category validator
+  const [, setValidCategories] = useState([]);
   const [isValidCategory, setIsValidCategory] = useState(true);
-  ///////
+  // Styling
   const [sorting, setSorting] = useState(false);
   const [gridColumns, setGridColumns] = useState('repeat(3, 1fr)');
   const [articleVissbility, setarticleVissbility] = useState('none');
 
+  // Get data from a table
   useEffect(() => {
-    // Fetch data based on the selected table name (category)
     axios.get(`http://localhost:3001/getTableData/${category}`)
       .then(response => {
+        // console.log(response.data.tableData);  [{…}, {…}, ...]
         setTableData(response.data.tableData);
       })
       .catch(error => {
@@ -29,10 +31,11 @@ const Collection = () => {
       });
   }, [category]);
 
+  // Get all of the tables
   useEffect(() => {
-    // Fetch valid categories from the database
     axios.get('http://localhost:3001/getTableNames')
       .then(response => {
+        // console.log(validCategories); ['Anime', 'Books' ...]
         setValidCategories(response.data.tableNames);
         setIsValidCategory(response.data.tableNames.includes(category));
       })
@@ -57,7 +60,6 @@ const Collection = () => {
   };
   //
   // Grid change toggle
-
 
   return (
 

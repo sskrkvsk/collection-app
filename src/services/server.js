@@ -19,9 +19,8 @@ const db = new pg.Pool({
   port: process.env.DB_PORT || 5432,
 });
 
-// No need for explicit connection here
 
-// GET
+// GET Table Names
 app.get("/getTableNames", async (req, res) => {
   try {
       const result = await db.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name != 'user' ORDER BY table_name");
@@ -38,18 +37,27 @@ app.get("/getTableNames", async (req, res) => {
     }
   });
 
+  // Get Table Data from exact table
   app.get("/getTableData/:table", async (req, res) => {
     const { table } = req.params;
-  
     try {
       const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY id DESC`);
       const tableData = result.rows;
-      console.log(tableData);
+      // console.log(tableData);
       res.json({ tableData });
     } catch (error) {
       console.error(`Error retrieving data for table ${table}:`, error);
       res.status(500).send("Internal Server Error");
     }
+  });
+
+  // Get exact item data from exact table
+
+  app.get("/", async (req, res) => {
+    const {table, item} = req.params;
+    
+
+
   });
 
 
