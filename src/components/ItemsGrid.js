@@ -6,11 +6,7 @@ import { ItemsCardStyle } from './styles/ItemCard.styled'
  
 const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
 
-  const [correctCategory, setCorrectCategory] = useState(true);
 
-  // function categoryCheck() {
-  //   tableData.filter(value => value == category)
-  // }
   return (
     <ItemsGridStyle gridColumns={gridColumns}>
       {tableData.map((item, index) => {
