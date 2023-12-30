@@ -41,7 +41,7 @@ app.get("/getTableNames", async (req, res) => {
     const { table } = req.params;
   
     try {
-      const result = await db.query(`SELECT * FROM ${table} ORDER BY id DESC`);
+      const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY id DESC`);
       const tableData = result.rows;
       console.log(tableData);
       res.json({ tableData });

@@ -11,8 +11,8 @@ const TopBar = ({ sorting, setSorting, toggleGrid }) => {
 
   return (
     <TopBartyle>
-        <li><Link to="/some-route">Home</Link></li>
-        <li><Link to="/some-route">Add item</Link></li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/additem">Add item</Link></li>
         <li><Link to="/some-route">Random</Link></li>
         <li><Link to="/some-route">User</Link></li>
         <div>
