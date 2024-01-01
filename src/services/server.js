@@ -5,6 +5,7 @@ const cors = require("cors");
 require('dotenv').config();
 
 const app = express();
+app.use(express.json());
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -54,7 +55,6 @@ app.get("/getTableNames", async (req, res) => {
   // Get exact item data from exact table
    app.get("/getItemData/:table/:item", async (req, res) => {
     const { table, item } = req.params;
-    const lowercaseTable = table.toLowerCase();
     const formattedItem = item.replace(/-/g, ' ').toLowerCase();
         // console.log(lowercaseTable + " + " + formattedItem);
     
@@ -70,20 +70,19 @@ app.get("/getTableNames", async (req, res) => {
   });
   
 
-
-
-// ADD
-app.post("/add", async (req, res) => {
-//   try {
+// ADD 
+app.post("/addNewCollection", async (req, res) => {
+  try {
 //     const item = req.body.newItem;
 //     const result = await db.query("INSERT INTO items (title) VALUES ($1) RETURNING *", [item]);
-//     // console.log(result.rows);
+    console.log(req.body);
+  
 
 //     res.redirect("/");
-//   } catch (error) {
+  } catch (error) {
 //     console.error("Error adding item to the database:", error);
 //     res.status(500).send("Internal Server Error");
-//   }
+  }
 });
 
 //EDIT
