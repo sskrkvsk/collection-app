@@ -22,7 +22,7 @@ const Main = () => {
 
   return (
     <MainStyle>
-        {tableNames.map((table, index) => <div key={index}><input type="hidden" name='tableName' value={{table}}></input> <Link to={`/${table}`}><button>{table}</button></Link></div>)}
+        {tableNames.map((table, index) => <div key={index}><input type="hidden" name='tableName' value={{table}}></input> <Link to={`/${table}`}><button>{table}</button></Link><div><button>delete col</button><button>edit col</button></div></div>)}
         <Link to='/addcollection'><AddBtn value="Add Custom" /></Link>
     </MainStyle>
   )

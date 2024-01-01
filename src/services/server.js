@@ -26,11 +26,10 @@ app.get("/getTableNames", async (req, res) => {
   try {
       const result = await db.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name != 'user' ORDER BY table_name");
       const collections = result.rows;
-      
+    
       const tableNames = collections.map(table => {
         return table.table_name.charAt(0).toUpperCase() + table.table_name.slice(1);
-      })
-      
+      })   
       res.json({ tableNames });
     } catch (error) {
       console.error("Error retrieving items from the database:", error);
@@ -57,7 +56,6 @@ app.get("/getTableNames", async (req, res) => {
     const { table, item } = req.params;
     const formattedItem = item.replace(/-/g, ' ').toLowerCase();
         // console.log(lowercaseTable + " + " + formattedItem);
-    
     try {
       const result = await db.query(`SELECT * FROM ${table} WHERE title = '${formattedItem}'`);
       const itemData = result.rows;
@@ -70,7 +68,7 @@ app.get("/getTableNames", async (req, res) => {
   });
   
 
-// ADD 
+// ADD custom Category
 app.post("/addNewCollection", async (req, res) => {
   try {
     const category = req.body.key;
@@ -88,7 +86,6 @@ app.post("/addNewCollection", async (req, res) => {
   
 const table = result.rows;
 res.json({ table });
-
   } catch (error) {
     console.error("Error adding table to the database:", error);
     res.status(500).send("Internal Server Error");
