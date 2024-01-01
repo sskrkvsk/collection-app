@@ -52,8 +52,7 @@ app.get("/getTableNames", async (req, res) => {
   });
 
   // Get exact item data from exact table
-
-  app.get("/getItemData/:table/:item", async (req, res) => {
+   app.get("/getItemData/:table/:item", async (req, res) => {
     const { table, item } = req.params;
     const lowercaseTable = table.toLowerCase();
     const formattedItem = item.replace(/-/g, ' ').toLowerCase();
@@ -61,9 +60,9 @@ app.get("/getTableNames", async (req, res) => {
     
     try {
       const result = await db.query(`SELECT * FROM ${table} WHERE title = '${formattedItem}'`);
-      const data = result.rows;
+      const itemData = result.rows;
       // console.log(data);
-      res.json({ data });
+      res.json({ itemData });
     } catch (error) {
       console.error(`Error retrieving data for table ${table}:`, error);
       res.status(500).send("Internal Server Error");

@@ -11,18 +11,18 @@ const ItemPage = () => {
  const { category, itemTitle } = useParams();
  const [itemData, setItemData] = useState([]);
 
- console.log(category + " + " + itemTitle);
+//  console.log(category + " + " + itemTitle);
 
  useEffect(() => {
    axios.get(`http://localhost:3001/getItemData/${category}/${itemTitle}`)
      .then(response => {
-       console.log(response.data.tableData); // [{…}, {…}, ...]
-       setItemData(response.data.tableData);
+      //  console.log(response.data.itemData); // [{…}]
+       setItemData(response.data.itemData[0]);
      })
      .catch(error => {
        console.error(`Error fetching data for table ${category}:`, error);
      });
- }, []); //category +?
+ }, []);
 
   return (
     <div>

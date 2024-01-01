@@ -10,27 +10,28 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
         !editInputs ? setEditInputs(true) : setEditInputs(false)
     }
 
+
     return (
     <SingleItemStyled>
         <header>
-            <img src={"x.image"} alt='' />
+            <img src={itemData.image} alt='' />
             <div>
-                <p>{"x.date"}</p>
+                <p>{itemData.date}</p>
                 <span>
-                    <p>{"x.rating"}</p>
+                    <p>{itemData.rating}</p>
                     <img src='/images/star_black_24dp.svg' alt='rating star'></img>
                 </span>
             </div>  
         </header>
         <section>
-        <h1>{"x.title"}<br></br> <span>by {"x.author"}</span></h1>
+        <h1>{itemData.title} {itemData.author && <span><br></br>by {itemData.author}</span>}</h1>
                 {editInputs ? <div>
                     <input type='text' placeholder='  Heading'></input>
                     <textarea placeholder="  Notes" rows={20}></textarea>
                 </div>
                 : <article>
-                    <h2>x.header</h2>
-                    <p>x.note</p>
+                    <h2>{itemData.header}</h2>
+                    <p>{itemData.note}</p>
                 </article>}
             <footer>
                 <button onClick={handleClick}>Edit Notes</button>

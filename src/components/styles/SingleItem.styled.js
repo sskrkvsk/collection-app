@@ -58,6 +58,7 @@ export const SingleItemStyled = styled.div`
         padding-top: 0;
         font-size: 2.6rem;
         background-color: white;
+        text-transform: capitalize;
 
         span {
             font-size: 1.8rem;
