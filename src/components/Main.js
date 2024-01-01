@@ -6,8 +6,10 @@ import AddBtn from './AddBtn'
 import { MainStyle } from './styles/Main.styled'
 
 const Main = () => {
-
+  const [editableTable, setEditableTable] = useState(null);
   const [tableNames, setTableNames] = useState([]);
+  const [newName, setNewName] = useState("");
+
   useEffect(() => {
     axios.get('http://localhost:3001/getTableNames')
     .then(response => {
@@ -18,12 +20,53 @@ const Main = () => {
     });
   }, [tableNames]);
 
+  function handleChange(event) {
+    setNewName(event.target.value);
+  }
+
+  function handleEdit(table) {
+    setEditableTable(table);
+    setNewName(table);
+  }
+
+  // EDIT CATEGORY - send old and new name
+  function handleSave() {
+    axios.post('http://localhost:3001/editCategory', { editedName: newName, oldName :editableTable })
+      .then(response => {
+        // console.log(response.data);
+      })
+      .catch(error => {
+        console.error("Error posting data:", error);
+      });
+
+    setEditableTable(null); // Reset editableTable after saving
+  }
   
 
   return (
     <MainStyle>
-        {tableNames.map((table, index) => <div key={index}><input type="hidden" name='tableName' value={{table}}></input> <Link to={`/${table}`}><button>{table}</button></Link><div><button>delete col</button><button>edit col</button></div></div>)}
-        <Link to='/addcollection'><AddBtn value="Add Custom" /></Link>
+      {tableNames.map((table, index) => (
+        <div key={index}>
+          <section>
+            {editableTable === table ? (
+              <input type="text" onChange={handleChange} value={newName} />
+            ) : (
+              <Link to={`/${table}`}>
+                <button>{table}</button>
+              </Link>
+            )}
+            <div>
+              {editableTable === table ? (
+                <button onClick={handleSave}>Save</button>
+              ) : (
+                <button onClick={() => handleEdit(table)}>Edit</button>
+              )}
+              <button>Delete</button>
+            </div>
+          </section>
+        </div>
+      ))}
+      <Link to='/addcollection'><AddBtn value="Add Custom" /></Link>
     </MainStyle>
   )
 }

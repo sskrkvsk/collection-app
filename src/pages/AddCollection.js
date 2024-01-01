@@ -15,12 +15,10 @@ const AddCollection = () => {
   const handleChange = (e) => setInputValue(e.target.value);
 
   const handlePostRequest = () => {
-    // Your POST request logic here
     // console.log(inputValue);
     axios.post('http://localhost:3001/addNewCollection', { key: inputValue })
       .then(response => {
-        // Handle the response if needed
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(error => {
         console.error("Error posting data:", error);

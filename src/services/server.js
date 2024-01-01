@@ -92,19 +92,18 @@ res.json({ table });
   }
 });
 
-//EDIT
-app.post("/edit", async (req, res) => {
-//   try {
-//     const itemId = req.body.updatedItemId;
-//     const newValue = req.body.updatedItemTitle;
+//EDIT CATEGORIES
+app.post("/editCategory", async (req, res) => {
+  try {
+    const {oldName, editedName} = req.body;
+    const sanitizedCategory = editedName.replace(/\s+/g, '_');
+    console.log(req.body); 
 
-//     const result = await db.query("UPDATE items SET title = $1 WHERE id = $2 RETURNING *", [newValue, itemId]);
-//     // console.log(result.rows);
-//     res.redirect("/");
-//   } catch (error) {
-//     console.error("Error updating item in the database:", error);
-//     res.status(500).send("Internal Server Error");
-//   }
+    await db.query(`ALTER TABLE ${oldName} RENAME TO ${sanitizedCategory}`);
+  } catch (error) {
+    console.error("Error editing category in the database:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 //DELETE
