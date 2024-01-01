@@ -15,11 +15,6 @@ const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
         const formattedDate = format(new Date(item.date), 'dd.MM.yyyy');
 
         const trimmedTitle = encodeURIComponent(String(item.title).replace(/\s+/g, '-'));
-
-
-        
-        
-
         return (
                
           <ItemsCardStyle key={index} articleVissbility={articleVissbility}>      

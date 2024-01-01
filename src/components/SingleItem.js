@@ -1,33 +1,14 @@
-import React, { useState } from 'react';
-// import axios from 'axios';
-// import { useParams, Redirect, useLocation  } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams, Redirect, useLocation  } from 'react-router-dom';
 import { SingleItemStyled } from './styles/SingleItem.styled';
 
-const SingleItem = () => {
+const SingleItem = ({ itemData, category, itemTitle }) => {
     // Inputs toggle
     const [editInputs, setEditInputs] = useState(false);
     function handleClick() {
         !editInputs ? setEditInputs(true) : setEditInputs(false)
     }
-    //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 
     return (
     <SingleItemStyled>

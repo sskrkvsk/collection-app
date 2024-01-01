@@ -7,7 +7,7 @@ import TopBar from '../components/TopBar';
 import { PageStyle } from '../components/styles/Page.styled';
 
 const Collection = () => {
-  // Table name state
+  // category from Router/ Data from a table
   const { category } = useParams();
   const [tableData, setTableData] = useState([]);
   // Category validator
