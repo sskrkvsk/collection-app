@@ -16,7 +16,7 @@ const Main = () => {
     .catch(error => {
       console.error('Error fetching table names:', error);
     });
-  }, []);
+  }, [tableNames]);
 
   
 

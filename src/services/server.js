@@ -73,15 +73,25 @@ app.get("/getTableNames", async (req, res) => {
 // ADD 
 app.post("/addNewCollection", async (req, res) => {
   try {
-//     const item = req.body.newItem;
-//     const result = await db.query("INSERT INTO items (title) VALUES ($1) RETURNING *", [item]);
-    console.log(req.body);
+    const category = req.body.key;
+    const sanitizedCategory = category.replace(/\s+/g, '_');
+    const result = await db.query(`CREATE TABLE ${sanitizedCategory} (
+	id SERIAL PRIMARY KEY,
+	title TEXT,
+	author TEXT,
+	rating INT,
+	image TEXT,
+	heading TEXT,
+	note TEXT,
+	date TEXT
+)`);
   
+const table = result.rows;
+res.json({ table });
 
-//     res.redirect("/");
   } catch (error) {
-//     console.error("Error adding item to the database:", error);
-//     res.status(500).send("Internal Server Error");
+    console.error("Error adding table to the database:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
