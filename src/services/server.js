@@ -97,7 +97,7 @@ app.post("/editCategory", async (req, res) => {
   try {
     const {oldName, editedName} = req.body;
     const sanitizedCategory = editedName.replace(/\s+/g, '_');
-    console.log(req.body); 
+    // console.log(req.body); 
 
     await db.query(`ALTER TABLE ${oldName} RENAME TO ${sanitizedCategory}`);
   } catch (error) {
@@ -107,17 +107,16 @@ app.post("/editCategory", async (req, res) => {
 });
 
 //DELETE
-app.post("/delete", async (req, res) => {
-//   try {
-//     const deleteId = req.body.deleteItemId;
+app.post("/deleteCategory", async (req, res) => {
+  try {
+    const {category} = req.body;
+    // console.log(category);
 
-//     const result = await db.query("DELETE FROM items WHERE id = $1 RETURNING *", [deleteId]);
-//     // console.log(result.rows);
-//     res.redirect("/");
-//   } catch (error) {
-//     console.error("Error deleting item from the database:", error);
-//     res.status(500).send("Internal Server Error");
-//   }
+    await db.query(`DROP TABLE ${category}`);
+  } catch (error) {
+    console.error("Error deleting category from the database:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.listen(port, () => {

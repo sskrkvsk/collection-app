@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-// import { tableNames } from '../services/test'
 import AddBtn from './AddBtn'
 import { MainStyle } from './styles/Main.styled'
 
 const Main = () => {
-  const [editableTable, setEditableTable] = useState(null);
+  // tables
   const [tableNames, setTableNames] = useState([]);
+  // curent table name
+  const [editableTable, setEditableTable] = useState(null);
+  // new table name
   const [newName, setNewName] = useState("");
 
+  // get table names
   useEffect(() => {
     axios.get('http://localhost:3001/getTableNames')
     .then(response => {
@@ -20,18 +23,19 @@ const Main = () => {
     });
   }, [tableNames]);
 
+  // Actual editing value
   function handleChange(event) {
     setNewName(event.target.value);
   }
-
+  // Previous table value = curent state value
   function handleEdit(table) {
     setEditableTable(table);
     setNewName(table);
   }
 
-  // EDIT CATEGORY - send old and new namec
+  // EDIT CATEGORY - send old and new names
   function handleSave() {
-
+  // just return previous value without sending data
     if (editableTable === newName) {
       setEditableTable(null);
     } else {
@@ -46,6 +50,16 @@ const Main = () => {
     setEditableTable(null); // Reset editableTable after saving
   }
 }
+
+  // DELETE Category
+  function handleDelete(tableName) {
+    axios.post('http://localhost:3001/deleteCategory', {category :tableName}).then(response => {
+      // console.log(response.data);
+    })
+    .catch(error => {
+      console.error("Error posting data:", error);
+    });
+  }
 
   return (
     <MainStyle>
@@ -65,7 +79,7 @@ const Main = () => {
               ) : (
                 <button onClick={() => handleEdit(table)}>Edit</button>
               )}
-              <button>Delete</button>
+              <button onClick={() => handleDelete(table)}>Delete</button>
             </div>
           </section>
         </div>
