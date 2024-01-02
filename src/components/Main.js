@@ -30,7 +30,7 @@ const Main = () => {
   }
   // Previous table value = curent state value
   function handleEdit(table) {
-    console.log(table);
+    // console.log(table);
     setEditableTable(table);
     setNewName(table);
   }
@@ -77,14 +77,14 @@ const Main = () => {
             )}
             <div>
             {!listOfNames.includes(table) && (
-  <>
-    {editableTable === table ? (
-      <button onClick={handleSave}>Save</button>
-    ) : (
-      <button onClick={() => handleEdit(table)}>Edit</button>
-    )}
-    <button onClick={() => handleDelete(table)}>Delete</button>
-  </>
+              <>
+                {editableTable === table ? (
+                  <button onClick={handleSave}>Save</button>
+                ) : (
+                  <button onClick={() => handleEdit(table)}>Edit</button>
+                )}
+                <button onClick={() => handleDelete(table)}>Delete</button>
+              </>
 )}
             </div>
           </section>
