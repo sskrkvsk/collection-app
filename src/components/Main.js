@@ -5,6 +5,7 @@ import AddBtn from './AddBtn'
 import { MainStyle } from './styles/Main.styled'
 
 const Main = () => {
+  const listOfNames = ["Anime", "Books", "Dishes", "Games", "Movies", "Series"];
   // tables
   const [tableNames, setTableNames] = useState([]);
   // curent table name
@@ -29,6 +30,7 @@ const Main = () => {
   }
   // Previous table value = curent state value
   function handleEdit(table) {
+    console.log(table);
     setEditableTable(table);
     setNewName(table);
   }
@@ -74,12 +76,16 @@ const Main = () => {
               </Link>
             )}
             <div>
-              {editableTable === table ? (
-                <button onClick={handleSave}>Save</button>
-              ) : (
-                <button onClick={() => handleEdit(table)}>Edit</button>
-              )}
-              <button onClick={() => handleDelete(table)}>Delete</button>
+            {!listOfNames.includes(table) && (
+  <>
+    {editableTable === table ? (
+      <button onClick={handleSave}>Save</button>
+    ) : (
+      <button onClick={() => handleEdit(table)}>Edit</button>
+    )}
+    <button onClick={() => handleDelete(table)}>Delete</button>
+  </>
+)}
             </div>
           </section>
         </div>
