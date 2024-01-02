@@ -135,6 +135,18 @@ app.post("/deleteCategory", async (req, res) => {
   }
 });
 
+//DELETE item
+app.post("/deleteItem", async (req, res) => {
+  try {
+    const {category, itemId} = req.body;
+    // console.log(req.body);
+
+    await db.query(`DELETE FROM ${category} WHERE id = $1`, [itemId]);
+  } catch (error) {
+    console.error("Error deleting category from the database:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

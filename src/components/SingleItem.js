@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Redirect, useLocation  } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { SingleItemStyled } from './styles/SingleItem.styled';
 
 const SingleItem = ({ itemData, category, itemTitle }) => {
+    const history = useHistory();
     // Previous item's data
     const [curentlValues, setCurentValues] = useState();
     const initialValues = {
@@ -48,6 +49,20 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
         }
         setEditInputs(false);
     }
+
+    //Delete
+    function handleDelete(item, table) {
+
+        axios.post('http://localhost:3001/deleteItem', { itemId: item, category: table })
+            .then(response => {
+              // console.log(response.data);
+              
+            })
+            .catch(error => {
+              console.error("Error posting data:", error);
+            });
+            history.push(`/${category}`);
+    }
     
     // console.log(itemData+" + "+category+" + "+ itemTitle); 
     // [object Object] + Anime + berserk
@@ -80,7 +95,7 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
             <footer>
                
                 {editInputs ? <button onClick={handleSave}>Save</button> :  <button onClick={handleClick}>Edit Notes</button>}
-                <button>Delete Book</button>
+                <button onClick={() => handleDelete(itemData.id, category)}>Delete Book</button>
             </footer>
         </section>
     </SingleItemStyled>
