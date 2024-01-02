@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Header from '../components/Header'
 import NavBar from '../components/Navbar'
@@ -22,6 +22,8 @@ const AddCustomItem = () => {
       rating: 0
     }
   );
+
+  const [canRedirect, setCanRedirect] = useState(false);
 
   // Change
   const handleChange = (event) => {
@@ -70,6 +72,7 @@ const AddCustomItem = () => {
       });
 
       setMissed(false);
+      setCanRedirect(true);
     } else {
       setMissed(true);
     }
@@ -126,6 +129,7 @@ const AddCustomItem = () => {
       
       <AddBtnStyle onClick={handleAdd}>Add</AddBtnStyle>
     </AddCustomItemStyle>
+    {canRedirect && <Redirect to={`/${category}`} />}
   </div>
     
   )
