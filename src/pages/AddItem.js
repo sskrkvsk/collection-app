@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Header from '../components/Header'
 import NavBar from '../components/Navbar'
 import { AddBtnStyle } from '../components/styles/AddBtn.styled'
@@ -13,7 +14,9 @@ const AddItem = () => {
       <AddItemStyle>
         <InputStyle type='text' placeholder='Write a Title'></InputStyle>
         <section>
-          <AddBtnStyle>Add Custum Element</AddBtnStyle>
+          <Link to={'/addcustomitem'}>
+            <AddBtnStyle>Add Custom Element</AddBtnStyle>
+          </Link>
           <AddBtnStyle>Add</AddBtnStyle>
         </section>
       </AddItemStyle>
