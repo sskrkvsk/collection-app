@@ -88,6 +88,7 @@ export const SingleItemStyled = styled.div`
   article {
     h2 {
         margin-bottom: 30px;
+        background-color: azure;
     }
 
     p {

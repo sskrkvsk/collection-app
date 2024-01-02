@@ -7,17 +7,18 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
     // Previous item's data
     const [curentlValues, setCurentValues] = useState();
     const initialValues = {
+        title: itemData.title,
         heading: itemData.heading,
         paragraph: itemData.note
     }
 
     // Input toggle state
     const [editInputs, setEditInputs] = useState(false);
-    // const [saveBtn, setSaveBtn] = useState(false);
-
     // Display values inside inputs/ show inputs
     function handleClick() {
         setCurentValues({
+            category: category,
+            title: itemData.title,
             heading: itemData.heading,
             paragraph: itemData.note
     });
@@ -32,15 +33,18 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
         setCurentValues(prevState => ({...prevState, paragraph: event.target.value }));
     };
 
-
-
     // Save
     function handleSave() {
         if (initialValues.heading === curentlValues.heading && initialValues.paragraph === curentlValues.paragraph) {
-            console.log("nothing changed");
+            // console.log("nothing changed");
         } else {
-            console.log(curentlValues);
-            console.log(initialValues);
+            axios.post('http://localhost:3001/editNotes', { heading: curentlValues.heading, paragraph: curentlValues.paragraph, title: curentlValues.title, category: curentlValues.category })
+            .then(response => {
+              // console.log(response.data);
+            })
+            .catch(error => {
+              console.error("Error posting data:", error);
+            });
         }
         setEditInputs(false);
     }
@@ -49,22 +53,6 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
     // [object Object] + Anime + berserk
     // console.log(itemData);
     // {id: 1, tittle: 'berserk'...}
-
-    function handleEdit() {
-        // if (editableTable === newName) {
-        //     setEditableTable(null);
-        //   } else {
-        //   axios.post('http://localhost:3001/editCategory', { editedName: newName, oldName :editableTable })
-        //     .then(response => {
-        //       // console.log(response.data);
-        //     })
-        //     .catch(error => {
-        //       console.error("Error posting data:", error);
-        //     });
-      
-        //   setEditableTable(null); // Reset editableTable after saving
-        // }
-    }
 
 
     return (
@@ -86,7 +74,7 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
                     <textarea placeholder="  Notes" rows={20} value={curentlValues.paragraph} onChange={handleParagraphChange}></textarea>
                 </div>
                 : <article>
-                    <h2>{itemData.header}</h2>
+                    <h2>{itemData.heading}</h2>
                     <p>{itemData.note}</p>
                 </article>}
             <footer>

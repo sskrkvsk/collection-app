@@ -55,7 +55,6 @@ app.get("/getTableNames", async (req, res) => {
    app.get("/getItemData/:table/:item", async (req, res) => {
     const { table, item } = req.params;
     const formattedItem = item.replace(/-/g, ' ').toLowerCase();
-        // console.log(lowercaseTable + " + " + formattedItem);
     try {
       const result = await db.query(`SELECT * FROM ${table} WHERE title = '${formattedItem}'`);
       const itemData = result.rows;
@@ -83,7 +82,6 @@ app.post("/addNewCollection", async (req, res) => {
 	note TEXT,
 	date TEXT
 )`);
-  
 const table = result.rows;
 res.json({ table });
   } catch (error) {
@@ -106,6 +104,24 @@ app.post("/editCategory", async (req, res) => {
   }
 });
 
+//EDIT Notes
+app.post("/editNotes", async (req, res) => {
+  try {
+    const {title, heading, paragraph, category} = req.body;
+    // const sanitizedCategory = editedName.replace(/\s+/g, '_');
+    console.log(req.body); 
+
+    await db.query(
+      `UPDATE ${category} SET heading = $1, note = $2 WHERE title = $3`,
+      [heading, paragraph, title]
+    );    
+  } catch (error) {
+    console.error("Error editing category in the database:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+
 //DELETE
 app.post("/deleteCategory", async (req, res) => {
   try {
@@ -118,6 +134,7 @@ app.post("/deleteCategory", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
