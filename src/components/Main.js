@@ -29,8 +29,12 @@ const Main = () => {
     setNewName(table);
   }
 
-  // EDIT CATEGORY - send old and new name
+  // EDIT CATEGORY - send old and new namec
   function handleSave() {
+
+    if (editableTable === newName) {
+      setEditableTable(null);
+    } else {
     axios.post('http://localhost:3001/editCategory', { editedName: newName, oldName :editableTable })
       .then(response => {
         // console.log(response.data);
@@ -41,7 +45,7 @@ const Main = () => {
 
     setEditableTable(null); // Reset editableTable after saving
   }
-  
+}
 
   return (
     <MainStyle>
