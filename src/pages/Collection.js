@@ -67,7 +67,7 @@ const Collection = () => {
       {isValidCategory ? (
         <>
           <Header />
-          <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid}/>
+          <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid} tableName={category}/>
           {tableData.length > 0 ? (
             <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} category={category} />
           ) : (

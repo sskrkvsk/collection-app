@@ -90,6 +90,20 @@ res.json({ table });
   }
 });
 
+//ADD custom item
+app.post("/addCustom", async (req, res) => {
+  try {
+    const {image, title, date, rating, table} = req.body.data;
+    // const sanitizedCategory = editedName.replace(/\s+/g, '_');
+    console.log(req.body.data); 
+
+    await db.query(`INSERT INTO ${table} (title, image, date, rating) VALUES ($1, $2, $3, $4)`, [title, image, date, rating]);
+  } catch (error) {
+    console.error("Error editing category in the database:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 //EDIT CATEGORIES
 app.post("/editCategory", async (req, res) => {
   try {
