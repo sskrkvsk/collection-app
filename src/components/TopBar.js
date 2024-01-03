@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import { TopBartyle } from './styles/TopBar.styled';
 
@@ -19,8 +19,8 @@ const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction })
           <button onClick={handleClick}>Sort</button>
           {sorting &&
           <span>
-            <button onClick={sortingFunction}>Date</button>
-            <button>Rating</button>
+            <button onClick={() => sortingFunction("date")}>Date</button>
+            <button onClick={() =>  sortingFunction("rating")}>Rating</button>
           </span>}
         </div>
         

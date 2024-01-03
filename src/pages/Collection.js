@@ -8,20 +8,22 @@ import { PageStyle } from '../components/styles/Page.styled';
 
 const Collection = () => {
   // category from Router/ Data from a table
+  const [btnName, setBtnName] = useState();
   const { category } = useParams();
   const [tableData, setTableData] = useState([]);
   // Category validator
   const [, setValidCategories] = useState([]);
   const [isValidCategory, setIsValidCategory] = useState(true);
-  // Styling
+  // Sorting
   const [sorting, setSorting] = useState(false);
   const [sort , setSort] = useState(true);
+  // Styling
   const [gridColumns, setGridColumns] = useState('repeat(3, 1fr)');
   const [articleVissbility, setarticleVissbility] = useState('none');
 
   // Get data from a table
   useEffect(() => {
-    axios.post(`http://localhost:3001/getTableData/${category}`, {status: sort})
+    axios.post(`http://localhost:3001/getTableData/${category}`, {status: sort, button: btnName })
       .then(response => {
         // console.log(response.data.tableData);  [{…}, {…}, ...]
         setTableData(response.data.tableData);
@@ -30,7 +32,7 @@ const Collection = () => {
         console.error(`Error fetching data for table ${category}:`, error);
         setIsValidCategory(false);
       });
-  }, [category, tableData]);
+  }, [category, sort]);
 
   // Get all of the tables
   useEffect(() => {
@@ -45,21 +47,17 @@ const Collection = () => {
       });
   }, [category]);
 
-////////////////////////////////////////////////////////////////////////////////////  
-    // Sort popup toggle
-    const handleDateSort = () => {
+    // Sort toggle
+    const handleSort = (name) => {
       if (sort) {
-        console.log("display 2009 at top");
         setSort(false);
       } else {
-        console.log("display 2024 at top");
         setSort(true);
       }
+      setBtnName(name);
     }
 
   // Grid change toggle
-
-
   const toggleGrid = () => {
     setGridColumns((prevColumns) =>
       prevColumns === 'repeat(3, 1fr)' ? '1fr' : 'repeat(3, 1fr)'
@@ -69,7 +67,6 @@ const Collection = () => {
   );
   };
   //
-  // Grid change toggle
 
   return (
 
@@ -77,7 +74,7 @@ const Collection = () => {
       {isValidCategory ? (
         <>
           <Header />
-          <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid} tableName={category} sortingFunction={handleDateSort}/>
+          <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid} tableName={category} sortingFunction={handleSort}/>
           {tableData.length > 0 ? (
             <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} category={category} />
           ) : (
