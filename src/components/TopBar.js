@@ -32,7 +32,7 @@ const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction, t
           {sorting &&
           <span>
             <button onClick={() => sortingFunction("date")}>Date</button>
-            <button onClick={() =>  sortingFunction("rating")}>Rating</button>
+            <button onClick={() => sortingFunction("rating")}>Rating</button>
           </span>}
         </div>
         

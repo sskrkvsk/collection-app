@@ -4,8 +4,6 @@ import { LogoStyle } from './styles/Header.styled';
 
 const Logo = ({category}) => {
 
-  console.log(category);
-
   return (
         <Link to='/'>
         <LogoStyle >   

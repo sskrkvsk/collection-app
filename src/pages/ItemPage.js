@@ -13,11 +13,7 @@ const [itemData, setItemData] = useState([]);
 const [searchItemTitle, setSearchItemTitle] = useState();
 
 
-//  set itemTitle to a search value
-const handleSearch = (search) => {
-  console.log(search);
-  // search && setSearchItemTitle(search);
-}
+
 
  useEffect(() => {
    axios.get(`http://localhost:3001/getItemData/${category}/${searchItemTitle ? searchItemTitle : itemTitle}`)
@@ -32,7 +28,7 @@ const handleSearch = (search) => {
 
   return (
     <div>
-      <Header handleSearch={handleSearch} />
+      <Header tableName={category} />
       <Navbar />
       <SingleItem itemData={itemData} category={category} itemTitle={itemTitle} />
     </div>
