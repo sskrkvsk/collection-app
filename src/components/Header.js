@@ -3,13 +3,14 @@ import Logo from './Logo'
 import Search from './Search'
 import { HeaderStyle }  from './styles/Header.styled'
 
- const Header = ({tableName}) => {
+ const Header = ({tableName, handleSearch}) => {
 
+  console.log(tableName);
 
   return (
     <HeaderStyle>
       <Logo category={tableName} />
-      <Search />
+      {tableName && <Search category={tableName} searchFunction={handleSearch}/>}
     </HeaderStyle>
   )
 }

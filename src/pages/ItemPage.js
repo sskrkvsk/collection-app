@@ -8,11 +8,19 @@ import SingleItem from '../components/SingleItem'
 const ItemPage = () => {
 
   // category from Router/ Data from a table
- const { category, itemTitle } = useParams();
- const [itemData, setItemData] = useState([]);
+const { category, itemTitle } = useParams();
+const [itemData, setItemData] = useState([]);
+const [searchItemTitle, setSearchItemTitle] = useState();
+
+
+//  set itemTitle to a search value
+const handleSearch = (search) => {
+  console.log(search);
+  // search && setSearchItemTitle(search);
+}
 
  useEffect(() => {
-   axios.get(`http://localhost:3001/getItemData/${category}/${itemTitle}`)
+   axios.get(`http://localhost:3001/getItemData/${category}/${searchItemTitle ? searchItemTitle : itemTitle}`)
      .then(response => {
       //  console.log(response.data.itemData); // [{…}]
        setItemData(response.data.itemData[0]);
@@ -24,7 +32,7 @@ const ItemPage = () => {
 
   return (
     <div>
-      <Header />
+      <Header handleSearch={handleSearch} />
       <Navbar />
       <SingleItem itemData={itemData} category={category} itemTitle={itemTitle} />
     </div>

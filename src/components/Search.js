@@ -2,14 +2,22 @@ import React, { useState } from 'react'
 import { SearchStyle }  from './styles/Header.styled'
 import { SvgContainer } from './styles/SvgContainer'
 
-function Search() {
+function Search({category, searchFunction}) {
+    // Show input
     const [searchClicked, setSearchClicked] = useState(true);
-
-
     function handleClick() {
         setSearchClicked(false);
-        console.log("serch hidden");
     }
+
+    // axios.get(`http://localhost:3001/getItemData/${category}/${itemTitle}`)
+    //  .then(response => {
+    //   //  console.log(response.data.itemData); // [{…}]
+    //    setItemData(response.data.itemData[0]);
+    //  })
+    //  .catch(error => {
+    //    console.error(`Error fetching data for table ${category}:`, error);
+    //  });
+
   return (
     <SearchStyle>
 
@@ -18,7 +26,7 @@ function Search() {
             <input
                 type="text" 
             />
-            <button>Search</button>
+            <button onClick={() => searchFunction("something")}>Search</button>
         </div>}
         
         
