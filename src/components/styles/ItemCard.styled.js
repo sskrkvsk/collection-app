@@ -23,7 +23,7 @@ export const ItemsCardStyle = styled.div`
     h3 {
         margin: 0;  
         margin-bottom : 3px;
-        
+        text-transform: capitalize;
     }
 
     p {

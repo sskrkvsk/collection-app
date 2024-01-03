@@ -74,7 +74,7 @@ app.get("/getTableNames", async (req, res) => {
     try {
       const result = await db.query(`SELECT * FROM ${table} WHERE title = '${formattedItem}'`);
       const itemData = result.rows;
-      // console.log(data);
+      // console.log(formattedItem);
       res.json({ itemData });
     } catch (error) {
       console.error(`Error retrieving data for table ${table}:`, error);
@@ -90,7 +90,7 @@ app.post("/addNewCollection", async (req, res) => {
     const sanitizedCategory = category.replace(/\s+/g, '_');
     const result = await db.query(`CREATE TABLE ${sanitizedCategory} (
 	id SERIAL PRIMARY KEY,
-	title TEXT,
+	title TEXT UNIQUE,
 	author TEXT,
 	rating INT,
 	image TEXT,
@@ -110,10 +110,10 @@ res.json({ table });
 app.post("/addCustom", async (req, res) => {
   try {
     const {image, title, date, rating, table} = req.body.data;
-    // const sanitizedCategory = editedName.replace(/\s+/g, '_');
-    console.log(req.body.data); 
+    const lowerTittle = title.toLowerCase();
+    // console.log(req.body.data); 
 
-    await db.query(`INSERT INTO ${table} (title, image, date, rating) VALUES ($1, $2, $3, $4)`, [title, image, date, rating]);
+    await db.query(`INSERT INTO ${table} (title, image, date, rating) VALUES ($1, $2, $3, $4)`, [lowerTittle, image, date, rating]);
   } catch (error) {
     console.error("Error editing category in the database:", error);
     res.status(500).send("Internal Server Error");
