@@ -15,12 +15,13 @@ const Collection = () => {
   const [isValidCategory, setIsValidCategory] = useState(true);
   // Styling
   const [sorting, setSorting] = useState(false);
+  const [sort , setSort] = useState(true);
   const [gridColumns, setGridColumns] = useState('repeat(3, 1fr)');
   const [articleVissbility, setarticleVissbility] = useState('none');
 
   // Get data from a table
   useEffect(() => {
-    axios.get(`http://localhost:3001/getTableData/${category}`)
+    axios.post(`http://localhost:3001/getTableData/${category}`, {status: sort})
       .then(response => {
         // console.log(response.data.tableData);  [{…}, {…}, ...]
         setTableData(response.data.tableData);
@@ -29,7 +30,7 @@ const Collection = () => {
         console.error(`Error fetching data for table ${category}:`, error);
         setIsValidCategory(false);
       });
-  }, [category]);
+  }, [category, tableData]);
 
   // Get all of the tables
   useEffect(() => {
@@ -46,6 +47,15 @@ const Collection = () => {
 
 ////////////////////////////////////////////////////////////////////////////////////  
     // Sort popup toggle
+    const handleDateSort = () => {
+      if (sort) {
+        console.log("display 2009 at top");
+        setSort(false);
+      } else {
+        console.log("display 2024 at top");
+        setSort(true);
+      }
+    }
 
   // Grid change toggle
 
@@ -67,7 +77,7 @@ const Collection = () => {
       {isValidCategory ? (
         <>
           <Header />
-          <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid} tableName={category}/>
+          <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid} tableName={category} sortingFunction={handleDateSort}/>
           {tableData.length > 0 ? (
             <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} category={category} />
           ) : (

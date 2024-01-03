@@ -38,10 +38,13 @@ app.get("/getTableNames", async (req, res) => {
   });
 
   // Get Table Data from exact table
-  app.get("/getTableData/:table", async (req, res) => {
+  app.post("/getTableData/:table", async (req, res) => {
+    const {status} = req.body
     const { table } = req.params;
+    let sort = 'DESC'
     try {
-      const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY id DESC`);
+      !status ? sort = 'ASC' : sort = 'DESC'
+      const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY id ${sort}`);
       const tableData = result.rows;
       // console.log(tableData);
       res.json({ tableData });
@@ -80,7 +83,7 @@ app.post("/addNewCollection", async (req, res) => {
 	image TEXT,
 	heading TEXT,
 	note TEXT,
-	date TEXT
+	date DATE
 )`);
 const table = result.rows;
 res.json({ table });
@@ -161,6 +164,23 @@ app.post("/deleteItem", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+//SORT items
+// app.post("/sortItems", async (req, res) => {
+//   try {
+//     const {table, status} = req.body;
+//     // console.log(req.body);
+
+//     const result = await db.query(`SELECT * FROM ${table} ORDER BY date ASC`);
+    
+//     const sortedTableData = result.rows;
+
+//     res.json({ sortedTableData });
+//   } catch (error) {
+//     console.error("Error deleting category from the database:", error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

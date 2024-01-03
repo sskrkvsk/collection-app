@@ -64,12 +64,6 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
             history.push(`/${category}`);
     }
     
-    // console.log(itemData+" + "+category+" + "+ itemTitle); 
-    // [object Object] + Anime + berserk
-    // console.log(itemData);
-    // {id: 1, tittle: 'berserk'...}
-
-
     return (
     <SingleItemStyled>
         <header>
