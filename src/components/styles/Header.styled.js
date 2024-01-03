@@ -12,7 +12,6 @@ export const HeaderStyle = styled.div`
 
 // LOGO
 export const LogoStyle = styled.div`
-    width: 100%;
     margin-left: 5px;
     display: flex;
     align-items: center;
@@ -26,13 +25,13 @@ export const LogoStyle = styled.div`
     }
 
     p {
+
         font-size: ${({theme}) => theme.typography.fontSizeM};
     }
 `
 // SEARCH
 export const SearchStyle = styled.div`
     background-color: transparent;
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: end;
