@@ -14,7 +14,6 @@ const [searchItemTitle, setSearchItemTitle] = useState();
 
 
 
-
  useEffect(() => {
    axios.get(`http://localhost:3001/getItemData/${category}/${searchItemTitle ? searchItemTitle : itemTitle}`)
      .then(response => {

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import ItemsGrid from '../components/ItemsGrid';
 import TopBar from '../components/TopBar';
 import { PageStyle } from '../components/styles/Page.styled';
 
 const Collection = () => {
+  const history = useHistory();
   // category from Router/ Data from a table
   const [btnName, setBtnName] = useState();
   const { category } = useParams();
@@ -20,6 +21,8 @@ const Collection = () => {
   // Styling
   const [gridColumns, setGridColumns] = useState('repeat(3, 1fr)');
   const [articleVissbility, setarticleVissbility] = useState('none');
+  // Path
+  const [path, setPath] = useState();
 
   // Get data from a table
   useEffect(() => {
@@ -66,14 +69,36 @@ const Collection = () => {
     prevValue === 'block' ? 'none' : 'block'
   );
   };
-  //
+
+
+  //Search
+  const handleSearch = (search, input) => {
+    console.log(search, input);
+    const titleArray = search.map((table) => {
+          return table.title;
+       });
+       
+    const lowerInput = input.toLowerCase()
+    const findSimilar = (arr, searchTerm) => {
+          return arr.filter(item => item.includes(searchTerm));
+        };
+
+    const result = findSimilar(titleArray, lowerInput);
+    const trimmedTitle = encodeURIComponent(String(result).replace(/\s+/g, '-'));
+
+    let path = `/${category}/${trimmedTitle}`;
+    console.log(path);
+    // setPath(path);
+    history.push(path);
+}
+
 
   return (
 
     <PageStyle>
       {isValidCategory ? (
         <>
-          <Header tableName={category} />
+          <Header tableName={category} tableData={tableData} clickFunction={handleSearch} path={path} />
           <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid} tableName={category} sortingFunction={handleSort} tableData={tableData}/>
           {tableData.length > 0 ? (
             <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} category={category} />
