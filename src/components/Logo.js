@@ -5,7 +5,7 @@ import { LogoStyle } from './styles/Header.styled';
 const Logo = ({category}) => {
 
   return (
-        <Link to='/'>
+        <Link to='/home'>
         <LogoStyle >   
             <img src="/images/no-bg-logo.png" alt="logo" />
             <p>KOLEKTSIYA{category && " - " }{category}</p>
