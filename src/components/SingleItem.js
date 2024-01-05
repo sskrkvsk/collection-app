@@ -7,11 +7,6 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
     const history = useHistory();
     // Previous item's data
     const [curentlValues, setCurentValues] = useState();
-    const initialValues = {
-        title: itemData.title,
-        heading: itemData.heading,
-        paragraph: itemData.note
-    }
 
     // Input toggle state
     const [editInputs, setEditInputs] = useState(false);
@@ -21,32 +16,56 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
             category: category,
             title: itemData.title,
             heading: itemData.heading,
-            paragraph: itemData.note
+            paragraph: itemData.note,
+            date: itemData.date,
+            rating: itemData.rating,
+            image: itemData.image,
+            author: itemData.author
     });
         !editInputs && setEditInputs(true);
     }
 
-    // Change
-    const handleHeaderChange = (event) => {
-        setCurentValues(prevState => ({...prevState, heading: event.target.value }));
-    };
-    const handleParagraphChange = (event) => {
-        setCurentValues(prevState => ({...prevState, paragraph: event.target.value }));
-    };
+    //Change
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        switch (name) {
+            case 'title':
+                setCurentValues(prevState => ({...prevState, title : value }));
+                break;
+            case 'heading':
+                setCurentValues(prevState => ({...prevState, heading : value }));
+                break;
+            case 'note':
+                setCurentValues(prevState => ({...prevState, paragraph : value }));
+                break;
+            case 'date':
+                setCurentValues(prevState => ({...prevState, date : value }));
+                break;
+            case 'rating':
+                setCurentValues(prevState => ({...prevState, rating : value }));
+                break;
+            case 'image':
+                setCurentValues(prevState => ({...prevState, image : value }));
+                break;
+            case 'author':
+                setCurentValues(prevState => ({...prevState, author : value }));
+                break;
+
+            default:
+                break;
+        }
+    }
 
     // Save
     function handleSave() {
-        if (initialValues.heading === curentlValues.heading && initialValues.paragraph === curentlValues.paragraph) {
-            // console.log("nothing changed");
-        } else {
-            axios.post('http://localhost:3001/editNotes', { heading: curentlValues.heading, paragraph: curentlValues.paragraph, title: curentlValues.title, category: curentlValues.category })
+            axios.post('http://localhost:3001/editNotes', { editedData: curentlValues, prevTitle: itemTitle })
             .then(response => {
               // console.log(response.data);
             })
             .catch(error => {
               console.error("Error posting data:", error);
             });
-        }
+        
         setEditInputs(false);
     }
 
@@ -67,20 +86,33 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
     return (
     <SingleItemStyled>
         <header>
-            <img src={itemData.image} alt='' />
+            {editInputs ? 
+            <input type='text' placeholder='  image' name='image' value={curentlValues.image} onChange={handleChange}></input> : 
+            <img src={itemData.image} alt='' />}
             <div>
-                <p>{itemData.date}</p>
+                {editInputs ? 
+                <input type='date' value={curentlValues.date} name='date' onChange={handleChange}></input> : 
+                <p>{itemData.date}</p>}
                 <span>
-                    <p>{itemData.rating}</p>
+                    {editInputs ? 
+                    <input type='number'  min="1" max="10" step="1" name='rating' value={curentlValues.rating} onChange={handleChange}></input> :  
+                    <p>{itemData.rating}</p>}
                     <img src='/images/star_black_24dp.svg' alt='rating star'></img>
                 </span>
             </div>  
         </header>
         <section>
-        <h1>{itemData.title} {itemData.author && <span><br></br>by {itemData.author}</span>}</h1>
-                {editInputs ? <div>
-                    <input type='text' placeholder='  Heading' value={curentlValues.heading} onChange={handleHeaderChange}></input>
-                    <textarea placeholder="  Notes" rows={20} value={curentlValues.paragraph} onChange={handleParagraphChange}></textarea>
+            {editInputs ? 
+            <> 
+                <input type='text' placeholder='  title' name='title' value={curentlValues.title} onChange={handleChange}></input> 
+                {itemData.author && <input type='text' placeholder='  author' name='author' value={curentlValues.author} onChange={handleChange}></input>} 
+            </>: 
+                <h1>{itemData.title} {itemData.author && <span><br></br>by {itemData.author}</span>}</h1>}
+        
+            {editInputs ? 
+                <div>
+                    <input type='text' placeholder='  Heading' name='heading' value={curentlValues.heading} onChange={handleChange}></input>
+                    <textarea placeholder="  Notes" rows={20} name='note' value={curentlValues.paragraph} onChange={handleChange}></textarea>
                 </div>
                 : <article>
                     <h2>{itemData.heading}</h2>
@@ -88,7 +120,8 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
                 </article>}
             <footer>
                
-                {editInputs ? <button onClick={handleSave}>Save</button> :  <button onClick={handleClick}>Edit Notes</button>}
+                {editInputs ? 
+                <button onClick={handleSave}>Save</button> :  <button onClick={handleClick}>Edit Notes</button>}
                 <button onClick={() => handleDelete(itemData.id, category)}>Delete Book</button>
             </footer>
         </section>

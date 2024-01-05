@@ -137,14 +137,21 @@ app.post("/editCategory", async (req, res) => {
 //EDIT Notes
 app.post("/editNotes", async (req, res) => {
   try {
-    const {title, heading, paragraph, category} = req.body;
-    // const sanitizedCategory = editedName.replace(/\s+/g, '_');
-    console.log(req.body); 
+    const {category, title, heading, paragraph, date, rating, image, author} = req.body.editedData;
+    const prevTitle = req.body.prevTitle;
 
-    await db.query(
-      `UPDATE ${category} SET heading = $1, note = $2 WHERE title = $3`,
-      [heading, paragraph, title]
-    );    
+    if(category === 'Books') {
+      await db.query(
+        `UPDATE ${category} SET heading = $1, note = $2, date = $3::date, rating = $4, image = $5, author = $6, title = $7 WHERE title = $8`,
+        [heading, paragraph, date, rating, image, author, title, prevTitle]
+      );   
+    } else {
+      await db.query(
+        `UPDATE ${category} SET heading = $1, note = $2, date = $3::date, rating = $4, image = $5, title = $6 WHERE title = $7`,
+        [heading, paragraph, date, rating, image, title, prevTitle]
+      );  
+    }
+     
   } catch (error) {
     console.error("Error editing category in the database:", error);
     res.status(500).send("Internal Server Error");

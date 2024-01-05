@@ -14,7 +14,7 @@ const AddItem = () => {
   const params = new URLSearchParams(location.search);
   const category = params.get('category');
 
-
+ 
 
   return (
     <div>

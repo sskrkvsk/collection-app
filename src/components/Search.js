@@ -19,24 +19,6 @@ const Search = ({category, tableData, handleSearch, path}) => {
         setInputValue(value);
        }
 
-      //  const handleSearchAndNavigate = async (data, input) => {
-      //   try {
-      //     // Perform your asynchronous operation, e.g., sending data
-      //     const result = await sendSearchData(data, input);
-    
-      //     // Extract the path from the result or use some logic
-      //     const path = extractPathFromResult(result);
-    
-      //     // Navigate to the desired path
-      //     history.push(path);
-      //   } catch (error) {
-      //     console.error('Error:', error);
-      //     // Handle errors as needed
-      //   }
-      // };
-
-
-
   return (
     <SearchStyle>
 
