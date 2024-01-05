@@ -125,6 +125,7 @@ app.post("/addApiItem", async (req, res) => {
   try {
     const {title, author, image} = req.body.dataForDB;
     const {category} = req.body;
+    console.log(req.body);
     const lowerTittle = title.toLowerCase(); 
     if (category === "Books") {
       await db.query(`INSERT INTO ${category} (title, author, image) VALUES ($1, $2, $3)`, [lowerTittle, author, image]);

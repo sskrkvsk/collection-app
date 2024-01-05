@@ -21,7 +21,7 @@ const AddItem = () => {
   }
 
   // const [responseData, setResponseData] = useState(null);
-
+  let response = '';
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState(null);
 
@@ -29,32 +29,52 @@ const AddItem = () => {
     try {
       setLoading(true);
 
-      const response = await axios.get(`https://openlibrary.org/search.json?q=${searchItem}`);
-      const bookResponse = response.data.docs[0];
-
-      try {
-        const coverId = bookResponse.cover_i;
-
-        if (coverId) {
-          const coverImageData = await axios.get(`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`);
-          const coverUrl = coverImageData.config.url;
-
-          const dataForDB = {
-            title: bookResponse.title,
-            author: bookResponse.author_name[0],
-            image: coverUrl,
-          };
-
-          setResponseData(dataForDB);
-          sendToDB(dataForDB);
-        }
-      } catch (error) {
-        console.error('Error fetching additional data:', error);
-      } finally {
-        setLoading(false);
+      switch (category) {
+        case 'Books':  
+          response = await axios.get(`https://openlibrary.org/search.json?q=${searchItem}`);
+          const bookResponse = response.data.docs[0];
+          try {
+            const coverId = bookResponse.cover_i;
+            if (coverId) {
+             const coverImageData = await axios.get(`https://covers.openlibrary.org/b/id/${coverId}-L.jpg`);
+             const coverUrl = coverImageData.config.url;
+             const dataForDB = {
+               title: bookResponse.title,
+               author: bookResponse.author_name[0],
+               image: coverUrl,
+             };
+             setResponseData(dataForDB);
+             sendToDB(dataForDB);
+            }
+          } catch (error) {
+            console.error('Error fetching additional data:', error);
+          } finally {
+           setLoading(false);
+          }
+          break;
+        case 'Anime':
+          response = await axios.get(`https://kitsu.io/api/edge/anime?filter[text]=${searchItem}`);
+          const animeResponse = response.data.data[0].attributes;
+          try {
+            console.log(animeResponse);
+            const dataForDB = {
+              title: animeResponse.canonicalTitle,
+              image: animeResponse.posterImage.medium
+            };
+            setResponseData(dataForDB);
+            sendToDB(dataForDB);
+          } catch (error) {
+            console.error('Error fetching additional data:', error);
+          } finally {
+           setLoading(false);
+          }
+        break;
+      
+        default:
+          break;
       }
+      
     } catch (error) {
-      // Handle errors here
       console.error('Error fetching data:', error);
     }
   };
