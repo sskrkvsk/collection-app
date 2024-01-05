@@ -25,7 +25,6 @@ const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction, t
         <li><Link to="/home">Home</Link></li>
         <li><Link to={`/additem?category=${tableName}`}>Add item</Link></li>
         <li onClick={handleRandom}>Random</li>
-        <li><Link to="/some-route">User</Link></li>
         <div>
           <button onClick={toggleGrid}>Grid</button>
           <button onClick={handleClick}>Sort</button>

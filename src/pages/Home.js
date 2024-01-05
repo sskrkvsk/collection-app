@@ -9,7 +9,6 @@ const Home = () => {
     <PageStyle>
       <Header />
       <Main />
-      <Navbar />
     </PageStyle>
   )
 }
