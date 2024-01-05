@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useLocation, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Header from '../components/Header'
-import NavBar from '../components/Navbar'
 import { AddCustomItemStyle } from '../components/styles/AddCustomItem.styled'
 import { AddBtnStyle } from '../components/styles/AddBtn.styled'
 import { InputStyle } from '../components/styles/Input.styled'
@@ -81,7 +80,6 @@ const AddCustomItem = () => {
   return (
   <div>
     <Header />
-    <NavBar />
     <AddCustomItemStyle>
     {missed && <span>missed field</span>}
       <InputStyle 
