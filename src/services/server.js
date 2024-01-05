@@ -120,6 +120,23 @@ app.post("/addCustom", async (req, res) => {
   }
 });
 
+//ADD API item
+app.post("/addApiItem", async (req, res) => {
+  try {
+    const {title, author, image} = req.body.dataForDB;
+    const {category} = req.body;
+    const lowerTittle = title.toLowerCase(); 
+    if (category === "Books") {
+      await db.query(`INSERT INTO ${category} (title, author, image) VALUES ($1, $2, $3)`, [lowerTittle, author, image]);
+    } else {
+      await db.query(`INSERT INTO ${category} (title, image) VALUES ($1, $2)`, [lowerTittle, image]);
+    }
+  } catch (error) {
+    console.error("Error editing category in the database:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 //EDIT CATEGORIES
 app.post("/editCategory", async (req, res) => {
   try {
