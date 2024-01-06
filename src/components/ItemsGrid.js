@@ -6,7 +6,7 @@ import { ItemsCardStyle } from './styles/ItemCard.styled'
  
 const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
 
-  // console.log(tableData);
+  console.log(tableData);
   
   return (
     <ItemsGridStyle gridColumns={gridColumns}>
@@ -23,7 +23,7 @@ const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
             <div>
               <h3>{item.title}</h3>
               <p>{item.author}</p>
-              <p>{formattedDate}</p>
+              {item.date && <p>{formattedDate}</p>} 
               <span>
                 <img src='/images/star_black_24dp.svg' alt='rating star' />
                 {item.rating}

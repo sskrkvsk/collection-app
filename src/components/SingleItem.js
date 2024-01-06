@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { format } from 'date-fns';
 import { SingleItemStyled } from './styles/SingleItem.styled';
 
 const SingleItem = ({ itemData, category, curentlValues, editInputs, handleChange, handleSave, handleDelete, handleClick }) => {
- 
-
+    let formattedDate;
+    try {
+      formattedDate = format(new Date(itemData.date), 'dd.MM.yyyy');
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      formattedDate = 'Invalid Date';
+    }
+    console.log(formattedDate);
     return (
     <SingleItemStyled>
         <header>
@@ -15,7 +22,7 @@ const SingleItem = ({ itemData, category, curentlValues, editInputs, handleChang
             <div>
                 {editInputs ? 
                 <input type='date' value={curentlValues.date} name='date' onChange={handleChange}></input> : 
-                <p>{itemData.date}</p>}
+                <p>{formattedDate}</p>}
                 <span>
                     {editInputs ? 
                     <input type='number'  min="1" max="10" step="1" name='rating' value={curentlValues.rating} onChange={handleChange}></input> :  
