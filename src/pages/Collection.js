@@ -91,17 +91,20 @@ const Collection = () => {
 
       if (match) {
         console.log(match);
-        const trimmedTitle = encodeURIComponent(String(match).replace(/\s+/g, '-'));
+        const trimmedTitle = encodeURIComponent(match.trim()).toLowerCase();
+
         let path = `/${category}/${trimmedTitle}`;
         history.push(path);
       } else {
-        const trimmedTitle = encodeURIComponent(String(result[0]).replace(/\s+/g, '-'));
+        const trimmedTitle = encodeURIComponent(result[0].trim()).toLowerCase();
+
         let path = `/${category}/${trimmedTitle}`;
         history.push(path);
       }
     } else {
       console.log(result);
-      const trimmedTitle = encodeURIComponent(String(result).replace(/\s+/g, '-'));
+      const trimmedTitle = encodeURIComponent(result.trim()).toLowerCase();
+
   
       let path = `/${category}/${trimmedTitle}`;
       // setPath(path);

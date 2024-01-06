@@ -71,11 +71,11 @@ const AddItem = () => {
         break;
         case 'Movies':
           console.log(searchItem);
-          response = await axios.get(`https://www.omdbapi.com/?t=${searchItem}&apikey=4ab73859`);
-          const movieResponse = response.data;
+          response = await axios.get(`https://www.omdbapi.com/?s=${searchItem}&apikey=4ab73859`);
+          const movieResponse = response.data.Search[0];
           
           try {
-            console.log(movieResponse);
+            console.log(response.data)
 
             const dataForDB = {
               title: movieResponse.Title,
@@ -131,7 +131,7 @@ const AddItem = () => {
 
   useEffect(() => {
     if (responseData) {
-      const trimmedTitle = encodeURIComponent(String(responseData.title).replace(/\s+/g, '-'));
+      const trimmedTitle = encodeURIComponent(responseData.title.trim()).toLowerCase();
       history.push(`/${category}/${trimmedTitle}`);
     }
   }, [responseData]);

@@ -10,7 +10,6 @@ const ItemPage = () => {
   // category from Router/ Data from a table
 const { category, itemTitle } = useParams();
 const [itemData, setItemData] = useState([]);
-
  // Previous item's data
  const [curentlValues, setCurentValues] = useState();
 
@@ -19,7 +18,7 @@ const [itemData, setItemData] = useState([]);
  // Display values inside inputs/ show inputs
 
  useEffect(() => {
-   axios.get(`http://localhost:3001/getItemData/${category}/${ itemTitle}`)
+   axios.get(`http://localhost:3001/getItemData/${category}/${itemTitle}`)
      .then(response => {
       //  console.log(response.data.itemData); // [{…}]
        setItemData(response.data.itemData[0]);
@@ -79,7 +78,7 @@ const [itemData, setItemData] = useState([]);
 function handleSave() {
   axios.post('http://localhost:3001/editNotes', { editedData: curentlValues, prevTitle: itemData.title })
     .then(response => {
-      axios.get(`http://localhost:3001/getItemData/${category}/${itemTitle}`)
+      axios.get(`http://localhost:3001/getItemData/${category}/${curentlValues.title}`)
         .then(response => {
           setItemData(response.data.itemData[0]);
         })

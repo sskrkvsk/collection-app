@@ -70,7 +70,8 @@ app.get("/getTableNames", async (req, res) => {
   // Get exact item data from exact table
    app.get("/getItemData/:table/:item", async (req, res) => {
     const { table, item } = req.params;
-    const formattedItem = item.replace(/-/g, ' ').toLowerCase();
+    // console.log(req.params);
+    const formattedItem = decodeURIComponent(item).toLowerCase();
     try {
       const result = await db.query(`SELECT * FROM ${table} WHERE title = '${formattedItem}'`);
       const itemData = result.rows;
@@ -125,7 +126,7 @@ app.post("/addApiItem", async (req, res) => {
   try {
     const {title, author, image} = req.body.dataForDB;
     const {category} = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     const lowerTittle = title.toLowerCase(); 
     if (category === "Books") {
       await db.query(`INSERT INTO ${category} (title, author, image) VALUES ($1, $2, $3)`, [lowerTittle, author, image]);
@@ -157,7 +158,7 @@ app.post("/editNotes", async (req, res) => {
   try {
     const { category, title, heading, paragraph, date, rating, image, author } = req.body.editedData;
     const prevTitle = req.body.prevTitle;
-    console.log(req.body);
+    // console.log(req.body);
 
     if (category === 'Books') {
       await db.query(

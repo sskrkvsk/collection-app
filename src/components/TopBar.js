@@ -15,7 +15,8 @@ const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction, t
   })
   const handleRandom = () => {
     const randomValue = Math.floor(Math.random() * newTableData.length);
-    const trimmedTitle = encodeURIComponent(String(newTableData[randomValue]).replace(/\s+/g, '-'));
+    
+    const trimmedTitle = encodeURIComponent(newTableData[randomValue].trim()).toLowerCase();
 
     history.push(`/${tableName}/${trimmedTitle}`);
   }
