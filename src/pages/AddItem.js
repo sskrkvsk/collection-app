@@ -69,6 +69,48 @@ const AddItem = () => {
            setLoading(false);
           }
         break;
+        case 'Movies':
+          console.log(searchItem);
+          response = await axios.get(`https://www.omdbapi.com/?t=${searchItem}&apikey=4ab73859`);
+          const movieResponse = response.data;
+          
+          try {
+            console.log(movieResponse);
+
+            const dataForDB = {
+              title: movieResponse.Title,
+              image: movieResponse.Poster
+            };
+            setResponseData(dataForDB);
+            sendToDB(dataForDB);
+          
+          } catch (error) {
+            console.error('Error fetching additional data:', error);
+          } finally {
+           setLoading(false);
+          }
+        break;
+
+        case 'Series':
+          response = await axios.get(`https://www.omdbapi.com/?t=${searchItem}&apikey=4ab73859`);
+          const seriesResponse = response.data;
+          
+          try {
+            console.log(seriesResponse);
+
+            const dataForDB = {
+              title: seriesResponse.Title,
+              image: seriesResponse.Poster
+            };
+            setResponseData(dataForDB);
+            sendToDB(dataForDB);
+          
+          } catch (error) {
+            console.error('Error fetching additional data:', error);
+          } finally {
+           setLoading(false);
+          }
+        break;
       
         default:
           break;
