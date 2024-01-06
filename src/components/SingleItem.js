@@ -58,7 +58,7 @@ const SingleItem = ({ itemData, category, itemTitle }) => {
 
     // Save
     function handleSave() {
-            axios.post('http://localhost:3001/editNotes', { editedData: curentlValues, prevTitle: itemTitle })
+            axios.post('http://localhost:3001/editNotes', { editedData: curentlValues, prevTitle: itemData.title })
             .then(response => {
               // console.log(response.data);
             })
