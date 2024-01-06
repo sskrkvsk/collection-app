@@ -12,17 +12,20 @@ const Main = () => {
   const [editableTable, setEditableTable] = useState(null);
   // new table name
   const [newName, setNewName] = useState("");
+  // delete
+  const [deleteStatus, setDeleteStatus] = useState(false);
 
   // get table names
   useEffect(() => {
     axios.get('http://localhost:3001/getTableNames')
     .then(response => {
       setTableNames(response.data.tableNames);
+      setDeleteStatus(false);
     })
     .catch(error => {
       console.error('Error fetching table names:', error);
     });
-  }, [tableNames]);
+  }, [editableTable, deleteStatus]);
 
   // Actual editing value
   function handleChange(event) {
@@ -55,6 +58,7 @@ const Main = () => {
 
   // DELETE Category
   function handleDelete(tableName) {
+    setDeleteStatus(true);
     axios.post('http://localhost:3001/deleteCategory', {category :tableName}).then(response => {
       // console.log(response.data);
     })

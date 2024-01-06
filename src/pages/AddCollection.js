@@ -38,7 +38,7 @@ const AddCollection = () => {
         />
         <AddBtnStyle onClick={handlePostRequest}>Add</AddBtnStyle>
       </AddCollectionStyle>
-      {canRedirect && <Redirect to="/" />}
+      {canRedirect && <Redirect to="/home" />}
     </div>
     
   )
