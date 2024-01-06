@@ -73,12 +73,13 @@ const Collection = () => {
 
   //Search
   const handleSearch = (search, input) => {
+    console.log(search, input);
 
     const titleArray = search.map((table) => {
           return table.title;
        });
        
-    const lowerInput = input.toLowerCase()
+    const lowerInput = input.toLowerCase();
     const findSimilar = (arr, searchTerm) => {
           return arr.filter(item => item.includes(searchTerm));
         };
@@ -103,7 +104,7 @@ const Collection = () => {
       }
     } else {
       console.log(result);
-      const trimmedTitle = encodeURIComponent(result.trim()).toLowerCase();
+      const trimmedTitle = encodeURIComponent(result[0].trim()).toLowerCase();
 
   
       let path = `/${category}/${trimmedTitle}`;
