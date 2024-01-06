@@ -5,7 +5,7 @@ import AddBtn from './AddBtn'
 import { MainStyle } from './styles/Main.styled'
 
 const Main = () => {
-  const listOfNames = ["Anime", "Books", "Dishes", "Games", "Movies", "Series"];
+  const listOfNames = ["Anime", "Books", "Movies", "Series"];
   // tables
   const [tableNames, setTableNames] = useState([]);
   // curent table name
