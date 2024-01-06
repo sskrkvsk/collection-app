@@ -48,7 +48,7 @@ const Collection = () => {
       .catch(error => {
         console.error("Error fetching valid categories:", error);
       });
-  }, [category]);
+  }, [category, isValidCategory.length]);
 
     // Sort toggle
     const handleSort = (name) => {

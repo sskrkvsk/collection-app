@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/Header'
 import { AddCollectionStyle } from '../components/styles/AddCollection.styled'
@@ -7,7 +7,7 @@ import { AddBtnStyle } from '../components/styles/AddBtn.styled'
 import { InputStyle } from '../components/styles/Input.styled'
 
 const AddCollection = () => {
-
+  const history = useHistory();
   const [inputValue, setInputValue] = useState('');
   const [canRedirect, setCanRedirect] = useState(false);
 
