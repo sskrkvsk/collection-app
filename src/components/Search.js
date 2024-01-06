@@ -1,18 +1,12 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import { SearchStyle }  from './styles/Header.styled'
 import { SvgContainer } from './styles/SvgContainer'
 
-const Search = ({category, tableData, handleSearch, path}) => {
-  const history = useHistory();
-
-    // Show input
+const Search = ({ tableData, handleSearch }) => {
     const [searchClicked, setSearchClicked] = useState(true);
     function handleClick() {
         setSearchClicked(false);
     }
-
-    //Change
     const [inputValue, setInputValue] = useState();
     const handleChange = (event) => {
         const {value} = event.target;
@@ -21,7 +15,6 @@ const Search = ({category, tableData, handleSearch, path}) => {
 
   return (
     <SearchStyle>
-
         {searchClicked ? <SvgContainer><img onClick={handleClick} src='/images/search_black_24dp.svg' alt='search button'/> </SvgContainer> :
         <div>
             <input
@@ -30,10 +23,7 @@ const Search = ({category, tableData, handleSearch, path}) => {
                 value={inputValue}
             />
             <button onClick={() => handleSearch(tableData, inputValue)}></button>
-            
         </div>}
-        
-        
     </SearchStyle>
   )
 }

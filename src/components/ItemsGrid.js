@@ -5,19 +5,12 @@ import { ItemsGridStyle } from './styles/ItemsGrid.styled'
 import { ItemsCardStyle } from './styles/ItemCard.styled'
  
 const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
-
-  console.log(tableData);
-  
   return (
     <ItemsGridStyle gridColumns={gridColumns}>
       {tableData.map((item, index) => {
-        // Format the date string
         const formattedDate = format(new Date(item.date), 'dd.MM.yyyy');
-
         const trimmedTitle = encodeURIComponent(item.title.trim()).toLowerCase();
-
         return (
-               
           <ItemsCardStyle key={index} articleVissbility={articleVissbility}>      
             <img src={item.image} alt='' />
             <div>
@@ -30,14 +23,11 @@ const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
               </span>
             </div>
             <Link to={`/${category}/${trimmedTitle}`} state={{ itemTitle: item.title }}><button>ass</button></Link> 
-            <article>{item.note}</article>
-            
-            
+            <article>{item.note}</article>          
           </ItemsCardStyle>
-        );
+          );
       })}
     </ItemsGridStyle>
-    
   );
 };
 

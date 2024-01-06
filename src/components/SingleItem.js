@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import { format } from 'date-fns';
 import { SingleItemStyled } from './styles/SingleItem.styled';
 
@@ -12,7 +10,7 @@ const SingleItem = ({ itemData, category, curentlValues, editInputs, handleChang
       console.error('Error formatting date:', error);
       formattedDate = 'Invalid Date';
     }
-    console.log(formattedDate);
+
     return (
     <SingleItemStyled>
         <header>
@@ -49,7 +47,6 @@ const SingleItem = ({ itemData, category, curentlValues, editInputs, handleChang
                     <p>{itemData.note}</p>
                 </article>}
             <footer>
-               
                 {editInputs ? 
                 <button onClick={handleSave}>Save</button> :  <button onClick={handleClick}>Edit Notes</button>}
                 <button onClick={() => handleDelete(itemData.id, category)}>Delete Book</button>

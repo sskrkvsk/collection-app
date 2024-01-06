@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { LogoStyle } from './styles/Header.styled';
 
 const Logo = ({category}) => {
-
   return (
         <Link to='/home'>
         <LogoStyle >   

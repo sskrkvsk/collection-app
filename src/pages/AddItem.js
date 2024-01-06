@@ -8,19 +8,16 @@ import { AddItemStyle } from '../components/styles/AddItem.styled'
 
 const AddItem = () => {
   const history = useHistory();
-  // catching and passing Table category
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const category = params.get('category');
-
-  // change
   const [searchItem, setSearchItem] = useState();
+
   const handleChange = (event) => {
     const {value} = event.target;
     setSearchItem(value);
   }
 
-  // const [responseData, setResponseData] = useState(null);
   let response = '';
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState(null);
@@ -28,7 +25,6 @@ const AddItem = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-
       switch (category) {
         case 'Books':  
           response = await axios.get(`https://openlibrary.org/search.json?q=${searchItem}`);
@@ -56,7 +52,6 @@ const AddItem = () => {
           response = await axios.get(`https://kitsu.io/api/edge/anime?filter[text]=${searchItem}`);
           const animeResponse = response.data.data[0].attributes;
           try {
-            console.log(animeResponse);
             const dataForDB = {
               title: animeResponse.canonicalTitle,
               image: animeResponse.posterImage.medium
@@ -70,13 +65,9 @@ const AddItem = () => {
           }
         break;
         case 'Movies':
-          console.log(searchItem);
           response = await axios.get(`https://www.omdbapi.com/?s=${searchItem}&apikey=4ab73859`);
           const movieResponse = response.data.Search[0];
-          
           try {
-            console.log(response.data)
-
             const dataForDB = {
               title: movieResponse.Title,
               image: movieResponse.Poster
@@ -90,32 +81,25 @@ const AddItem = () => {
            setLoading(false);
           }
         break;
-
         case 'Series':
           response = await axios.get(`https://www.omdbapi.com/?t=${searchItem}&apikey=4ab73859`);
           const seriesResponse = response.data;
-          
           try {
-            console.log(seriesResponse);
-
             const dataForDB = {
               title: seriesResponse.Title,
               image: seriesResponse.Poster
             };
             setResponseData(dataForDB);
             sendToDB(dataForDB);
-          
           } catch (error) {
             console.error('Error fetching additional data:', error);
           } finally {
            setLoading(false);
           }
         break;
-      
         default:
           break;
       }
-      
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -135,7 +119,6 @@ const AddItem = () => {
       history.push(`/${category}/${trimmedTitle}`);
     }
   }, [responseData]);
-
 
   return (
     <div>

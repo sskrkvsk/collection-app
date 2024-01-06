@@ -8,23 +8,16 @@ import { PageStyle } from '../components/styles/Page.styled';
 
 const Collection = () => {
   const history = useHistory();
-  // category from Router/ Data from a table
-  const [btnName, setBtnName] = useState();
   const { category } = useParams();
+  const [btnName, setBtnName] = useState();
   const [tableData, setTableData] = useState([]);
-  // Category validator
   const [, setValidCategories] = useState([]);
   const [isValidCategory, setIsValidCategory] = useState(true);
-  // Sorting
   const [sorting, setSorting] = useState(false);
   const [sort , setSort] = useState(true);
-  // Styling
   const [gridColumns, setGridColumns] = useState('repeat(3, 1fr)');
   const [articleVissbility, setarticleVissbility] = useState('none');
-  // Path
-  const [path, setPath] = useState();
 
-  // Get data from a table
   useEffect(() => {
     axios.post(`http://localhost:3001/getTableData/${category}`, {status: sort, button: btnName })
       .then(response => {
@@ -37,11 +30,9 @@ const Collection = () => {
       });
   }, [category, sort]);
 
-  // Get all of the tables
   useEffect(() => {
     axios.get('http://localhost:3001/getTableNames')
       .then(response => {
-        // console.log(validCategories); ['Anime', 'Books' ...]
         setValidCategories(response.data.tableNames);
         setIsValidCategory(response.data.tableNames.includes(category));
       })
@@ -50,7 +41,6 @@ const Collection = () => {
       });
   }, [category, isValidCategory.length]);
 
-    // Sort toggle
     const handleSort = (name) => {
       if (sort) {
         setSort(false);
@@ -60,7 +50,6 @@ const Collection = () => {
       setBtnName(name);
     }
 
-  // Grid change toggle
   const toggleGrid = () => {
     setGridColumns((prevColumns) =>
       prevColumns === 'repeat(3, 1fr)' ? '1fr' : 'repeat(3, 1fr)'
@@ -71,7 +60,6 @@ const Collection = () => {
   };
 
 
-  //Search
   const handleSearch = (search, input) => {
     console.log(search, input);
 
@@ -89,39 +77,29 @@ const Collection = () => {
       const match = result.find((item) => {
         return item === lowerInput;
       });
-
       if (match) {
         console.log(match);
         const trimmedTitle = encodeURIComponent(match.trim()).toLowerCase();
-
         let path = `/${category}/${trimmedTitle}`;
         history.push(path);
       } else {
         const trimmedTitle = encodeURIComponent(result[0].trim()).toLowerCase();
-
         let path = `/${category}/${trimmedTitle}`;
         history.push(path);
       }
     } else {
       console.log(result);
       const trimmedTitle = encodeURIComponent(result[0].trim()).toLowerCase();
-
-  
       let path = `/${category}/${trimmedTitle}`;
-      // setPath(path);
       history.push(path);
     }
-    
-
 }
 
-
   return (
-
     <PageStyle>
       {isValidCategory ? (
         <>
-          <Header tableName={category} tableData={tableData} clickFunction={handleSearch} path={path} />
+          <Header tableName={category} tableData={tableData} clickFunction={handleSearch} />
           <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid} tableName={category} sortingFunction={handleSort} tableData={tableData}/>
           {tableData.length > 0 ? (
             <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} category={category} />

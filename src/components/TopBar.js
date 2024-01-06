@@ -1,23 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link, useHistory } from 'react-router-dom';
 import { TopBartyle } from './styles/TopBar.styled';
 
 const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction, tableData }) => {
   const history = useHistory();
-  // Show btn
   function handleClick() {
     sorting ? setSorting(false) : setSorting(true);
   }
-
-  // Random
   const newTableData = tableData.map((table) => {
     return table.title
   })
   const handleRandom = () => {
     const randomValue = Math.floor(Math.random() * newTableData.length);
-    
     const trimmedTitle = encodeURIComponent(newTableData[randomValue].trim()).toLowerCase();
-
     history.push(`/${tableName}/${trimmedTitle}`);
   }
 
@@ -35,7 +30,6 @@ const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction, t
             <button onClick={() => sortingFunction("rating")}>Rating</button>
           </span>}
         </div>
-        
     </TopBartyle>
   )
 }

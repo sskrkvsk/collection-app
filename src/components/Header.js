@@ -8,7 +8,7 @@ const Header = ({ tableName, tableData, clickFunction, path }) => {
   return (
     <HeaderStyle>
       <Logo category={tableName} />
-      {tableName && <Search category={tableName} tableData={tableData} handleSearch={clickFunction} path={path} />}
+      {tableName && <Search category={tableName} tableData={tableData} handleSearch={clickFunction} />}
     </HeaderStyle>
   )
 }

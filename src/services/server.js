@@ -11,7 +11,6 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-// DB Connection
 const db = new pg.Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -20,13 +19,10 @@ const db = new pg.Pool({
   port: process.env.DB_PORT || 5432,
 });
 
-
-// GET Table Names
 app.get("/getTableNames", async (req, res) => {
   try {
       const result = await db.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name != 'user' ORDER BY table_name");
       const collections = result.rows;
-    
       const tableNames = collections.map(table => {
         return table.table_name.charAt(0).toUpperCase() + table.table_name.slice(1);
       })   
@@ -37,7 +33,6 @@ app.get("/getTableNames", async (req, res) => {
     }
   });
 
-  // Get Table Data from exact table
   app.post("/getTableData/:table", async (req, res) => {
     const {status, button} = req.body
     const { table } = req.params;
@@ -58,7 +53,6 @@ app.get("/getTableNames", async (req, res) => {
       } else {
         const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY id ${sort}`);
         const tableData = result.rows;
-        // console.log(tableData);
         res.json({ tableData });
       }
     } catch (error) {
@@ -67,15 +61,12 @@ app.get("/getTableNames", async (req, res) => {
     }
   });
 
-  // Get exact item data from exact table
    app.get("/getItemData/:table/:item", async (req, res) => {
     const { table, item } = req.params;
-    // console.log(req.params);
     const formattedItem = decodeURIComponent(item).toLowerCase();
     try {
       const result = await db.query(`SELECT * FROM ${table} WHERE title = '${formattedItem}'`);
       const itemData = result.rows;
-      // console.log(formattedItem);
       res.json({ itemData });
     } catch (error) {
       console.error(`Error retrieving data for table ${table}:`, error);
@@ -83,8 +74,6 @@ app.get("/getTableNames", async (req, res) => {
     }
   });
   
-
-// ADD custom Category
 app.post("/addNewCollection", async (req, res) => {
   try {
     const category = req.body.key;
@@ -107,13 +96,10 @@ res.json({ table });
   }
 });
 
-//ADD custom item
 app.post("/addCustom", async (req, res) => {
   try {
     const {image, title, date, rating, table} = req.body.data;
     const lowerTittle = title.toLowerCase();
-    // console.log(req.body.data); 
-
     await db.query(`INSERT INTO ${table} (title, image, date, rating) VALUES ($1, $2, $3, $4)`, [lowerTittle, image, date, rating]);
   } catch (error) {
     console.error("Error editing category in the database:", error);
@@ -121,12 +107,10 @@ app.post("/addCustom", async (req, res) => {
   }
 });
 
-//ADD API item
 app.post("/addApiItem", async (req, res) => {
   try {
     const {title, author, image} = req.body.dataForDB;
     const {category} = req.body;
-    // console.log(req.body);
     const lowerTittle = title.toLowerCase(); 
     if (category === "Books") {
       await db.query(`INSERT INTO ${category} (title, author, image) VALUES ($1, $2, $3)`, [lowerTittle, author, image]);
@@ -139,13 +123,10 @@ app.post("/addApiItem", async (req, res) => {
   }
 });
 
-//EDIT CATEGORIES
 app.post("/editCategory", async (req, res) => {
   try {
     const {oldName, editedName} = req.body;
     const sanitizedCategory = editedName.replace(/\s+/g, '_');
-    // console.log(req.body); 
-
     await db.query(`ALTER TABLE ${oldName} RENAME TO ${sanitizedCategory}`);
   } catch (error) {
     console.error("Error editing category in the database:", error);
@@ -153,13 +134,10 @@ app.post("/editCategory", async (req, res) => {
   }
 });
 
-//EDIT Notes
 app.post("/editNotes", async (req, res) => {
   try {
     const { category, title, heading, paragraph, date, rating, image, author } = req.body.editedData;
     const prevTitle = req.body.prevTitle;
-    // console.log(req.body);
-
     if (category === 'Books') {
       await db.query(
         `UPDATE ${category} SET heading = $1, note = $2, date = $3::date, rating = $4, image = $5, author = $6, title = $7 WHERE title = $8`,
@@ -168,7 +146,6 @@ app.post("/editNotes", async (req, res) => {
       await db.query(`UPDATE ${category} SET heading = $1, note = $2, date = $3::date, rating = $4, image = $5, title = $6 WHERE title = $7`,
       [heading, paragraph, date, rating, image, title, prevTitle]);
     }
-
     res.status(200).send("Successfully updated data.");
   } catch (error) {
     console.error("Error editing category in the database:", error);
@@ -176,13 +153,9 @@ app.post("/editNotes", async (req, res) => {
   }
 });
 
-
-//DELETE
 app.post("/deleteCategory", async (req, res) => {
   try {
     const {category} = req.body;
-    // console.log(category);
-
     await db.query(`DROP TABLE ${category}`);
   } catch (error) {
     console.error("Error deleting category from the database:", error);
@@ -190,19 +163,15 @@ app.post("/deleteCategory", async (req, res) => {
   }
 });
 
-//DELETE item
 app.post("/deleteItem", async (req, res) => {
   try {
     const {category, itemId} = req.body;
-    // console.log(req.body);
-
     await db.query(`DELETE FROM ${category} WHERE id = $1`, [itemId]);
   } catch (error) {
     console.error("Error deleting category from the database:", error);
     res.status(500).send("Internal Server Error");
   }
 });
-
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

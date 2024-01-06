@@ -7,27 +7,20 @@ import { HeaderStyle }  from '../components/styles/Header.styled'
 
 const ItemPage = () => {
   const history = useHistory();
-  // category from Router/ Data from a table
-const { category, itemTitle } = useParams();
-const [itemData, setItemData] = useState([]);
- // Previous item's data
- const [curentlValues, setCurentValues] = useState();
-
- // Input toggle state
- const [editInputs, setEditInputs] = useState(false);
- // Display values inside inputs/ show inputs
+  const { category, itemTitle } = useParams();
+  const [itemData, setItemData] = useState([]);
+  const [curentlValues, setCurentValues] = useState();
+  const [editInputs, setEditInputs] = useState(false);
 
  useEffect(() => {
    axios.get(`http://localhost:3001/getItemData/${category}/${itemTitle}`)
      .then(response => {
-      //  console.log(response.data.itemData); // [{…}]
        setItemData(response.data.itemData[0]);
      })
      .catch(error => {
        console.error(`Error fetching data for table ${category}:`, error);
      });
  }, [category, itemTitle]);
-
 
  function handleClick() {
      setCurentValues({
@@ -43,7 +36,6 @@ const [itemData, setItemData] = useState([]);
      !editInputs && setEditInputs(true);
  }
 
- //Change
  const handleChange = (event) => {
   const {name, value} = event.target;
   switch (name) {
@@ -68,13 +60,11 @@ const [itemData, setItemData] = useState([]);
       case 'author':
           setCurentValues(prevState => ({...prevState, author : value }));
           break;
-
       default:
           break;
   }
 }
 
-// Save
 function handleSave() {
   axios.post('http://localhost:3001/editNotes', { editedData: curentlValues, prevTitle: itemData.title })
     .then(response => {
@@ -93,19 +83,15 @@ function handleSave() {
   setEditInputs(false);
 }
 
-//Delete
 function handleDelete(item, table) {
   axios.post('http://localhost:3001/deleteItem', { itemId: item, category: table })
       .then(response => {
-        // console.log(response.data);
-        
       })
       .catch(error => {
         console.error("Error posting data:", error);
       });
       history.push(`/${category}`);
 }
-
   return (
     <div>
       <HeaderStyle tableName={category}>

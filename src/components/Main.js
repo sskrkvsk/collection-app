@@ -6,16 +6,11 @@ import { MainStyle } from './styles/Main.styled'
 
 const Main = () => {
   const listOfNames = ["Anime", "Books", "Movies", "Series"];
-  // tables
   const [tableNames, setTableNames] = useState([]);
-  // curent table name
   const [editableTable, setEditableTable] = useState(null);
-  // new table name
   const [newName, setNewName] = useState("");
-  // delete
   const [deleteStatus, setDeleteStatus] = useState(false);
 
-  // get table names
   useEffect(() => {
     axios.get('http://localhost:3001/getTableNames')
     .then(response => {
@@ -27,36 +22,28 @@ const Main = () => {
     });
   }, [editableTable, deleteStatus]);
 
-  // Actual editing value
   function handleChange(event) {
     setNewName(event.target.value);
   }
-  // Previous table value = curent state value
   function handleEdit(table) {
-    // console.log(table);
     setEditableTable(table);
     setNewName(table);
   }
 
-  // EDIT CATEGORY - send old and new names
   function handleSave() {
-  // just return previous value without sending data
     if (editableTable === newName) {
       setEditableTable(null);
     } else {
     axios.post('http://localhost:3001/editCategory', { editedName: newName, oldName :editableTable })
       .then(response => {
-        // console.log(response.data);
       })
       .catch(error => {
         console.error("Error posting data:", error);
       });
-
-    setEditableTable(null); // Reset editableTable after saving
+    setEditableTable(null);
   }
 }
 
-  // DELETE Category
   function handleDelete(tableName) {
     setDeleteStatus(true);
     axios.post('http://localhost:3001/deleteCategory', {category :tableName}).then(response => {
@@ -89,7 +76,7 @@ const Main = () => {
                 )}
                 <button onClick={() => handleDelete(table)}>Delete</button>
               </>
-)}
+            )}
             </div>
           </section>
         </div>
