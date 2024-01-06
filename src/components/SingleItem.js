@@ -1,88 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { SingleItemStyled } from './styles/SingleItem.styled';
 
-const SingleItem = ({ itemData, category, itemTitle }) => {
-    const history = useHistory();
-    // Previous item's data
-    const [curentlValues, setCurentValues] = useState();
+const SingleItem = ({ itemData, category, curentlValues, editInputs, handleChange, handleSave, handleDelete, handleClick }) => {
+ 
 
-    // Input toggle state
-    const [editInputs, setEditInputs] = useState(false);
-    // Display values inside inputs/ show inputs
-    function handleClick() {
-        setCurentValues({
-            category: category,
-            title: itemData.title,
-            heading: itemData.heading,
-            paragraph: itemData.note,
-            date: itemData.date,
-            rating: itemData.rating,
-            image: itemData.image,
-            author: itemData.author
-    });
-        !editInputs && setEditInputs(true);
-    }
-
-    //Change
-    const handleChange = (event) => {
-        const {name, value} = event.target;
-        switch (name) {
-            case 'title':
-                setCurentValues(prevState => ({...prevState, title : value }));
-                break;
-            case 'heading':
-                setCurentValues(prevState => ({...prevState, heading : value }));
-                break;
-            case 'note':
-                setCurentValues(prevState => ({...prevState, paragraph : value }));
-                break;
-            case 'date':
-                setCurentValues(prevState => ({...prevState, date : value }));
-                break;
-            case 'rating':
-                setCurentValues(prevState => ({...prevState, rating : value }));
-                break;
-            case 'image':
-                setCurentValues(prevState => ({...prevState, image : value }));
-                break;
-            case 'author':
-                setCurentValues(prevState => ({...prevState, author : value }));
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    // Save
-    function handleSave() {
-            axios.post('http://localhost:3001/editNotes', { editedData: curentlValues, prevTitle: itemData.title })
-            .then(response => {
-              // console.log(response.data);
-            })
-            .catch(error => {
-              console.error("Error posting data:", error);
-            });
-        
-        setEditInputs(false);
-    }
-
-    //Delete
-    function handleDelete(item, table) {
-
-        axios.post('http://localhost:3001/deleteItem', { itemId: item, category: table })
-            .then(response => {
-              // console.log(response.data);
-              
-            })
-            .catch(error => {
-              console.error("Error posting data:", error);
-            });
-            history.push(`/${category}`);
-    }
-    
     return (
     <SingleItemStyled>
         <header>
