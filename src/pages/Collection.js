@@ -73,7 +73,7 @@ const Collection = () => {
 
   //Search
   const handleSearch = (search, input) => {
-    console.log(search, input);
+
     const titleArray = search.map((table) => {
           return table.title;
        });
@@ -84,12 +84,31 @@ const Collection = () => {
         };
 
     const result = findSimilar(titleArray, lowerInput);
-    const trimmedTitle = encodeURIComponent(String(result).replace(/\s+/g, '-'));
+    if (result.length > 1) {
+      const match = result.find((item) => {
+        return item === lowerInput;
+      });
 
-    let path = `/${category}/${trimmedTitle}`;
-    console.log(path);
-    // setPath(path);
-    history.push(path);
+      if (match) {
+        console.log(match);
+        const trimmedTitle = encodeURIComponent(String(match).replace(/\s+/g, '-'));
+        let path = `/${category}/${trimmedTitle}`;
+        history.push(path);
+      } else {
+        const trimmedTitle = encodeURIComponent(String(result[0]).replace(/\s+/g, '-'));
+        let path = `/${category}/${trimmedTitle}`;
+        history.push(path);
+      }
+    } else {
+      console.log(result);
+      const trimmedTitle = encodeURIComponent(String(result).replace(/\s+/g, '-'));
+  
+      let path = `/${category}/${trimmedTitle}`;
+      // setPath(path);
+      history.push(path);
+    }
+    
+
 }
 
 
