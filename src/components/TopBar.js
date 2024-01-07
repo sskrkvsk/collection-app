@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { TopBartyle } from './styles/TopBar.styled';
+import { TopBarStyle } from './styles/TopBar.styled';
 
 const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction, tableData }) => {
   const history = useHistory();
@@ -17,22 +17,22 @@ const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction, t
   }
 
   return (
-    <TopBartyle>
-      <ul>
-        <li><Link to="/home">Home</Link></li>
-        <li><Link to={`/additem?category=${tableName}`}>Add item</Link></li>
-        <li onClick={handleRandom}>Random</li>
-      </ul>
-        <div>
-          <button onClick={toggleGrid}>Grid</button>
-          <button onClick={handleClick}>Sort</button>
-          {sorting &&
-          <span>
-            <button onClick={() => sortingFunction("date")}>Date</button>
-            <button onClick={() => sortingFunction("rating")}>Rating</button>
-          </span>}
+    <TopBarStyle>
+      <nav>
+        <Link to="/home"><img src='/images/home.svg' alt=''></img></Link>
+        <Link to={`/additem?category=${tableName}`}><img src='/images/add.svg' alt=''></img></Link>
+        <p onClick={handleRandom}><img src='/images/shuffle.svg' alt=''></img></p>
+      </nav>
+      <div>
+        <button onClick={toggleGrid}><img src='/images/grid.svg' alt=''></img></button>
+        <button onClick={handleClick}><img src='/images/sort.svg' alt=''></img></button>
+        {sorting &&
+        <span>
+          <button onClick={() => sortingFunction("date")}>Date</button>
+          <button onClick={() => sortingFunction("rating")}>Rating</button>
+        </span>}
         </div>
-    </TopBartyle>
+    </TopBarStyle>
   )
 }
 

@@ -1,31 +1,51 @@
 import styled from "styled-components";
 
 // TopBar
-export const TopBartyle = styled.ul`
-
-    background-color: transparent;
-    margin: 0 auto;
+export const TopBarStyle = styled.ul`
+    margin-top: calc(${({theme}) => theme.height.header} + 20px) ;
+    height: ${({theme}) => theme.height.topbar};
     width: ${({theme}) => theme.size.grid};
     display: flex;
     gap: 20px;
 
 
-    ul {
-        padding: 0;
+    nav {
+        height: 100%;
+        width: 40%;
+        /* background-color: green; */
+        /* padding: 0; */
         align-self: flex-end;
         display: flex;
         flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        cursor: pointer;
+
+        img {
+            padding: 0;
+            /* height: 16px; */
+        }
+
     }
 
-    li {
-        padding: 5px 20px;
+    nav * {
+        background-color: green;
+        padding: 10px 30px;
+        border-radius: ${({theme}) => theme.border.radius};
+        flex: 1;
+        text-align: center;
+    }
+
+    nav:first-child {
+        padding: 1px;
     }
 
     div {
-        margin-top: 70px;
-        /* height: 100px; */
+        background-color: transparent;
+        width: 20%;
         position: relative;
         display: flex;
+        align-items: center;
         gap: 20px;
         margin-left: auto;
         margin-right: 20px;
@@ -34,16 +54,20 @@ export const TopBartyle = styled.ul`
     span {
         display: flex;
         flex-direction: column;
-        background-color: blue;
+        gap: 10px;
+        background-color: grey;
         position: absolute;
-        top: 29px;
-        left: 60px;
+        top: -8px;
+        right: -110px;
         width: 100px;
         border-radius: ${({theme}) => theme.border.radius};
-
-        button {
-            padding: 10px 0;
-            background-color: transparent;
-        }
+        padding: 5px;
     }
+
+    button {
+        background-color: green;
+        padding: 10px 30px;
+        border-radius: ${({theme}) => theme.border.radius};
+        flex: 1;
+        }
 `

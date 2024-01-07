@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const HeaderStyle = styled.div`
     position: fixed;
     width: 100%;
-    height: ${({theme}) => theme.height.headerHight};
+    height: ${({theme}) => theme.height.header};
     display: flex;
     justify-content: space-between;
     background-color: ${({theme}) => theme.colors.header};
@@ -13,7 +13,7 @@ export const HeaderStyle = styled.div`
 
 // LOGO
 export const LogoStyle = styled.div`
-    margin-left: 10px;
+    margin-left: 30px;
     display: flex;
     align-items: center;
     background-color: transparent;

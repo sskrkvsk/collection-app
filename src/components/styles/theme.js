@@ -1,7 +1,7 @@
 const theme = {
   colors: {
     header: '#d7d7d7',
-    body: '#2ecc71',
+    body: '#fff',
     accent: '#333',
     text: '#2c2c2c',
   },
@@ -14,7 +14,9 @@ const theme = {
     fontSizeM: '20px'
   },
   height: {
-    headerHight: '60px'
+    header: '60px',
+    topbar: '30px',
+    both: '110px'
   },
   border: {
     radius: '10px'
