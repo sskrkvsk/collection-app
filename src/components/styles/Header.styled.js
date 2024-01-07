@@ -7,7 +7,7 @@ export const HeaderStyle = styled.div`
     height: ${({theme}) => theme.height.headerHight};
     display: flex;
     justify-content: space-between;
-    background-color: gray;
+    background-color: ${({theme}) => theme.colors.header};
     z-index: 1000;
 `
 

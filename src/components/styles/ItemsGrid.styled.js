@@ -9,5 +9,5 @@ export const ItemsGridStyle = styled.div`
     grid-template-columns: ${(props) => props.gridColumns || 'repeat(3, 1fr)'};
     gap: 30px;
     place-items: center;
-    background-color: green;
+    background-color: ${({theme}) => theme.colors.header};;
     `

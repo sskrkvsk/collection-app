@@ -1,8 +1,9 @@
 const theme = {
   colors: {
-    primary: '#3498db',
-    secondary: '#2ecc71',
-    text: '#333',
+    header: '#d7d7d7',
+    body: '#2ecc71',
+    accent: '#333',
+    text: '#2c2c2c',
   },
   shadows: {
     small: '0 2px 4px rgba(0, 0, 0, 0.1)'

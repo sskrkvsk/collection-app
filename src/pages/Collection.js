@@ -4,6 +4,7 @@ import { useParams, Redirect, useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import ItemsGrid from '../components/ItemsGrid';
 import TopBar from '../components/TopBar';
+import ScrollToTopButton from '../components/ScrollBtn';
 import { PageStyle } from '../components/styles/Page.styled';
 
 const Collection = () => {
@@ -107,6 +108,7 @@ const Collection = () => {
       ) : (
         <Redirect to="/NotFound" />
       )}
+      <ScrollToTopButton></ScrollToTopButton>
     </PageStyle>
   );
 };

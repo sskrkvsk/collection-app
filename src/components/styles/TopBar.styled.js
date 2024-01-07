@@ -3,7 +3,7 @@ import styled from "styled-components";
 // TopBar
 export const TopBartyle = styled.ul`
 
-    background-color: beige;
+    background-color: transparent;
     margin: 0 auto;
     width: ${({theme}) => theme.size.grid};
     display: flex;
@@ -11,6 +11,7 @@ export const TopBartyle = styled.ul`
 
 
     ul {
+        padding: 0;
         align-self: flex-end;
         display: flex;
         flex-direction: row;
