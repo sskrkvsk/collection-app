@@ -14,7 +14,7 @@ const Main = () => {
   useEffect(() => {
     axios.get('http://localhost:3001/getTableNames')
     .then(response => {
-      setTableNames(response.data.tableNames);
+      setTableNames(response.data.finalArray);
       setDeleteStatus(false);
     })
     .catch(error => {
@@ -47,7 +47,6 @@ const Main = () => {
   function handleDelete(tableName) {
     setDeleteStatus(true);
     axios.post('http://localhost:3001/deleteCategory', {category :tableName}).then(response => {
-      // console.log(response.data);
     })
     .catch(error => {
       console.error("Error posting data:", error);

@@ -3,9 +3,9 @@ import styled from "styled-components";
 // Main
 export const MainStyle = styled.div`
     width: ${({theme}) => theme.size.main};
-    height: calc(100vh - ${({theme}) => theme.height.headerHight});
+    min-height: calc(100vh - ${({theme}) => theme.height.headerHight});
     margin: 0 auto;
-    padding-top: 100px;
+    padding: 100px 0;
     display: flex;
     flex-direction: column;
     background-color: gray;

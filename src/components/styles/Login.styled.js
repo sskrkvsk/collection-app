@@ -41,6 +41,10 @@ export const LoginStyle = styled.button`
     &:hover {
         box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
     }
+    &:active {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+        color: #fff;
+    }
 
     img {
       width: 100px;

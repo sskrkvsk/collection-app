@@ -33,7 +33,7 @@ const Collection = () => {
   useEffect(() => {
     axios.get('http://localhost:3001/getTableNames')
       .then(response => {
-        setValidCategories(response.data.tableNames);
+        setValidCategories(response.data.finalArray);
         setIsValidCategory(response.data.tableNames.includes(category));
       })
       .catch(error => {
