@@ -21,7 +21,6 @@ const Collection = () => {
   useEffect(() => {
     axios.post(`http://localhost:3001/getTableData/${category}`, {status: sort, button: btnName })
       .then(response => {
-        // console.log(response.data.tableData);  [{…}, {…}, ...]
         setTableData(response.data.tableData);
       })
       .catch(error => {
@@ -61,8 +60,6 @@ const Collection = () => {
 
 
   const handleSearch = (search, input) => {
-    console.log(search, input);
-
     const titleArray = search.map((table) => {
           return table.title;
        });

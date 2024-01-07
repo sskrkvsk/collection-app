@@ -130,7 +130,8 @@ const AddItem = () => {
           <Link to={`/addcustomitem?category=${category}`}>
             <AddBtnStyle>Add Custom Element</AddBtnStyle>
           </Link>
-          <AddBtnStyle onClick={fetchData}>Add</AddBtnStyle>
+          {searchItem ? <AddBtnStyle onClick={fetchData}>Add</AddBtnStyle> : <AddBtnStyle>Add</AddBtnStyle>}
+          
         </section>
       </AddItemStyle>
     </div>

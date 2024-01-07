@@ -2,20 +2,22 @@ import styled from "styled-components";
 
 // HEADER
 export const HeaderStyle = styled.div`
+    position: fixed;
     width: 100%;
     height: ${({theme}) => theme.height.headerHight};
     display: flex;
     justify-content: space-between;
     background-color: gray;
-
+    z-index: 1000;
 `
 
 // LOGO
 export const LogoStyle = styled.div`
-    margin-left: 5px;
+    margin-left: 10px;
     display: flex;
     align-items: center;
     background-color: transparent;
+    height: 100%;
 
 
     img {
@@ -25,7 +27,6 @@ export const LogoStyle = styled.div`
     }
 
     p {
-
         font-size: ${({theme}) => theme.typography.fontSizeM};
     }
 `
@@ -34,7 +35,7 @@ export const SearchStyle = styled.div`
     background-color: transparent;
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-self: center;
     
 
     img {
@@ -42,9 +43,8 @@ export const SearchStyle = styled.div`
     }
 
     div {
-        height: 100%;
         display: flex;
-        align-items: center;
+        /* align-items: center; */
         margin-right: 10px;
     }
 

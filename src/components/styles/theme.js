@@ -13,7 +13,7 @@ const theme = {
     fontSizeM: '20px'
   },
   height: {
-    headerHight: '50px'
+    headerHight: '60px'
   },
   border: {
     radius: '10px'

@@ -31,7 +31,7 @@ const AddCollection = () => {
           value={inputValue}
           onChange={handleChange}
         />
-        <AddBtnStyle onClick={handlePostRequest}>Add</AddBtnStyle>
+        {inputValue ? <AddBtnStyle onClick={handlePostRequest}>Add</AddBtnStyle> : <AddBtnStyle>Add</AddBtnStyle>} 
       </AddCollectionStyle>
       {canRedirect && <Redirect to="/home" />}
     </div>

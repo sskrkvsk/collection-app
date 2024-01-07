@@ -22,7 +22,8 @@ const Search = ({ tableData, handleSearch }) => {
                 onChange={handleChange}
                 value={inputValue}
             />
-            <button onClick={() => handleSearch(tableData, inputValue)}></button>
+            {inputValue ? <button onClick={() => handleSearch(tableData, inputValue)}></button> : <button></button>}
+            
         </div>}
     </SearchStyle>
   )

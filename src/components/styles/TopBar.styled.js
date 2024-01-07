@@ -2,17 +2,27 @@ import styled from "styled-components";
 
 // TopBar
 export const TopBartyle = styled.ul`
+
     background-color: beige;
     margin: 0 auto;
     width: ${({theme}) => theme.size.grid};
     display: flex;
     gap: 20px;
 
+
+    ul {
+        align-self: flex-end;
+        display: flex;
+        flex-direction: row;
+    }
+
     li {
         padding: 5px 20px;
     }
 
     div {
+        margin-top: 70px;
+        /* height: 100px; */
         position: relative;
         display: flex;
         gap: 20px;
