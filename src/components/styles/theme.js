@@ -6,7 +6,8 @@ const theme = {
     text: '#2c2c2c',
   },
   shadows: {
-    small: '0 2px 4px rgba(0, 0, 0, 0.1)'
+    small: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    medium: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;'
   },
   typography: {
     fontSizeMb: '16px',
@@ -22,7 +23,7 @@ const theme = {
     radius: '10px'
   },
   size: {
-    main: '60%',
+    main: '70%',
     grid: '80%'
   },
   mediaQueries: {

@@ -53,33 +53,36 @@ const Main = () => {
     });
   }
 
+
+
+
   return (
     <MainStyle>
+    <section >
       {tableNames.map((table, index) => (
-        <div key={index}>
-          <section>
+          <div key={index}>
+
             {editableTable === table ? (
               <input type="text" onChange={handleChange} value={newName} />
             ) : (
               <Link to={`/${table}`}>
-                <button>{table}</button>
+                {table}
               </Link>
             )}
-            <div>
-            {!listOfNames.includes(table) && (
-              <>
+            {!listOfNames.includes(table) ? (
+              <nav>
                 {editableTable === table ? (
                   <button onClick={handleSave}>Save</button>
                 ) : (
-                  <button onClick={() => handleEdit(table)}>Edit</button>
+                  <button onClick={() => handleEdit(table)}><img src='/images/edit.svg' alt=''></img></button>
                 )}
-                <button onClick={() => handleDelete(table)}>Delete</button>
-              </>
-            )}
-            </div>
-          </section>
-        </div>
+                <button onClick={() => handleDelete(table)}><img src='/images/delete.svg' alt=''></img></button>
+              </nav>
+            ) : <p>p</p>}
+                  </div>
+          
       ))}
+      </section>
       <Link to='/addcollection'><AddBtn value="Add Custom" /></Link>
     </MainStyle>
   )

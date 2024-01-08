@@ -11,6 +11,7 @@ const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
         const formattedDate = format(new Date(item.date), 'dd.MM.yyyy');
         const trimmedTitle = encodeURIComponent(item.title.trim()).toLowerCase();
         return (
+          <Link to={`/${category}/${trimmedTitle}`} state={{ itemTitle: item.title }}>
           <ItemsCardStyle key={index} articleVissbility={articleVissbility}>      
             <img src={item.image} alt='' />
             <div>
@@ -22,9 +23,9 @@ const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
                 {item.rating}
               </span>
             </div>
-            <Link to={`/${category}/${trimmedTitle}`} state={{ itemTitle: item.title }}><button>ass</button></Link> 
             <article>{item.note}</article>          
           </ItemsCardStyle>
+          </Link> 
           );
       })}
     </ItemsGridStyle>

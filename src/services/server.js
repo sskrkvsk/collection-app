@@ -24,7 +24,6 @@ app.get("/getTableNames", async (req, res) => {
       const result = await db.query("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name != 'user' ORDER BY table_name");
       const collections = result.rows;
       const tableNames = collections.map(table => {
-        console.log(table);
         return table.table_name.charAt(0).toUpperCase() + table.table_name.slice(1);
       });
       const tablesToFilter = ['Anime', 'Books', 'Movies', 'Series'];

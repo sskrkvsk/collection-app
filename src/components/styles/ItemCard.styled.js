@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
+
+
 // Card
 export const ItemsCardStyle = styled.div`
     display: flex;
     border-radius: ${({theme}) => theme.border.radius};
+    box-shadow: ${({theme}) => theme.shadows.medium};
     background-color: white;
     padding: 5px;
     width: 100%;
