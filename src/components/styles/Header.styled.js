@@ -7,7 +7,7 @@ export const HeaderStyle = styled.div`
     height: ${({theme}) => theme.height.header};
     display: flex;
     justify-content: space-between;
-    background-color: ${({theme}) => theme.colors.header};
+    background: ${({theme}) => theme.colors.gradient};
     z-index: 1000;
 `
 
@@ -27,6 +27,7 @@ export const LogoStyle = styled.div`
     }
 
     p {
+        color: black;
         font-size: ${({theme}) => theme.typography.fontSizeM};
     }
 `

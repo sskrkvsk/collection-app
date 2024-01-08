@@ -63,7 +63,7 @@ const Main = () => {
           <div key={index}>
 
             {editableTable === table ? (
-              <input type="text" onChange={handleChange} value={newName} />
+              <input autoFocus="true" type="text" onChange={handleChange} value={newName} />
             ) : (
               <Link to={`/${table}`}>
                 {table}
@@ -79,7 +79,7 @@ const Main = () => {
                 <button onClick={() => handleDelete(table)}><img src='/images/delete.svg' alt=''></img></button>
               </nav>
             ) : <p>p</p>}
-                  </div>
+          </div>
           
       ))}
       </section>

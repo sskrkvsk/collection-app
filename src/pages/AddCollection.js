@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import { AddCollectionStyle } from '../components/styles/AddCollection.styled'
 import { AddBtnStyle } from '../components/styles/AddBtn.styled'
 import { InputStyle } from '../components/styles/Input.styled'
+import { PageStyle } from '../components/styles/Page.styled';
 
 const AddCollection = () => {
   const [inputValue, setInputValue] = useState('');
@@ -22,7 +23,7 @@ const AddCollection = () => {
   };
 
   return (
-    <div>
+    <PageStyle>
       <Header /> 
       <AddCollectionStyle>
       <InputStyle
@@ -34,7 +35,7 @@ const AddCollection = () => {
         {inputValue ? <AddBtnStyle onClick={handlePostRequest}>Add</AddBtnStyle> : <AddBtnStyle>Add</AddBtnStyle>} 
       </AddCollectionStyle>
       {canRedirect && <Redirect to="/home" />}
-    </div>
+    </PageStyle>
   )
 }
 

@@ -10,27 +10,31 @@ export const MainStyle = styled.main`
     align-items: center;
 
 
+    
+
     section {
         flex: 1;
         width: 100%;
         margin-bottom: 40px;
-
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 30px;
         
 
         div {
-        width: 100%;
-        height: 100%;
-        border-radius: ${({theme}) => theme.border.radius};
-        font-size: ${({theme}) => theme.typography.fontSizeM};
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        box-shadow: ${({theme}) => theme.shadows.medium};
-
+            width: 100%;
+            max-height: 290px;
+            border-radius: ${({theme}) => theme.border.radius};
+            font-size: ${({theme}) => theme.typography.fontSizeM};
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: ${({theme}) => theme.shadows.material};
+            background-color: ${({theme}) => theme.colors.card};
+            &:active {
+        box-shadow: ${({theme}) => theme.shadows.input};
+    }
         }     
 
         a {
@@ -42,23 +46,42 @@ export const MainStyle = styled.main`
             justify-content: center;
             background-image: url('./images/no-bg-logo.png');
             background-repeat: no-repeat;
-            background-size: contain; 
+            background-size: 150px; 
             background-position: center center; 
+            transition: ${({theme}) => theme.transition.fast};
+            
+            &:hover {
+            background-size: contain; 
+            }
         }
 
         nav {
             width: 100%;
             display: flex;
+            justify-self: center;
 
             button {
                 background-color: transparent;
                 text-transform: uppercase;
                 font-weight: 600;
                 flex: 1;
-                /* height: 30px; */
+                padding: 10px 0;
                 cursor: pointer;
                 justify-self: end;
+                transition: ${({theme}) => theme.transition.fast};
             }
+        }
+
+        input {
+            position: relative;
+            top: 105px;
+            text-align: center;
+            background-color: white;
+            color: black;
+            font-size: ${({theme}) => theme.typography.fontSizeM};
+            border-radius: ${({theme}) => theme.border.radius};
+            width: 90%;
+            box-shadow: ${({theme}) => theme.shadows.input};
         }
 
         p {
@@ -71,17 +94,34 @@ export const MainStyle = styled.main`
 
         button:first-child {
             border-bottom-left-radius: 10px;
-            padding-bottom: 10px;
+            padding: 10px 0;
+            border-right: 1px solid #d7d7d7;
+
+            &:hover {
+                background-color: ${({theme}) => theme.colors.blue}
+            }
+            &:active {
+                box-shadow: ${({theme}) => theme.shadows.input};
+            }
         }
 
         button:nth-child(2) {
             border-bottom-right-radius: 10px;
-            padding-bottom: 10px;
+            padding: 10px 0;
+
+            &:hover {
+                background-color: ${({theme}) => theme.colors.red}
+            }
+            &:active {
+                box-shadow: ${({theme}) => theme.shadows.input};
+            }
         }
     }
+    
 
     &:nth-child(2) {
         display: flex;
         align-items: start;
     }
+
 `

@@ -27,6 +27,7 @@ button, input {
 
 a, button {
   touch-action: manipulation; /* Element doesn't want double-tap on mobile to zoom */
+  cursor: pointer;
 }
 
 ul {

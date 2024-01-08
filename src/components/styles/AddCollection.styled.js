@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 // Add collection
 export const AddCollectionStyle = styled.button`
-    background-color: antiquewhite;
     width: 100%;
-    height: calc(100vh - ${({theme}) => theme.height.headerHight});
+    height: 100vh;
     display: flex;
     /* flex-direction: column; */
     align-items: center;
