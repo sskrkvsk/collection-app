@@ -44,14 +44,14 @@ export const MainStyle = styled.main`
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('./images/no-bg-logo.png');
+            background-image: url('/images/no-bg-logo.png');
             background-repeat: no-repeat;
             background-size: 150px; 
             background-position: center center; 
             transition: ${({theme}) => theme.transition.fast};
             
             &:hover {
-            background-size: contain; 
+            background-size: 200px; 
             }
         }
 
