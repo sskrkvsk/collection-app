@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import { AddCustomItemStyle } from '../components/styles/AddCustomItem.styled'
 import { AddBtnStyle } from '../components/styles/AddBtn.styled'
 import { InputStyle } from '../components/styles/Input.styled'
+import { PageStyle } from '../components/styles/Page.styled'
 
 const AddCustomItem = () => {
   const location = useLocation();
@@ -68,7 +69,7 @@ const AddCustomItem = () => {
   }
 
   return (
-  <div>
+  <PageStyle>
     <Header />
     <AddCustomItemStyle>
     {missed && <span>missed field</span>}
@@ -94,21 +95,21 @@ const AddCustomItem = () => {
       </InputStyle>
       <section>
       <label>Rating</label>
-      <ul>
-        <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li>
-      </ul>
-      <InputStyle
-        type='range' 
-        min="1" max="10" step="1" 
-        name='rating' 
-        onChange={handleChange} 
-        value={inputData.rating}>
-      </InputStyle>
+      <div>
+        <input
+          type='range' 
+          min="1" max="10" step="1" 
+          name='rating' 
+          onChange={handleChange} 
+          value={inputData.rating}>
+        </input>
+        <p>{inputData.rating}</p>
+      </div>
       </section>
       <AddBtnStyle onClick={handleAdd}>Add</AddBtnStyle>
     </AddCustomItemStyle>
     {canRedirect && <Redirect to={`/${category}`} />}
-  </div>
+  </PageStyle>
   )
 }
 

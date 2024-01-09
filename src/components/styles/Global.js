@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
 * {
 	box-sizing: border-box;
 }
-body {
+body, p {
 	margin: 0;
 	padding: 0;
 	font-family: 'Lato', sans-serif;

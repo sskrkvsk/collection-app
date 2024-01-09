@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import { AddBtnStyle } from '../components/styles/AddBtn.styled'
 import { InputStyle } from '../components/styles/Input.styled'
 import { AddItemStyle } from '../components/styles/AddItem.styled'
+import { PageStyle } from '../components/styles/Page.styled'
 
 const AddItem = () => {
   const history = useHistory();
@@ -121,7 +122,7 @@ const AddItem = () => {
   }, [responseData]);
 
   return (
-    <div>
+    <PageStyle>
       <Header />
       <AddItemStyle>
         <InputStyle type='text' onChange={handleChange} value={searchItem} placeholder='Write a Title'></InputStyle>
@@ -134,7 +135,7 @@ const AddItem = () => {
           
         </section>
       </AddItemStyle>
-    </div>
+    </PageStyle>
   )
 }
  
