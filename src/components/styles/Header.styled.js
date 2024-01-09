@@ -55,12 +55,29 @@ export const SearchStyle = styled.div`
     }
 
     input {
+        width: 250px;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
 
     button {
+        width: 50px;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+        padding: 0;
+    }
+
+    span {
+        padding: 5px 30px;
+        margin-right: 30px;
+        border-radius: ${({theme}) => theme.border.radius};
+        box-shadow: ${({theme}) => theme.shadows.material};
+        transition: ${({theme}) => theme.transition.fast};
+        &:hover {
+        background-color: ${({theme}) => theme.colors.body}
+        }
+        &:active {
+        box-shadow: ${({theme}) => theme.shadows.input};
+        }
     }
 `

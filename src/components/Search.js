@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SearchStyle }  from './styles/Header.styled'
-import { SvgContainer } from './styles/SvgContainer'
+import { InputStyle } from './styles/Input.styled'
 
 const Search = ({ tableData, handleSearch }) => {
     const [searchClicked, setSearchClicked] = useState(true);
@@ -15,14 +15,14 @@ const Search = ({ tableData, handleSearch }) => {
 
   return (
     <SearchStyle>
-        {searchClicked ? <SvgContainer><img onClick={handleClick} src='/images/search_black_24dp.svg' alt='search button'/> </SvgContainer> :
+        {searchClicked ? <span onClick={handleClick}><img src='/images/search.svg' alt=''></img></span> :
         <div>
-            <input
+            <InputStyle
                 type="text"
                 onChange={handleChange}
                 value={inputValue}
             />
-            {inputValue ? <button onClick={() => handleSearch(tableData, inputValue)}></button> : <button></button>}
+            {inputValue ? <button onClick={() => handleSearch(tableData, inputValue)}><img src='/images/search.svg' alt=''></img></button> : <button><img src='/images/search.svg' alt=''></img></button>}
             
         </div>}
     </SearchStyle>

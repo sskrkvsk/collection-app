@@ -14,6 +14,7 @@ export const AddCollectionStyle = styled.button`
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         margin-bottom: 100px;
+        width: 30%;
     }
 
     button {
