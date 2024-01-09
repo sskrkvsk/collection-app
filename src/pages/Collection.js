@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Redirect, useHistory } from 'react-router-dom';
+import { useParams, Redirect, useHistory, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import ItemsGrid from '../components/ItemsGrid';
 import TopBar from '../components/TopBar';
 import ScrollToTopButton from '../components/ScrollBtn';
-import { PageStyle } from '../components/styles/Page.styled';
+import { PageStyle, NoItemsPage } from '../components/styles/Page.styled';
+import { AddBtnStyle } from '../components/styles/AddBtn.styled'
 
 const Collection = () => {
   const history = useHistory();
@@ -102,7 +103,11 @@ const Collection = () => {
           {tableData.length > 0 ? (
             <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} category={category} />
           ) : (
-            <p>No items available for the selected category.</p>
+            <NoItemsPage>
+              <p>Empty</p>
+              <AddBtnStyle><Link to={'/additem'}>Start a new Collection</Link></AddBtnStyle>
+            </NoItemsPage>
+            
           )}
         </>
       ) : (
