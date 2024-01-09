@@ -12,8 +12,6 @@ export const TopBarStyle = styled.ul`
     nav {
         height: 100%;
         width: 40%;
-        /* background-color: green; */
-        /* padding: 0; */
         align-self: flex-end;
         display: flex;
         flex-direction: row;
@@ -23,13 +21,25 @@ export const TopBarStyle = styled.ul`
 
         img {
             padding: 0;
-            /* height: 16px; */
+            background-color: transparent;
+        }
+
+        &>a, &>p {
+            box-shadow: ${({theme}) => theme.shadows.material};
+            transition: ${({theme}) => theme.transition.fast};
+            &:hover {
+            background-color: ${({theme}) => theme.colors.blue}
+        }
+
+        &:active {
+            box-shadow: ${({theme}) => theme.shadows.input};
+        }
         }
 
     }
 
     nav * {
-        background-color: green;
+        background-color: ${({theme}) => theme.colors.card};
         padding: 10px 30px;
         border-radius: ${({theme}) => theme.border.radius};
         flex: 1;
@@ -55,7 +65,6 @@ export const TopBarStyle = styled.ul`
         display: flex;
         flex-direction: column;
         gap: 10px;
-        background-color: grey;
         position: absolute;
         top: -8px;
         right: -110px;
@@ -65,9 +74,19 @@ export const TopBarStyle = styled.ul`
     }
 
     button {
-        background-color: green;
+        background-color: ${({theme}) => theme.colors.card};
         padding: 10px 30px;
         border-radius: ${({theme}) => theme.border.radius};
         flex: 1;
+        box-shadow: ${({theme}) => theme.shadows.material};
+        transition: ${({theme}) => theme.transition.fast};
+
+        &:hover {
+            background-color: ${({theme}) => theme.colors.blue}
+        }
+
+        &:active {
+            box-shadow: ${({theme}) => theme.shadows.input};
+        }
         }
 `

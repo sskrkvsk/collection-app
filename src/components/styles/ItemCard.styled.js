@@ -4,12 +4,30 @@ import styled from "styled-components";
 
 // Card
 export const ItemsCardStyle = styled.div`
-    display: flex;
-    border-radius: ${({theme}) => theme.border.radius};
-    box-shadow: ${({theme}) => theme.shadows.medium};
-    background-color: white;
-    padding: 5px;
-    width: 100%;
+    section {
+        position: relative;
+        display: flex;
+        border-radius: ${({theme}) => theme.border.radius};
+        box-shadow: ${({theme}) => theme.shadows.material};
+        background-color: white;
+        padding: 5px;
+        width: 100%; 
+        color: black;
+        overflow: hidden;
+        &:hover {
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+    }
+    }
+
     img {
         height: 300px;
         width: 200px;
@@ -20,7 +38,7 @@ export const ItemsCardStyle = styled.div`
     div {
         margin-top: 10px;
         width: 200px;
-        margin-left: 10px;
+        padding-left: 20px;
     }
 
     h3 {
@@ -46,7 +64,7 @@ export const ItemsCardStyle = styled.div`
 
     article {
         display: ${(props) => props.articleVissbility || 'block'};;
-        background-color: gray;
+        background-color: ${({theme}) => theme.colors.card};
         padding: 20px 10px; 
         margin-left: 40px;
         width: 500px;

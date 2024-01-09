@@ -25,7 +25,7 @@ const ScrollToTopButton = () => {
 
   return (
     <StyledButton onClick={scrollToTop} style={{ display: isVisible ? 'block' : 'none' }}>
-      To Top
+      <img src='/images/up.svg' alt=''></img>
     </StyledButton>
   );
 };
@@ -34,17 +34,23 @@ const StyledButton = styled.button`
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
   padding: 10px 15px;
   cursor: pointer;
   display: none;
 
-  &:hover {
-    background-color: #0056b3;
-  }
+    border-radius: ${({theme}) => theme.border.radius};
+    font-size: ${({theme}) => theme.typography.fontSizeMb};
+    background-color: ${({theme}) => theme.colors.blue};
+    box-shadow: ${({theme}) => theme.shadows.material};
+    transition: ${({theme}) => theme.transition.fast};
+
+    &:hover {
+        background-color: ${({theme}) => theme.colors.blue}
+    }
+
+    &:active {
+        box-shadow: ${({theme}) => theme.shadows.input};
+    }
 `;
 
 export default ScrollToTopButton;

@@ -12,7 +12,8 @@ const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
         const trimmedTitle = encodeURIComponent(item.title.trim()).toLowerCase();
         return (
           <Link to={`/${category}/${trimmedTitle}`} state={{ itemTitle: item.title }}>
-          <ItemsCardStyle key={index} articleVissbility={articleVissbility}>      
+          <ItemsCardStyle key={index} articleVissbility={articleVissbility}>   
+            <section>  
             <img src={item.image} alt='' />
             <div>
               <h3>{item.title}</h3>
@@ -23,7 +24,8 @@ const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
                 {item.rating}
               </span>
             </div>
-            <article>{item.note}</article>          
+            <article>{item.note}</article>    
+            </section>       
           </ItemsCardStyle>
           </Link> 
           );
