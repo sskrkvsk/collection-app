@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 // Add collection
-export const AddCollectionStyle = styled.button`
+export const AddCollectionStyle = styled.div`
     width: 100%;
     height: 100vh;
     display: flex;
-    /* flex-direction: column; */
     align-items: center;
     justify-content: center;
     gap: 50px;
@@ -23,4 +22,22 @@ export const AddCollectionStyle = styled.button`
         margin-bottom: 100px;
     }
 
+    @media (max-width: ${({theme}) => theme.breakpoints.large}) {
+        input {
+            width: 50%;
+        }
+    }
+    @media (max-width: ${({theme}) => theme.breakpoints.medium}) {
+        flex-direction: column;
+        justify-content: start;
+        gap: 20px;
+        padding-top: 300px;
+        input {
+            width: 90%;
+            margin-bottom: 0;
+        }
+        input, button {
+            border-radius: ${({theme}) => theme.border.radius};
+        }
+    }
 `
