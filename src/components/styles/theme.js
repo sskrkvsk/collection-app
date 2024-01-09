@@ -33,6 +33,11 @@ const theme = {
   },
   transition : {
     fast: '0.3s ease'
+  },
+  breakpoints: {
+    small: '600px',
+    medium: '800px',
+    large: '1100px',
   }
 };
   
