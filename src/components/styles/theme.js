@@ -31,9 +31,6 @@ const theme = {
     main: '70%',
     grid: '80%'
   },
-  mediaQueries: {
-    medium: '@media (min-width: 768px)'
-  },
   transition : {
     fast: '0.3s ease'
   }
