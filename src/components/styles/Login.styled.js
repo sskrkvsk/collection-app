@@ -53,6 +53,7 @@ export const LoginStyle = styled.button`
     }
 
     p {
+      background-color: transparent;
       font-size: ${({ theme }) => theme.typography.fontSizeH};
     }
   }
