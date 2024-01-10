@@ -58,4 +58,30 @@ export const AddCustomItemStyle = styled.div`
         border-radius: ${({theme}) => theme.border.radius};
         background-color: black;
     }
+
+    @media (max-width: 1300px) {
+        input, section {
+            width: 40%;
+        }
+    }
+    @media (max-width: 1000px) {
+        input, section {
+            width: 60%;
+        }
+    }
+    @media (max-width: 650px) {
+        input, section {
+            width: 80%;
+        }
+    }
+    @media (max-width: 480px) {
+        gap: 30px;
+        input, section {
+            width: 90%;
+        }
+
+        input[type="range"] {
+            padding: 15px 10px;
+        }
+    }
 `
