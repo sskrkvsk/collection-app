@@ -14,6 +14,7 @@ export const SingleItemStyled = styled.div`
   }
 
   p {
+      background-color: transparent;
       margin: 0px;
     }
 
@@ -21,6 +22,10 @@ export const SingleItemStyled = styled.div`
     header {
         margin-top: 100px;
         margin-left: 200px;
+        padding: 10px;
+        background-color: ${({theme}) => theme.colors.card};
+        border-radius: ${({theme}) => theme.border.radius};
+        margin-bottom: 40px;
 
         & >input:first-child {
           width: 300px;
@@ -113,7 +118,7 @@ export const SingleItemStyled = styled.div`
     }
 
     p {
-        /* background-color: wheat; */
+        background-color: transparent;
         padding: 20px;
         padding-top: 0;
     }
@@ -122,8 +127,8 @@ export const SingleItemStyled = styled.div`
   footer {
     display: flex;
     justify-content: space-between;
-    /* gap: 20px; */
-    margin-top: 20px;
+    margin-top: 50px;
+    padding: 0 20px;
 
 
     button {
@@ -136,4 +141,100 @@ export const SingleItemStyled = styled.div`
       background-color: ${({theme}) => theme.colors.red}
     }
   }
+  @media (max-width: 1540px) {
+  gap: 100px;
+    header {
+        margin-left: 50px;
+    }
+    div > span {
+        input {
+          width: 60px;
+          text-align: center;
+        }
+    }
+  }
+    @media (max-width: 1200px) {
+      gap: 50px;
+      header {
+        margin-left: 0px;
+        & >input:first-child {
+          width: 240px;
+          max-height: 320px;
+          margin-bottom: 10px;
+        }
+    }
+    section {
+      padding: 20px;
+      width: 650px;
+    }
+    header > img {
+        min-width: 240px;
+        max-height: 420px;
+    }
+    }
+    @media (max-width: 1000px) {
+      section {
+        h1 {
+        margin-bottom: 30px;
+        padding: 20px;
+        padding-top: 0;
+        font-size: 2rem;
+        span {
+            font-size: 1.4rem;
+        }
+        }  
+      }
+    }
+    @media (max-width: 850px) {
+      gap: 20px;
+      width: 95%;
+      flex-direction: column;
+      align-items: center;
+      section {
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        flex-direction: column;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        & >input:first-child {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+        div {
+          margin-top: 10px;
+        }
+      }
+      header {
+        margin-top: 80px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & >input:first-child {
+          width: 100%;
+          height: auto;
+          margin-bottom: 10px;
+        }
+        > div {
+          width: 100%;
+          padding-top: 5px;
+          justify-content: space-between;
+    }
+    }
+
+    article {
+      h2 {
+        padding-left  :20px ;
+        margin-bottom: 20px;
+        font-size: 1.3rem;
+      }
+      p {
+        padding: 5px;
+      }
+    }
+      footer {
+        padding: 0;
+    }
+    }
 `;

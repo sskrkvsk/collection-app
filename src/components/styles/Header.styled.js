@@ -28,6 +28,7 @@ export const LogoStyle = styled.div`
     }
 
     p {
+        background-color: transparent;
         color: black;
         font-size: ${({theme}) => theme.typography.fontSizeM};
     }

@@ -125,13 +125,13 @@ export const MainStyle = styled.main`
     }
 
 
-    @media (max-width: ${({theme}) => theme.breakpoints.large}) {
+    @media (max-width: 1100px) {
         &>a {
             margin-bottom: 20px;
         }
 
         section {
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
         }
 
         section >div {
@@ -164,7 +164,40 @@ export const MainStyle = styled.main`
         }
     }
 
-    @media (max-width: ${({theme}) => theme.breakpoints.small}) {
+    @media (max-width: 800px) {
             width: 95%;
+    }
+    @media (max-width: 600px) {
+        padding-top: 100px;
+        section {
+            grid-template-columns: 1fr;
+            gap: 10px;
+
+            nav {
+                width: 60px;
+                display: flex;
+                justify-self: center;
+
+            }
+
+            div {
+                height: 90px;
+            }
+            a {
+                background-size: 70px; 
+                background-position: 20px center; 
+                color: black;
+                justify-content: start;
+                padding-left: 100px;
+            }
+            input {
+                position: static;
+                width: 85%;
+            }
+            button:first-child {
+                border-bottom-left-radius: 0px;
+                border-top-right-radius: 10px;
+            }
+        }
     }
 `
