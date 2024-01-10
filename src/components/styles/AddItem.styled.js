@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Add custom item
 export const AddItemStyle = styled.div`
     width: 100%;
     height: 100vh;
@@ -20,5 +19,26 @@ export const AddItemStyle = styled.div`
 
     input {
         width: 30%;
+    }
+
+    @media (max-width: 1300px) {
+        input, section {
+            width: 40%;
+        }
+    }
+    @media (max-width: 1000px) {
+        input, section {
+            width: 60%;
+        }
+    }
+    @media (max-width: 650px) {
+        input, section {
+            width: 80%;
+        }
+    }
+    @media (max-width: 480px) {
+        input, section {
+            width: 90%;
+        }
     }
 `

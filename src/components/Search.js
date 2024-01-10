@@ -2,11 +2,8 @@ import React, { useState } from 'react'
 import { SearchStyle }  from './styles/Header.styled'
 import { InputStyle } from './styles/Input.styled'
 
-const Search = ({ tableData, handleSearch }) => {
-    const [searchClicked, setSearchClicked] = useState(true);
-    function handleClick() {
-        setSearchClicked(false);
-    }
+const Search = ({ tableData, handleSearch, searchClicked, handleClick }) => {
+    
     const [inputValue, setInputValue] = useState();
     const handleChange = (event) => {
         const {value} = event.target;

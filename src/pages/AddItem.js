@@ -129,7 +129,7 @@ const AddItem = () => {
         {loading && <p>Loading...</p>}
         <section>
           <Link to={`/addcustomitem?category=${category}`}>
-            <AddBtnStyle>Add Custom Element</AddBtnStyle>
+            <AddBtnStyle>Custom</AddBtnStyle>
           </Link>
           {searchItem ? <AddBtnStyle onClick={fetchData}>Add</AddBtnStyle> : <AddBtnStyle>Add</AddBtnStyle>}
           

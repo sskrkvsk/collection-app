@@ -9,6 +9,7 @@ export const HeaderStyle = styled.div`
     justify-content: space-between;
     background: ${({theme}) => theme.colors.gradient};
     z-index: 1000;
+
 `
 
 // LOGO
@@ -30,6 +31,16 @@ export const LogoStyle = styled.div`
         color: black;
         font-size: ${({theme}) => theme.typography.fontSizeM};
     }
+
+    @media (max-width: 670px) {
+        margin-left: 5px;
+        p {
+        font-size: ${({theme}) => theme.typography.fontSizeMb};
+        }
+        img {
+        margin-right: 5px;
+    }
+    }
 `
 // SEARCH
 export const SearchStyle = styled.div`
@@ -45,7 +56,6 @@ export const SearchStyle = styled.div`
 
     div {
         display: flex;
-        /* align-items: center; */
         margin-right: 10px;
     }
 
@@ -78,6 +88,16 @@ export const SearchStyle = styled.div`
         }
         &:active {
         box-shadow: ${({theme}) => theme.shadows.input};
+        }
+    }
+
+    @media (max-width: 670px) {
+        input {
+        width: 200px;
+        }
+        span {
+            padding: 3px 20px;
+            margin-right: 10px;
         }
     }
 `

@@ -75,4 +75,24 @@ export const ItemsCardStyle = styled.div`
         word-wrap: normal;
         text-overflow: ellipsis;
     }
+
+    @media (max-width: 900px) {
+        img {
+        height: 250px;
+        width: 180px;
+    }
+    h3 {
+        font-size: ${({theme}) => theme.typography.fontSizeMb};
+    }
+    }
+
+    @media (max-width: 670px) {
+        section {
+            width: 370px
+        }
+        h3 {
+            font-size: ${({theme}) => theme.typography.fontSizeM}
+        }
+        
+    }
     `
