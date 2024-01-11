@@ -21,7 +21,7 @@ const Collection = () => {
   const [articleVissbility, setarticleVissbility] = useState('none');
 
   useEffect(() => {
-    axios.post(`http://localhost:3001/getTableData/${category}`, {status: sort, button: btnName })
+    axios.post(`https://dpg-cmfq1knqd2ns73a5ega0-a.frankfurt-postgres.render.com/getTableData/${category}`, {status: sort, button: btnName })
       .then(response => {
         setTableData(response.data.tableData);
       })
@@ -32,7 +32,7 @@ const Collection = () => {
   }, [category, sort]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getTableNames')
+    axios.get('https://dpg-cmfq1knqd2ns73a5ega0-a.frankfurt-postgres.render.com/getTableNames')
       .then(response => {
         setValidCategories(response.data.finalArray);
         setIsValidCategory(response.data.tableNames.includes(category));
