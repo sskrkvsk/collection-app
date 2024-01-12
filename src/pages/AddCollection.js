@@ -13,7 +13,7 @@ const AddCollection = () => {
   const handleChange = (e) => setInputValue(e.target.value);
   
   const handlePostRequest = () => {
-    axios.post('/addNewCollection', { key: inputValue })
+    axios.post('http://localhost:3001/addNewCollection', { key: inputValue })
       .then(response => {
       })
       .catch(error => {
