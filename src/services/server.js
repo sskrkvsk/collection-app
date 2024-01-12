@@ -9,7 +9,15 @@ app.use(express.json());
 const port = 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+const corsOptions = {
+  origin: 'https://collection-app-phi.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 
 const db = new pg.Pool({
   user: process.env.POSTGRES_USER || 'default',
