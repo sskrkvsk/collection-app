@@ -108,7 +108,7 @@ const AddItem = () => {
 
   const sendToDB = async (dataForDB) => {
     try {
-      await axios.post('http://localhost:3001/addApiItem', {dataForDB, category});
+      await axios.post('/addApiItem', {dataForDB, category});
     } catch (error) {
       console.error('Error sending data to DB:', error);
     }

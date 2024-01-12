@@ -12,11 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 const db = new pg.Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT || 5432,
+  user: process.env.POSTGRES_USER || 'default',
+  host: process.env.POSTGRES_HOST || 'ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com',
+  database: process.env.POSTGRES_DATABASE || 'verceldb',
+  password: process.env.POSTGRES_PASSWORD || 'OzBWbY39eNpr',
+  port: process.env.POSTGRES_PORT || 5432,
 });
 
 app.get("/getTableNames", async (req, res) => {

@@ -55,7 +55,7 @@ const AddCustomItem = () => {
   
   const handleAdd = () => {
     if (inputData.image !== "" && inputData.title !== "" && inputData.date !== "") {
-      axios.post('https://dpg-cmfq1knqd2ns73a5ega0-a.frankfurt-postgres.render.com/addCustom', { data: inputData })
+      axios.post('/addCustom', { data: inputData })
       .then(response => {
       })
       .catch(error => {
