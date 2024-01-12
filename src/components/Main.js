@@ -14,7 +14,7 @@ const Main = () => {
   useEffect(() => {
     axios.get('/getTableNames')
     .then(response => {
-      res.setHeader('Cache-Control', 'no-store');
+      console.log('Response:', response.data);
       setTableNames(response.data.finalArray);
       setDeleteStatus(false);
     })
