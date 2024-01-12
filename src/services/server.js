@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-const port = process.env.PORT || 3001;
+const port = 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -16,7 +16,7 @@ const db = new pg.Pool({
   host: process.env.POSTGRES_HOST || 'ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com',
   database: process.env.POSTGRES_DATABASE || 'verceldb',
   password: process.env.POSTGRES_PASSWORD || 'OzBWbY39eNpr',
-  port: process.env.POSTGRES_PORT || 5432,
+  port: 3001,
 });
 
 app.get("/getTableNames", async (req, res) => {
@@ -29,6 +29,8 @@ app.get("/getTableNames", async (req, res) => {
       const tablesToFilter = ['Anime', 'Books', 'Movies', 'Series'];
       const filteredArray = tableNames.filter(word => !tablesToFilter.includes(word));
       const finalArray = tablesToFilter.concat(filteredArray);
+      console.log('Table Names:', finalArray);
+      res.setHeader('Cache-Control', 'no-store');
       res.json({ finalArray });
     } catch (error) {
       console.error("Error retrieving items from the database:", error);
