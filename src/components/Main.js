@@ -12,7 +12,7 @@ const Main = () => {
   const [deleteStatus, setDeleteStatus] = useState(false);
 
   useEffect(() => {
-    axios.get(`postgres://default:OzBWbY39eNpr@ep-quiet-frog-84894977.us-east-1.postgres.vercel-storage.com:5432/verceldb`)
+    axios.get(`/getTableNames`)
     .then(response => {
       
       setTableNames(response.data.finalArray);
