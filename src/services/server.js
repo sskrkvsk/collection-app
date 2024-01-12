@@ -11,13 +11,16 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-const db = new pg.Pool({
-  user: process.env.POSTGRES_USER || 'default',
-  host: process.env.POSTGRES_HOST || 'ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com',
-  database: process.env.POSTGRES_DATABASE || 'verceldb',
-  password: process.env.POSTGRES_PASSWORD || 'OzBWbY39eNpr',
-  port: 3001,
-});
+// const db = new pg.Pool({
+//   user: process.env.POSTGRES_USER || 'default',
+//   host: process.env.POSTGRES_HOST || 'ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com',
+//   database: process.env.POSTGRES_DATABASE || 'verceldb',
+//   password: process.env.POSTGRES_PASSWORD || 'OzBWbY39eNpr',
+//   port: 3001,
+// });
+const db = new Pool({
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+})
 
 app.get("/getTableNames", async (req, res) => {
   try {
