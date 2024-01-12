@@ -29,7 +29,6 @@ app.get("/getTableNames", async (req, res) => {
       const tablesToFilter = ['Anime', 'Books', 'Movies', 'Series'];
       const filteredArray = tableNames.filter(word => !tablesToFilter.includes(word));
       const finalArray = tablesToFilter.concat(filteredArray);
-	   res.setHeader('Cache-Control', 'no-store');
       res.json({ finalArray });
     } catch (error) {
       console.error("Error retrieving items from the database:", error);
