@@ -7,9 +7,6 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 const port = 3001;
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
 const corsOptions = {
   origin: 'https://collection-app-phi.vercel.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -18,6 +15,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = new pg.Pool({
   user: process.env.POSTGRES_USER || 'default',
