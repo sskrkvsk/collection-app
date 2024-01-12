@@ -12,6 +12,7 @@ const Main = () => {
   const [deleteStatus, setDeleteStatus] = useState(false);
 
   useEffect(() => {
+    console.log('POSTGRES_HOST:', process.env.POSTGRES_HOST);
     axios.get(`https://${process.env.POSTGRES_HOST}/getTableNames`)
     .then(response => {
       console.log('Table Names:', response.data.finalArray);
