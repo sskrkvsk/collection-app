@@ -12,8 +12,8 @@ const Main = () => {
   const [deleteStatus, setDeleteStatus] = useState(false);
 
   useEffect(() => {
-    console.log('POSTGRES_HOST:', process.env.POSTGRES_HOST);
-    axios.get(`https://${process.env.POSTGRES_HOST}/getTableNames`)
+    // console.log('POSTGRES_HOST:', process.env.POSTGRES_HOST);
+    axios.get(`https://ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com/getTableNames`)
     .then(response => {
       console.log('Table Names:', response.data.finalArray);
       setTableNames(response.data.finalArray);
