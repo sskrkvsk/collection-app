@@ -16,7 +16,7 @@ const db = new pg.Pool({
   host: process.env.POSTGRES_HOST || 'ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com',
   database: process.env.POSTGRES_DATABASE || 'verceldb',
   password: process.env.POSTGRES_PASSWORD || 'OzBWbY39eNpr',
-  port: process.env.POSTGRES_PORT || 5432,
+  port: 3001,
 });
 
 app.get("/getTableNames", async (req, res) => {
