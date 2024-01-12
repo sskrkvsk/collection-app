@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const pg = require("pg");
+const { Pool } = require('pg');
 const cors = require("cors");
 require('dotenv').config();
 
@@ -17,12 +18,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = new pg.Pool({
-  user: process.env.POSTGRES_USER || 'default',
-  host: process.env.POSTGRES_HOST || 'ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com',
-  database: process.env.POSTGRES_DATABASE || 'verceldb',
-  password: process.env.POSTGRES_PASSWORD || 'OzBWbY39eNpr',
-  port: 3001,
+const databaseUrl = 'postgres://postgre:19StihUGjnST6gMSY7fKmECavMl1cJRf@dpg-cmfq1knqd2ns73a5ega0-a.frankfurt-postgres.render.com/collection_i04h';
+
+const pool = new Pool({
+  connectionString: databaseUrl,
 });
 
 app.get("/getTableNames", async (req, res) => {
