@@ -12,7 +12,7 @@ const Main = () => {
   const [deleteStatus, setDeleteStatus] = useState(false);
 
   useEffect(() => {
-    axios.get(`/getTableNames`)
+    axios.get(`/api/getTableNames`)
     .then(response => {
       
       setTableNames(response.data.finalArray);
