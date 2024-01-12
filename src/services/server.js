@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-const port = 3001;
+const port = 5432;
 const corsOptions = {
   origin: 'https://collection-app-phi.vercel.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
