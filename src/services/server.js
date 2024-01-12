@@ -1,22 +1,24 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const pg = require("pg");
+const { Pool } = require('pg');
 const cors = require("cors");
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-const port = process.env.PORT || 3001;
+const port = 3001;
 
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 const db = new pg.Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT || 5432,
+  user: process.env.POSTGRES_USER || 'default',
+  host: process.env.POSTGRES_HOST || 'ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com',
+  database: process.env.POSTGRES_DATABASE || 'verceldb',
+  password: process.env.POSTGRES_PASSWORD || 'OzBWbY39eNpr',
+  port: 3001,
 });
 
 app.get("/getTableNames", async (req, res) => {
