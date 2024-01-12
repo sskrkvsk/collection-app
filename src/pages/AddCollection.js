@@ -13,7 +13,7 @@ const AddCollection = () => {
   const handleChange = (e) => setInputValue(e.target.value);
   
   const handlePostRequest = () => {
-    axios.post('https://dpg-cmfq1knqd2ns73a5ega0-a.frankfurt-postgres.render.com/addNewCollection', { key: inputValue })
+    axios.post('http://localhost:3001/addNewCollection', { key: inputValue })
       .then(response => {
       })
       .catch(error => {

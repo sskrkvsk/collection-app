@@ -12,7 +12,7 @@ const Main = () => {
   const [deleteStatus, setDeleteStatus] = useState(false);
 
   useEffect(() => {
-    axios.get('https://dpg-cmfq1knqd2ns73a5ega0-a.frankfurt-postgres.render.com/getTableNames')
+    axios.get('http://localhost:3001/getTableNames')
     .then(response => {
       setTableNames(response.data.finalArray);
       setDeleteStatus(false);
@@ -34,7 +34,7 @@ const Main = () => {
     if (editableTable === newName) {
       setEditableTable(null);
     } else {
-    axios.post('https://dpg-cmfq1knqd2ns73a5ega0-a.frankfurt-postgres.render.com/editCategory', { editedName: newName, oldName :editableTable })
+    axios.post('http://localhost:3001/editCategory', { editedName: newName, oldName :editableTable })
       .then(response => {
       })
       .catch(error => {
@@ -46,7 +46,7 @@ const Main = () => {
 
   function handleDelete(tableName) {
     setDeleteStatus(true);
-    axios.post('https://dpg-cmfq1knqd2ns73a5ega0-a.frankfurt-postgres.render.com/deleteCategory', {category :tableName}).then(response => {
+    axios.post('http://localhost:3001/deleteCategory', {category :tableName}).then(response => {
     })
     .catch(error => {
       console.error("Error posting data:", error);
