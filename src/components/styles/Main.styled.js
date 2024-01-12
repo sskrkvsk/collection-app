@@ -46,12 +46,12 @@ export const MainStyle = styled.main`
             justify-content: center;
             background-image: url('/images/no-bg-logo.png');
             background-repeat: no-repeat;
-            background-size: 150px; 
+            background-size: 140px; 
             background-position: center center; 
             transition: ${({theme}) => theme.transition.fast};
             
             &:hover {
-            background-size: 200px; 
+            background-size: 160px; 
             }
         }
 
@@ -189,6 +189,10 @@ export const MainStyle = styled.main`
                 color: black;
                 justify-content: start;
                 padding-left: 100px;
+
+                &:hover {
+                background-size: 80px; 
+            }
             }
             input {
                 position: static;
