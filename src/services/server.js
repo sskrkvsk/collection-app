@@ -32,6 +32,7 @@ app.get("/getTableNames", async (req, res) => {
       const tablesToFilter = ['Anime', 'Books', 'Movies', 'Series'];
       const filteredArray = tableNames.filter(word => !tablesToFilter.includes(word));
       const finalArray = tablesToFilter.concat(filteredArray);
+	  console.log(result.rows);
       res.json({ finalArray });
     } catch (error) {
       console.error("Error retrieving items from the database:", error);
