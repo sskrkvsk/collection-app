@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import AddBtn from './AddBtn'
 import { MainStyle } from './styles/Main.styled'
 
@@ -10,6 +10,7 @@ const Main = () => {
   const [editableTable, setEditableTable] = useState(null);
   const [newName, setNewName] = useState("");
   const [deleteStatus, setDeleteStatus] = useState(false);
+  const [canRedirect, setCanRedirect] = useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:3001/getTableNames')
@@ -36,6 +37,8 @@ const Main = () => {
     } else {
     axios.post('http://localhost:3001/editCategory', { editedName: newName, oldName :editableTable })
       .then(response => {
+        console.log(response);
+        response && setCanRedirect(true);
       })
       .catch(error => {
         console.error("Error posting data:", error);
@@ -84,6 +87,7 @@ const Main = () => {
       ))}
       </section>
       <Link to='/addcollection'><AddBtn value="Add Custom" /></Link>
+      {canRedirect && <Redirect to="/home" />}
     </MainStyle>
   )
 }

@@ -107,6 +107,7 @@ app.post("/addCustom", async (req, res) => {
     const {image, title, date, rating, table} = req.body.data;
     const lowerTittle = title.toLowerCase();
     await db.query(`INSERT INTO ${table} (title, image, date, rating) VALUES ($1, $2, $3, $4)`, [lowerTittle, image, date, rating]);
+    res.json(table);
   } catch (error) {
     console.error("Error editing category in the database:", error);
     res.status(500).send("Internal Server Error");

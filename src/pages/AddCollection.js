@@ -20,7 +20,6 @@ const AddCollection = () => {
       .catch(error => {
         console.error("Error posting data:", error);
       });
-      // inputValue && setCanRedirect(true);
   };
 
   return (

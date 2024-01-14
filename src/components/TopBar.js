@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { TopBarStyle } from './styles/TopBar.styled';
 
 const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction, tableData }) => {
+  const listOfNames = ["Anime", "Books", "Movies", "Series"];
   const history = useHistory();
   function handleClick() {
     sorting ? setSorting(false) : setSorting(true);
@@ -20,7 +21,8 @@ const TopBar = ({ sorting, setSorting, toggleGrid, tableName, sortingFunction, t
     <TopBarStyle>
       <nav>
         <Link to="/home"><img src='/images/home.svg' alt=''></img></Link>
-        <Link to={`/additem?category=${tableName}`}><img src='/images/add.svg' alt=''></img></Link>
+        {listOfNames.includes(tableName) ? <Link to={`/additem?category=${tableName}`}><img src='/images/add.svg' alt=''></img></Link>
+        :<Link to={`/addcustomitem?category=${tableName}`}><img src='/images/add.svg' alt=''></img></Link>}
         <p onClick={handleRandom}><img src='/images/shuffle.svg' alt=''></img></p>
       </nav>
       <div>

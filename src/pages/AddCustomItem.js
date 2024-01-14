@@ -57,13 +57,13 @@ const AddCustomItem = () => {
     if (inputData.image !== "" && inputData.title !== "" && inputData.date !== "") {
       axios.post('http://localhost:3001/addCustom', { data: inputData })
       .then(response => {
+        response && setCanRedirect(true);
       })
       .catch(error => {
         console.error("Error posting data:", error);
       });
       setMissed(false);
-      setCanRedirect(true);
-    } else {
+    } else {  
       setMissed(true);
     }
   }
@@ -108,7 +108,7 @@ const AddCustomItem = () => {
       </section>
       <AddBtnStyle onClick={handleAdd}>Add</AddBtnStyle>
     </AddCustomItemStyle>
-    {canRedirect && <Redirect to={`/${category}`} />}
+    {canRedirect && <Redirect to={`/${inputData.table}`} />}
   </PageStyle>
   )
 }

@@ -19,6 +19,7 @@ const Collection = () => {
   const [sort , setSort] = useState(true);
   const [gridColumns, setGridColumns] = useState('repeat(3, 1fr)');
   const [articleVissbility, setarticleVissbility] = useState('none');
+  const listOfNames = ["Anime", "Books", "Movies", "Series"];
 
   useEffect(() => {
     axios.post(`http://localhost:3001/getTableData/${category}`, {status: sort, button: btnName })
@@ -105,7 +106,8 @@ const Collection = () => {
           ) : (
             <NoItemsPage>
               <p>Empty</p>
-              <AddBtnStyle><Link to={'/additem'}>Start a new Collection</Link></AddBtnStyle>
+              {listOfNames.includes(category) ? <Link to={`/additem?category=${category}`}><AddBtnStyle>Start a new Collection</AddBtnStyle></Link>
+              :<Link to={`/addcustomitem?category=${category}`}><AddBtnStyle>Start a new Collection</AddBtnStyle></Link>}
             </NoItemsPage>
             
           )}
