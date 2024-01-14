@@ -115,7 +115,7 @@ const AddItem = () => {
   };
 
   useEffect(() => {
-    if (responseData) {
+    if (responseData && !loading) {
       const trimmedTitle = encodeURIComponent(responseData.title.trim()).toLowerCase();
       history.push(`/${category}/${trimmedTitle}`);
     }

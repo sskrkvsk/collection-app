@@ -11,6 +11,7 @@ const ItemPage = () => {
   const [itemData, setItemData] = useState([]);
   const [curentlValues, setCurentValues] = useState();
   const [editInputs, setEditInputs] = useState(false);
+  const [loading, setLoading] = useState(false);
 
  useEffect(() => {
    axios.get(`http://localhost:3001/getItemData/${category}/${itemTitle}`)
@@ -20,7 +21,7 @@ const ItemPage = () => {
      .catch(error => {
        console.error(`Error fetching data for table ${category}:`, error);
      });
- }, [category, itemTitle]);
+ }, [category, itemTitle,]);
 
  function handleClick() {
      setCurentValues({
@@ -71,6 +72,9 @@ function handleSave() {
       axios.get(`http://localhost:3001/getItemData/${category}/${curentlValues.title}`)
         .then(response => {
           setItemData(response.data.itemData[0]);
+          const trimmedTitle = encodeURIComponent(response.data.itemData[0].title.trim()).toLowerCase();
+          console.log(trimmedTitle);
+          history.push(`/${category}/${trimmedTitle}`);
         })
         .catch(error => {
           console.error(`Error fetching data for table ${category}:`, error);
@@ -79,8 +83,8 @@ function handleSave() {
     .catch(error => {
       console.error("Error posting data:", error);
     });
-
-  setEditInputs(false);
+    
+    setEditInputs(false);
 }
 
 function handleDelete(item, table) {

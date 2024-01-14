@@ -15,11 +15,12 @@ const AddCollection = () => {
   const handlePostRequest = () => {
     axios.post('http://localhost:3001/addNewCollection', { key: inputValue })
       .then(response => {
+        response && setCanRedirect(true);
       })
       .catch(error => {
         console.error("Error posting data:", error);
       });
-      inputValue && setCanRedirect(true);
+      // inputValue && setCanRedirect(true);
   };
 
   return (

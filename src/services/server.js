@@ -17,6 +17,7 @@ const db = new pg.Pool({
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
+  ssl: true,
 });
 
 
@@ -81,6 +82,7 @@ app.get("/getTableNames", async (req, res) => {
 app.post("/addNewCollection", async (req, res) => {
   try {
     const category = req.body.key;
+    console.log(req.body);
     const sanitizedCategory = category.replace(/\s+/g, '_');
     const result = await db.query(`CREATE TABLE ${sanitizedCategory} (
 	id SERIAL PRIMARY KEY,
