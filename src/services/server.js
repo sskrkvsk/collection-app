@@ -124,6 +124,7 @@ app.post("/addApiItem", async (req, res) => {
     } else {
       await db.query(`INSERT INTO ${category} (title, image) VALUES ($1, $2)`, [lowerTittle, image]);
     }
+    res.json({category, title});
   } catch (error) {
     console.error("Error editing category in the database:", error);
     res.status(500).send("Internal Server Error");

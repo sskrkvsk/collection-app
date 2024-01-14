@@ -11,7 +11,6 @@ const ItemPage = () => {
   const [itemData, setItemData] = useState([]);
   const [curentlValues, setCurentValues] = useState();
   const [editInputs, setEditInputs] = useState(false);
-  const [loading, setLoading] = useState(false);
 
  useEffect(() => {
    axios.get(`http://localhost:3001/getItemData/${category}/${itemTitle}`)

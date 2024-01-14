@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useHistory, useLocation  } from 'react-router-dom'
+import { Link, useHistory, useLocation, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Header from '../components/Header'
 import { AddBtnStyle } from '../components/styles/AddBtn.styled'
@@ -12,7 +12,9 @@ const AddItem = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const category = params.get('category');
+  const [itemName, setItemName] = useState();
   const [searchItem, setSearchItem] = useState();
+  const [canRedirect, setCanRedirect] = useState(false);
 
   const handleChange = (event) => {
     const {value} = event.target;
@@ -46,7 +48,7 @@ const AddItem = () => {
           } catch (error) {
             console.error('Error fetching additional data:', error);
           } finally {
-           setLoading(false);
+            setLoading(false);
           }
           break;
         case 'Anime':
@@ -108,18 +110,16 @@ const AddItem = () => {
 
   const sendToDB = async (dataForDB) => {
     try {
-      await axios.post('http://localhost:3001/addApiItem', {dataForDB, category});
+      await axios.post('http://localhost:3001/addApiItem', {dataForDB, category})
+      .then(response => {
+        const trimmedTitle = encodeURIComponent(response.data.title.trim()).toLowerCase();
+        setItemName(trimmedTitle)
+        response && setCanRedirect(true);
+      })
     } catch (error) {
       console.error('Error sending data to DB:', error);
     }
   };
-
-  useEffect(() => {
-    if (responseData && !loading) {
-      const trimmedTitle = encodeURIComponent(responseData.title.trim()).toLowerCase();
-      history.push(`/${category}/${trimmedTitle}`);
-    }
-  }, [responseData]);
 
   return (
     <PageStyle>
@@ -135,6 +135,7 @@ const AddItem = () => {
           
         </section>
       </AddItemStyle>
+      {canRedirect && <Redirect to={`/${category}/${itemName}`} />}
     </PageStyle>
   )
 }
