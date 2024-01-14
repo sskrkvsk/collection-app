@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-
-
-// Card
 export const ItemsCardStyle = styled.div`
     section {
         position: relative;
@@ -24,9 +21,7 @@ export const ItemsCardStyle = styled.div`
             height: 100%;
             background-color: rgba(0, 0, 0, 0.1);
             z-index: 1;
-        }
-    }
-    }
+        }}}
 
     img {
         height: 300px;
@@ -83,8 +78,7 @@ export const ItemsCardStyle = styled.div`
     }
     h3 {
         font-size: ${({theme}) => theme.typography.fontSizeMb};
-    }
-    }
+    }}
 
     @media (max-width: 670px) {
         section {
@@ -92,7 +86,5 @@ export const ItemsCardStyle = styled.div`
         }
         h3 {
             font-size: ${({theme}) => theme.typography.fontSizeM}
-        }
-        
-    }
+        }}
     `

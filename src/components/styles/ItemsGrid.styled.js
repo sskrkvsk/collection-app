@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Items Grid
 export const ItemsGridStyle = styled.div`
     width: ${({theme}) => theme.size.grid};
     margin: 0 auto;

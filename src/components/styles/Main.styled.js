@@ -8,10 +8,6 @@ export const MainStyle = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
-    
-
     section {
         flex: 1;
         width: 100%;
@@ -19,8 +15,6 @@ export const MainStyle = styled.main`
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 30px;
-        
-
         div {
             width: 100%;
             max-height: 290px;
@@ -34,8 +28,7 @@ export const MainStyle = styled.main`
             background-color: ${({theme}) => theme.colors.card};
             &:active {
                 box-shadow: ${({theme}) => theme.shadows.input};
-            }
-        }     
+            }}     
 
         a {
             color: white;
@@ -52,8 +45,7 @@ export const MainStyle = styled.main`
             
             &:hover {
             background-size: 160px; 
-            }
-        }
+            }}
 
         nav {
             width: 100%;
@@ -69,8 +61,7 @@ export const MainStyle = styled.main`
                 cursor: pointer;
                 justify-self: end;
                 transition: ${({theme}) => theme.transition.fast};
-            }
-        }
+            }}
 
         input {
             position: relative;
@@ -89,7 +80,6 @@ export const MainStyle = styled.main`
             margin: 0;
             color: transparent;
             background-color: transparent;
-            
         }
 
         button:first-child {
@@ -102,8 +92,7 @@ export const MainStyle = styled.main`
             }
             &:active {
                 box-shadow: ${({theme}) => theme.shadows.input};
-            }
-        }
+            }}
 
         button:nth-child(2) {
             border-bottom-right-radius: 10px;
@@ -114,9 +103,7 @@ export const MainStyle = styled.main`
             }
             &:active {
                 box-shadow: ${({theme}) => theme.shadows.input};
-            }
-        }
-    }
+            }}}
     
 
     &:nth-child(2) {
@@ -138,9 +125,6 @@ export const MainStyle = styled.main`
             height: 200px;
             flex-direction: row;
             justify-content: space-between;
-            /* align-items: center; */
-            /* justify-content: center; */
-
             p {
             width: 0px;
             margin: 0;
@@ -161,8 +145,7 @@ export const MainStyle = styled.main`
         button:first-child {
            border-right: none;
            border-bottom: 3px solid #d7d7d7;
-        }
-    }
+        }}
 
     @media (max-width: 800px) {
             width: 95%;
@@ -172,12 +155,10 @@ export const MainStyle = styled.main`
         section {
             grid-template-columns: 1fr;
             gap: 10px;
-
             nav {
                 width: 60px;
                 display: flex;
                 justify-self: center;
-
             }
 
             div {
@@ -201,7 +182,5 @@ export const MainStyle = styled.main`
             button:first-child {
                 border-bottom-left-radius: 0px;
                 border-top-right-radius: 10px;
-            }
-        }
-    }
+            }}}
 `

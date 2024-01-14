@@ -14,31 +14,26 @@ export const AddItemStyle = styled.div`
         display: flex;
         justify-content: space-between;
         gap: 40px;
-        margin-bottom: 100px;
-    }
+        margin-bottom: 100px;}
 
     input {
         width: 30%;
-    }
+}
 
     @media (max-width: 1300px) {
         input, section {
             width: 40%;
-        }
-    }
+        }}
     @media (max-width: 1000px) {
         input, section {
             width: 60%;
-        }
-    }
+        }}
     @media (max-width: 650px) {
         input, section {
             width: 80%;
-        }
-    }
+        }}
     @media (max-width: 480px) {
         input, section {
             width: 90%;
-        }
-    }
+        }}
 `

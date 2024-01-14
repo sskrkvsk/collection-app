@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useHistory, useLocation, Redirect } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useLocation, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Header from '../components/Header'
 import { AddBtnStyle } from '../components/styles/AddBtn.styled'
@@ -8,7 +8,6 @@ import { AddItemStyle } from '../components/styles/AddItem.styled'
 import { PageStyle } from '../components/styles/Page.styled'
 
 const AddItem = () => {
-  const history = useHistory();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const category = params.get('category');

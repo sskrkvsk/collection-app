@@ -235,6 +235,5 @@ export const SingleItemStyled = styled.div`
     }
       footer {
         padding: 0;
-    }
-    }
-`;
+    }}
+`

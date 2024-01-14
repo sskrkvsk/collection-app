@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
-// Home
 export const PageStyle = styled.section`
 background-color: ${({theme}) => theme.colors.body};
 display: flex;
 flex-direction: column;
 align-items: center;
 `
-
 export const NoItemsPage = styled.footer`
     height: calc(95vh - ${({theme}) => theme.height.both});
     width: 100%;

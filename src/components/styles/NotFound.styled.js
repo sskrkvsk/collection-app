@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Not Found
 export const NotFoundStyle = styled.div`
     background-color: ${({theme}) => theme.colors.body};
     width: 100%;
@@ -17,5 +16,4 @@ export const NotFoundStyle = styled.div`
         margin-top: 0;
         font-size: 2rem;
     }
-
 `

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Add custom item
 export const AddCustomItemStyle = styled.div`
     width: 100%;
     height: 100vh;
@@ -31,9 +30,7 @@ export const AddCustomItemStyle = styled.div`
                 background-color: ${({theme}) => theme.colors.card};
                 border-radius: ${({theme}) => theme.border.radius};
                 font-size: ${({theme}) => theme.typography.fontSizeMb};
-            }
-        }
-    }
+            }}}
 
     input {
             width: 30%;

@@ -82,7 +82,6 @@ app.get("/getTableNames", async (req, res) => {
 app.post("/addNewCollection", async (req, res) => {
   try {
     const category = req.body.key;
-    console.log(req.body);
     const sanitizedCategory = category.replace(/\s+/g, '_');
     const result = await db.query(`CREATE TABLE ${sanitizedCategory} (
 	id SERIAL PRIMARY KEY,

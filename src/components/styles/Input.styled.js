@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Input
 export const InputStyle = styled.input`
     background-color: #fff;
     padding: 20px 10px;

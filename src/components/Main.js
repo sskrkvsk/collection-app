@@ -56,9 +56,6 @@ const Main = () => {
     });
   }
 
-
-
-
   return (
     <MainStyle>
     <section >

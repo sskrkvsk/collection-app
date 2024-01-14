@@ -27,7 +27,7 @@ button, input {
 }
 
 a, button {
-  touch-action: manipulation; /* Element doesn't want double-tap on mobile to zoom */
+  touch-action: manipulation;
   cursor: pointer;
   color: black;
 }
@@ -37,15 +37,12 @@ ul {
 }
 
 svg {
-  /* Make the SVGs fit the parent container by default */
   height: 100%;
   width: 100%;
-  /* Prevent the SVG from altering cursor interaction */
   pointer-events: none;
 }
 
 iframe, video {
-  /* Make iframes & videos fit the parent container by default */
   height: 100%;
   width: 100%
 }

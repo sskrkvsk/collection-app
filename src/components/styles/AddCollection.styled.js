@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Add collection
 export const AddCollectionStyle = styled.div`
     width: 100%;
     height: 100vh;

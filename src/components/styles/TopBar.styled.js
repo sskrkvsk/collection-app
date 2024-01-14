@@ -94,7 +94,6 @@ export const TopBarStyle = styled.div`
             justify-content:space-evenly;
         div {
             width: 20%;
-            /* position: static; */
             display: flex;
             gap: 15px;
             margin-left: 0;
@@ -107,7 +106,6 @@ export const TopBarStyle = styled.div`
         button {
             max-width: 150px;
             min-width: 100px;
-            /* margin-right: 10px; */
         }
 
         span {
@@ -121,8 +119,7 @@ export const TopBarStyle = styled.div`
         &button {
             height: 100px;
         }
-    }
-    }
+    }}
 
     @media (max-width: 1000px) {
         width: 98%;
@@ -134,14 +131,12 @@ export const TopBarStyle = styled.div`
         }
 
         nav >* {
-            /* padding: 10px 30px; */
             min-width: 100px;
         }
 
         div {
             width: 50%;
-        }
-    }
+        }}
 
     @media (max-width: 823px) {
         justify-content:left;
@@ -168,8 +163,7 @@ export const TopBarStyle = styled.div`
 
             &button {
             height: 100px;
-        }
-        }
+        }}
 
     }
     @media (max-width: 670px) {
