@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 import { ItemsGridStyle } from './styles/ItemsGrid.styled'
 import { ItemsCardStyle } from './styles/ItemCard.styled'
  
-const ItemsGrid = ({ gridColumns, articleVissbility, tableData, category }) => {
+const ItemsGrid = ({ gridColumns, articleVisibility, tableData, category }) => {
   return (
     <ItemsGridStyle gridColumns={gridColumns}>
       {tableData.map((item, index) => {
         const formattedDate = format(new Date(item.date), 'dd.MM.yyyy');
         const trimmedTitle = encodeURIComponent(item.title.trim()).toLowerCase();
         return (
-          <Link to={`/${category}/${trimmedTitle}`} state={{ itemTitle: item.title }}>
-          <ItemsCardStyle key={index} articleVissbility={articleVissbility}>   
+          <Link key={index} to={`/${category}/${trimmedTitle}`} state={{ itemTitle: item.title }}>
+          <ItemsCardStyle articleVisibility={articleVisibility}>   
             <section>  
             <img src={item.image} alt='' />
             <div>

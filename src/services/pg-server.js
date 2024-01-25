@@ -1,7 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const pg = require("pg");
 const cors = require("cors");
+// const db = require('../services/db');
+const pg = require("pg");
 require('dotenv').config();
 
 const app = express();
@@ -10,7 +11,6 @@ const port = 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-
 const db = new pg.Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -19,7 +19,6 @@ const db = new pg.Pool({
   port: process.env.DB_PORT,
   // ssl: true,
 });
-
 
 app.get("/getTableNames", async (req, res) => {
   try {
@@ -38,68 +37,71 @@ app.get("/getTableNames", async (req, res) => {
     }
   });
 
-  app.post("/getTableData/:table", async (req, res) => {
-    const {status, button} = req.body
-    const { table } = req.params;
-    let sort = 'DESC'
-    try {
-      if (button) {
-        if (button === 'date'){
-          !status ? sort = 'ASC' : sort = 'DESC'
-          const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY id ${sort}`);
-          const tableData = result.rows;
-          res.json({ tableData });
-        } else if (button === 'rating'){
-          !status ? sort = 'ASC' : sort = 'DESC'
-          const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY rating ${sort}`);
-          const tableData = result.rows;
-          res.json({ tableData });
-        }
-      } else {
+
+app.post("/getTableData/:table", async (req, res) => {
+  const {status, button} = req.body
+  const { table } = req.params;
+  let sort = 'DESC'
+  try {
+    if (button) {
+      if (button === 'date'){
+        !status ? sort = 'ASC' : sort = 'DESC'
         const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY id ${sort}`);
         const tableData = result.rows;
         res.json({ tableData });
+      } else if (button === 'rating'){
+        !status ? sort = 'ASC' : sort = 'DESC'
+        const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY rating ${sort}`);
+        const tableData = result.rows;
+        res.json({ tableData });
       }
-    } catch (error) {
-      console.error(`Error retrieving data for table ${table}:`, error);
-      res.status(500).send("Internal Server Error");
+    } else {
+      const result = await db.query(`SELECT *, LEFT(note, 900) AS note FROM ${table} ORDER BY id ${sort}`);
+      const tableData = result.rows;
+      res.json({ tableData });
     }
-  });
-
-   app.get("/getItemData/:table/:item", async (req, res) => {
-    const { table, item } = req.params;
-    const formattedItem = decodeURIComponent(item).toLowerCase();
-    try {
-      const result = await db.query(`SELECT * FROM ${table} WHERE title = '${formattedItem}'`);
-      const itemData = result.rows;
-      res.json({ itemData });
-    } catch (error) {
-      console.error(`Error retrieving data for table ${table}:`, error);
-      res.status(500).send("Internal Server Error");
-    }
-  });
-  
-app.post("/addNewCollection", async (req, res) => {
-  try {
-    const category = req.body.key;
-    const sanitizedCategory = category.replace(/\s+/g, '_');
-    const result = await db.query(`CREATE TABLE ${sanitizedCategory} (
-	id SERIAL PRIMARY KEY,
-	title TEXT UNIQUE,
-	author TEXT,
-	rating INT,
-	image TEXT,
-	heading TEXT,
-	note TEXT,
-	date DATE
-)`);
-const table = result.rows;
-res.json({ table });
   } catch (error) {
-    console.error("Error adding table to the database:", error);
+    console.error(`Error retrieving data for table ${table}:`, error);
     res.status(500).send("Internal Server Error");
   }
 });
+
+
+app.get("/getItemData/:table/:item", async (req, res) => {
+  const { table, item } = req.params;
+  const formattedItem = decodeURIComponent(item).toLowerCase();
+  try {
+    const result = await db.query(`SELECT * FROM ${table} WHERE title = '${formattedItem}'`);
+    const itemData = result.rows;
+    res.json({ itemData });
+  } catch (error) {
+    console.error(`Error retrieving data for table ${table}:`, error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/addNewCollection", async (req, res) => {
+try {
+  const category = req.body.key;
+  const sanitizedCategory = category.replace(/\s+/g, '_');
+  const result = await db.query(`CREATE TABLE ${sanitizedCategory} (
+id SERIAL PRIMARY KEY,
+title TEXT UNIQUE,
+author TEXT,
+rating INT,
+image TEXT,
+heading TEXT,
+note TEXT,
+date DATE
+)`);
+const table = result.rows;
+res.json({ table });
+} catch (error) {
+  console.error("Error adding table to the database:", error);
+  res.status(500).send("Internal Server Error");
+}
+});
+
 
 app.post("/addCustom", async (req, res) => {
   try {
@@ -129,6 +131,7 @@ app.post("/addApiItem", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 app.post("/editCategory", async (req, res) => {
   try {

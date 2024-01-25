@@ -18,13 +18,14 @@ const Collection = () => {
   const [sorting, setSorting] = useState(false);
   const [sort , setSort] = useState(true);
   const [gridColumns, setGridColumns] = useState('repeat(3, 1fr)');
-  const [articleVissbility, setarticleVissbility] = useState('none');
+  const [articleVisibility, setarticleVisibility] = useState('none');
   const listOfNames = ["Anime", "Books", "Movies", "Series"];
 
   useEffect(() => {
     axios.post(`http://localhost:3001/getTableData/${category}`, {status: sort, button: btnName })
       .then(response => {
         setTableData(response.data.tableData);
+        // console.log(response.data.tableData);
       })
       .catch(error => {
         console.error(`Error fetching data for table ${category}:`, error);
@@ -36,7 +37,7 @@ const Collection = () => {
     axios.get('http://localhost:3001/getTableNames')
       .then(response => {
         setValidCategories(response.data.finalArray);
-        setIsValidCategory(response.data.tableNames.includes(category));
+        setIsValidCategory(response.data.finalArray.includes(category));
       })
       .catch(error => {
         console.error("Error fetching valid categories:", error);
@@ -56,7 +57,7 @@ const Collection = () => {
     setGridColumns((prevColumns) =>
       prevColumns === 'repeat(3, 1fr)' ? '1fr' : 'repeat(3, 1fr)'
     );
-    setarticleVissbility((prevValue) =>
+    setarticleVisibility((prevValue) =>
     prevValue === 'block' ? 'none' : 'block'
   );
   };
@@ -102,7 +103,7 @@ const Collection = () => {
           <Header tableName={category} tableData={tableData} clickFunction={handleSearch} />
           <TopBar sorting={sorting} setSorting={setSorting} toggleGrid={toggleGrid} tableName={category} sortingFunction={handleSort} tableData={tableData}/>
           {tableData.length > 0 ? (
-            <ItemsGrid gridColumns={gridColumns} articleVissbility={articleVissbility} tableData={tableData} category={category} />
+            <ItemsGrid gridColumns={gridColumns} articleVisibility={articleVisibility} tableData={tableData} category={category} />
           ) : (
             <NoItemsPage>
               <p>Empty</p>

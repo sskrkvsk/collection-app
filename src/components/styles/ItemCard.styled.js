@@ -56,9 +56,8 @@ export const ItemsCardStyle = styled.div`
         width: 16px;
         height: 16px;
     }
-
     article {
-        display: ${(props) => props.articleVissbility || 'block'};;
+        display: ${(props) => props.articleVisibility || 'block'};;
         background-color: ${({theme}) => theme.colors.card};
         padding: 20px 10px; 
         margin-left: 40px;
