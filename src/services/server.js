@@ -16,7 +16,7 @@ const db = new pg.Pool({
   host: process.env.POSTGRES_HOST,
   database: process.env.POSTGRES_DATABASE,
   password: process.env.POSTGRES_PASSWORD,
-  // port: process.env.DB_PORT,
+  port: process.env.DB_PORT,
   // ssl: true,
 });
 

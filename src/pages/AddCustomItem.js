@@ -55,7 +55,7 @@ const AddCustomItem = () => {
   
   const handleAdd = () => {
     if (inputData.image !== "" && inputData.title !== "" && inputData.date !== "") {
-      axios.post('http://localhost:3001/addCustom', { data: inputData })
+      axios.post('/addCustom', { data: inputData })
       .then(response => {
         response && setCanRedirect(true);
       })

@@ -13,7 +13,7 @@ const ItemPage = () => {
   const [editInputs, setEditInputs] = useState(false);
 
  useEffect(() => {
-   axios.get(`http://localhost:3001/getItemData/${category}/${itemTitle}`)
+   axios.get(`/getItemData/${category}/${itemTitle}`)
      .then(response => {
        setItemData(response.data.itemData[0]);
      })
@@ -66,9 +66,9 @@ const ItemPage = () => {
 }
 
 function handleSave() {
-  axios.post('http://localhost:3001/editNotes', { editedData: curentlValues, prevTitle: itemData.title })
+  axios.post('/editNotes', { editedData: curentlValues, prevTitle: itemData.title })
     .then(response => {
-      axios.get(`http://localhost:3001/getItemData/${category}/${curentlValues.title}`)
+      axios.get(`/getItemData/${category}/${curentlValues.title}`)
         .then(response => {
           setItemData(response.data.itemData[0]);
           const trimmedTitle = encodeURIComponent(response.data.itemData[0].title.trim()).toLowerCase();
@@ -87,7 +87,7 @@ function handleSave() {
 }
 
 function handleDelete(item, table) {
-  axios.post('http://localhost:3001/deleteItem', { itemId: item, category: table })
+  axios.post('/deleteItem', { itemId: item, category: table })
       .then(response => {
       })
       .catch(error => {

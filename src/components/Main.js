@@ -13,7 +13,7 @@ const Main = () => {
   const [canRedirect, setCanRedirect] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getTableNames')
+    axios.get('/getTableNames')
     .then(response => {
       setTableNames(response.data.finalArray);
       setDeleteStatus(false);
@@ -35,7 +35,7 @@ const Main = () => {
     if (editableTable === newName) {
       setEditableTable(null);
     } else {
-    axios.post('http://localhost:3001/editCategory', { editedName: newName, oldName :editableTable })
+    axios.post('/editCategory', { editedName: newName, oldName :editableTable })
       .then(response => {
         console.log(response);
         response && setCanRedirect(true);
@@ -49,7 +49,7 @@ const Main = () => {
 
   function handleDelete(tableName) {
     setDeleteStatus(true);
-    axios.post('http://localhost:3001/deleteCategory', {category :tableName}).then(response => {
+    axios.post('/deleteCategory', {category :tableName}).then(response => {
     })
     .catch(error => {
       console.error("Error posting data:", error);
