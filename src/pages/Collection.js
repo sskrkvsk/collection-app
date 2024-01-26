@@ -22,7 +22,7 @@ const Collection = () => {
   const listOfNames = ["Anime", "Books", "Movies", "Series"];
 
   useEffect(() => {
-    axios.post(`http://localhost:3001/getTableData/${category}`, {status: sort, button: btnName })
+    axios.post(`/getTableData/${category}`, {status: sort, button: btnName })
       .then(response => {
         setTableData(response.data.tableData);
         // console.log(response.data.tableData);
@@ -34,7 +34,7 @@ const Collection = () => {
   }, [category, sort]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/getTableNames')
+    axios.get('/getTableNames')
       .then(response => {
         setValidCategories(response.data.finalArray);
         setIsValidCategory(response.data.finalArray.includes(category));
