@@ -15,6 +15,7 @@ const Main = () => {
   useEffect(() => {
     axios.get('/getTableNames')
     .then(response => {
+      console.log(response.data);
       setTableNames(response.data.finalArray);
       setDeleteStatus(false);
     })

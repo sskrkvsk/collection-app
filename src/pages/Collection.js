@@ -36,6 +36,7 @@ const Collection = () => {
   useEffect(() => {
     axios.get('/getTableNames')
       .then(response => {
+        console.log(response.data);
         setValidCategories(response.data.finalArray);
         setIsValidCategory(response.data.finalArray.includes(category));
       })

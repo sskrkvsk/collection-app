@@ -30,7 +30,8 @@ app.get("/getTableNames", async (req, res) => {
       const tablesToFilter = ['Anime', 'Books', 'Movies', 'Series'];
       const filteredArray = tableNames.filter(word => !tablesToFilter.includes(word));
       const finalArray = tablesToFilter.concat(filteredArray);
-      res.json({ finalArray });
+      const test = "test";
+      res.json({ finalArray, test});
     } catch (error) {
       console.error("Error retrieving items from the database:", error);
       res.status(500).send("Internal Server Error");
