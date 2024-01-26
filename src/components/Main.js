@@ -13,7 +13,7 @@ const Main = () => {
   const [canRedirect, setCanRedirect] = useState(false);
 
   useEffect(() => {
-    axios.get('/getTableNames')
+    axios.get('https://ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com/getTableNames')
     .then(response => {
       console.log(response.data);
       setTableNames(response.data.finalArray);

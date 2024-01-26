@@ -22,7 +22,7 @@ const Collection = () => {
   const listOfNames = ["Anime", "Books", "Movies", "Series"];
 
   useEffect(() => {
-    axios.post(`/getTableData/${category}`, {status: sort, button: btnName })
+    axios.post(`https://ep-quiet-frog-84894977-pooler.us-east-1.postgres.vercel-storage.com/getTableData/${category}`, {status: sort, button: btnName })
       .then(response => {
         setTableData(response.data.tableData);
         // console.log(response.data.tableData);
