@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/collection-app/static/js/main.e1aade75.js",
+    "index.html": "/collection-app/index.html",
+    "main.e1aade75.js.map": "/collection-app/static/js/main.e1aade75.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.e1aade75.js"
+  ]
+}
