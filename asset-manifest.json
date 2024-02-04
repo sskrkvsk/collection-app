@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/collection-app/static/js/main.e1aade75.js",
+    "main.js": "/collection-app/static/js/main.04a59faa.js",
     "index.html": "/collection-app/index.html",
-    "main.e1aade75.js.map": "/collection-app/static/js/main.e1aade75.js.map"
+    "main.04a59faa.js.map": "/collection-app/static/js/main.04a59faa.js.map"
   },
   "entrypoints": [
-    "static/js/main.e1aade75.js"
+    "static/js/main.04a59faa.js"
   ]
 }
