@@ -13,7 +13,7 @@ const AddCollection = () => {
   const handleChange = (e) => setInputValue(e.target.value);
   
   const handlePostRequest = () => {
-    axios.post('http://localhost:3001/addNewCollection', { key: inputValue })
+    axios.post('https://sskrkvsk.github.io/addNewCollection', { key: inputValue })
       .then(response => {
         response && setCanRedirect(true);
       })
